@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
+import PropTypes from 'prop-types';
 import { MovieForm, Loading } from '../components';
 import * as movieAPI from '../services/movieAPI';
 
@@ -27,7 +28,8 @@ class EditMovie extends Component {
   }
 
   async fetchApi() {
-    const { id } = this.props.match.params;
+    const { match } = this.props;
+    const { id } = match.params;
     const { getMovie } = movieAPI;
     this.setState({ status: 'loading' },
       async () => {
@@ -55,5 +57,13 @@ class EditMovie extends Component {
     );
   }
 }
+
+EditMovie.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default EditMovie;
