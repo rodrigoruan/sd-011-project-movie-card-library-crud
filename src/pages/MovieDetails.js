@@ -15,20 +15,24 @@ class MovieDetails extends Component {
     };
 
     this.deleteFilm = this.deleteFilm.bind(this);
-  }
-
-  async deleteFilm() {
-    const { id } = this.props.params;
-    await movieAPI.deleteMovie(id);
+    this.settingState = this.settingState.bind(this);
   }
 
   async componentDidMount() {
-    const { id } = this.props.params;
+    const { params } = this.props;
+    const { id } = params;
     const response = await movieAPI.getMovie(id);
-    this.setState({
-      movie: response,
-      loading: false,
-    });
+    this.settingState(response);
+  }
+
+  settingState(response) {
+    this.setState({ movie: response, loading: false });
+  }
+
+  async deleteFilm() {
+    const { params } = this.props;
+    const { id } = params;
+    await movieAPI.deleteMovie(id);
   }
 
   render() {
@@ -46,17 +50,16 @@ class MovieDetails extends Component {
           <p>{ `Genre: ${genre}` }</p>
           <p>{ `Rating: ${rating}` }</p>
         </div>
-      <Link to={ `/movies/${id}/edit` } params={ id }>EDITAR</Link>
-      <Link to="/">VOLTAR</Link>
-      <Link onClick={ () => this.deleteFilm(id) } to="/">DELETAR</Link>
+        <Link to={ `/movies/${id}/edit` } params={ id }>EDITAR</Link>
+        <Link to="/">VOLTAR</Link>
+        <Link onClick={ () => this.deleteFilm(id) } to="/">DELETAR</Link>
       </div>
     );
   }
 }
 
 MovieDetails.propTypes = {
-  match: PropTypes.objectOf({ params: PropTypes.objectOf({ id: PropTypes.number }) })
-    .isRequired,
+  params: PropTypes.objectOf({ id: PropTypes.number }).isRequired,
 };
 
 export default MovieDetails;

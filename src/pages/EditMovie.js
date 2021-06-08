@@ -13,13 +13,14 @@ class EditMovie extends Component {
       shouldRedirect: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.settingState = this.settingState.bind(this);
   }
 
   async componentDidMount() {
     const id = window.location.match(/(?<=\/)\d+(?=\/)/);
 
     const response = await movieAPI.getMovie(id);
-    this.setState({ movie: response, status: '' });
+    this.settingState(response);
   }
 
   handleSubmit(updatedMovie) {
@@ -27,15 +28,15 @@ class EditMovie extends Component {
     this.setState({ shouldRedirect: true });
   }
 
-  render() {
-    const { status, shouldRedirect, movie  } = this.state;
-    if (shouldRedirect) {
-      <Redirect to="/movies/:id" />
-    }
+  settingState(response) {
+    this.setState({ movie: response, status: '' });
+  }
 
-    if (status === 'loading') {
-      <Loading />
-    }
+  render() {
+    const { status, shouldRedirect, movie } = this.state;
+    if (shouldRedirect) return <Redirect to="/movies/:id" />;
+
+    if (status === 'loading') return <Loading />;
 
     return (
       <div data-testid="edit-movie">
