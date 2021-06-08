@@ -13,16 +13,17 @@ class MovieList extends React.Component {
       movies: [],
       loading: true,
     };
+    this.request = this.request.bind(this);
   }
 
   componentDidMount() {
-    this.mountMovies();
+    this.request();
   }
 
-  async mountMovies() {
+  async request() {
     const request = await movieAPI.getMovies();
     this.setState({
-      movies: request,
+      movies: response,
       loading: false,
     });
   }
