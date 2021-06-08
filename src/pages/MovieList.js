@@ -37,7 +37,7 @@ class MovieList extends Component {
     const { movies } = this.state;
 
     return (
-      <div data-testid="movie-list">
+      <div className="movieListContainer" data-testid="movie-list">
         {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
       </div>
     );
