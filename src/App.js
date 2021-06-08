@@ -17,7 +17,6 @@ function App() {
         <Route exact path="/" component={ MovieList } />
         <Route path="/*" component={ NotFound } />
       </Switch>
-      {/* <div>Movie Card Library CRUD</div> */}
     </BrowserRouter>
   );
 }
