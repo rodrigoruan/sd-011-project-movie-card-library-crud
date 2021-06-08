@@ -10,6 +10,10 @@ class EditMovie extends Component {
     // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // componentDidMount() {
+  //   console.log(this.props);
+  // }
+
   // handleSubmit(updatedMovie) {
   // }
 
