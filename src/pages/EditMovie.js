@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { MovieForm } from '../components';
 import * as movieAPI from '../services/movieAPI';
-import { Redirect } from 'react-router-dom';
 import Loading from '../components/Loading';
 
-class EditMovie extends Component {
+class EditMovie extends React.Component {
   constructor(props) {
     super(props);
     const { match } = this.props;
@@ -38,22 +38,25 @@ class EditMovie extends Component {
       movie: upMovie,
       status: 'loaded',
     });
-
-    render() {
-      const { status, shouldRedirect, movie } = this.state;
-      if (shouldRedirect) {
-        return <Redirect to="/" />;
-      }
-      if (status === 'loading') {
-        return <Loading />;
-      }
-      return (
-        <div data-testid="edit-movie">
-          <MovieForm movie={ movie } onSubmit={ this.handleSubmit } />
-        </div>
-      );
-    }
   }
+
+  render() {
+    const { status, shouldRedirect, movie } = this.state;
+    if (shouldRedirect) {
+      return <Redirect to="/" />;
+    }
+
+    if (status === 'loading') {
+      return <Loading />;
+    }
+
+    return (
+      <div data-testid="edit-movie">
+        <MovieForm movie={ movie } onSubmit={ this.handleSubmit } />
+      </div>
+    );
+  }
+}
 
 EditMovie.propTypes = {
   match: PropTypes.shape({

@@ -13,6 +13,7 @@ class MovieDetails extends Component {
       loading: true,
     };
     this.request = this.request.bind(this);
+    this.deleteFilm = this.deleteFilm.bind(this);
   }
 
   // this.props.match.param
@@ -39,13 +40,13 @@ class MovieDetails extends Component {
 
   render() {
     
-    const { loading, movie } = this.props;
+    const { loading, movie } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
 
-    return (
+    return loading ? <Loading /> : (
       <div>
         <div data-testid="movie-details">
-          <h1 { ...title } />
+          <h1>{ title }</h1>
           <img alt="Movie Cover" src={ `../${imagePath}` } />
           <p>{ `Subtitle: ${subtitle}` }</p>
           <p>{ `Storyline: ${storyline}` }</p>

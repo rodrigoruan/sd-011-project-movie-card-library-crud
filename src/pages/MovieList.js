@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import MovieCard from '../components/MovieCard';
 import Loading from '../components/Loading';
 
@@ -22,7 +21,7 @@ class MovieList extends React.Component {
   }
 
   async request() {
-    const request = await movieAPI.getMovies();
+    const response = await movieAPI.getMovies();
     this.setState({
       movies: response,
       loading: false,
@@ -41,9 +40,5 @@ class MovieList extends React.Component {
     );
   }
 }
-
-MovieList.PropTypes = {
-  loading: PropTypes.bool,
-};
 
 export default MovieList;
