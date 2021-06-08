@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class MovieCard extends React.Component {
   render() {
@@ -9,6 +10,7 @@ class MovieCard extends React.Component {
         <h1>{movie.title}</h1>
         <img src={ movie.imagePath } alt="Imagem do filme" />
         <p>{movie.storyline}</p>
+        <Link to={ { pathname: `/movies/${movie.id}` } }>VER DETALHES</Link>
       </div>
     );
   }
