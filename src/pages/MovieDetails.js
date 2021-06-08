@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
@@ -13,6 +13,7 @@ class MovieDetails extends Component {
     };
     this.renderMovie = this.renderMovie.bind(this);
     this.renderDetails = this.renderDetails.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   renderMovie = () => {
@@ -21,6 +22,11 @@ class MovieDetails extends Component {
       const newMovie = await movieAPI.getMovie(id);
       this.setState({ movie: newMovie, loading: false });
     });
+  };
+
+  handleDelete = () => {
+    const { id } = this.props.match.params;
+    movieAPI.deleteMovie(id);
   };
 
   componentDidMount() {
@@ -63,6 +69,11 @@ class MovieDetails extends Component {
                 EDITAR
               </Link>
             </button>
+            <button href="/" className="btn">
+              <Link className="btn btn-danger btn-lg px-4 me-md-2" to="/" onClick={this.handleDelete}>
+                DELETAR
+              </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -70,10 +81,12 @@ class MovieDetails extends Component {
   };
 
   render() {
-    const { loading } = this.state;
-    {
-      return loading ? <Loading /> : this.renderDetails();
+    const { shouldRedirect, loading } = this.state;
+    if (shouldRedirect) {
+      return <Redirect to="/" />;
     }
+
+    return loading ? <Loading /> : this.renderDetails();
   }
 }
 

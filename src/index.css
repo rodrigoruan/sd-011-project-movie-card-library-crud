@@ -50,7 +50,13 @@ code {
 }
 
 .card-link {
-  color: rgb(0, 17, 255);
+  color: rgb(0, 129, 0);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.add-link {
+  color: rgb(255, 255, 255);
   font-weight: 900;
   text-decoration: none;
 }
