@@ -12,6 +12,10 @@ class MovieList extends Component {
     };
   }
 
+  componentDidMount() {
+    s
+  }
+
   render() {
     const { movies } = this.state;
 
