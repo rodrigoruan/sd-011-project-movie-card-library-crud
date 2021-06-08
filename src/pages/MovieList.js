@@ -12,6 +12,8 @@ class MovieList extends Component {
       movies: [],
       loading: true,
     };
+
+    this.waitForApi = this.waitForApi.bind(this);
   }
 
   componentDidMount() {
