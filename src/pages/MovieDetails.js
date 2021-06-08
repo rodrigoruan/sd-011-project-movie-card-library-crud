@@ -55,10 +55,9 @@ class MovieDetails extends Component {
 }
 
 MovieDetails.propTypes = {
-  match: PropTypes.objectOf({
-    params: PropTypes.objectOf({
-      id: PropTypes.number,
-    }),
+  match: PropTypes.objectOf(PropTypes.object).isRequired,
+  params: PropTypes.objectOf({
+    id: PropTypes.string,
   }).isRequired,
 };
 
