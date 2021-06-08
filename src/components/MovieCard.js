@@ -10,7 +10,7 @@ class MovieCard extends React.Component {
         <p>{movie.title}</p>
         <p>{movie.storyline}</p>
         <img src={ movie.imagePath } alt={ movie.title } />
-        <Link to={ `/movies/${movie.id}` } param={ movie.id }>VER DETALHES</Link>
+        <Link to={ `/movies/${movie.id}` } params={ movie.id }>VER DETALHES</Link>
       </div>
     );
   }
