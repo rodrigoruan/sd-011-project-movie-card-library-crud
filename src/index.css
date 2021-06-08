@@ -54,3 +54,14 @@ code {
   font-weight: 900;
   text-decoration: none;
 }
+
+.movie-details {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.movie-form {
+  margin: 2rem;
+  width: 70%;
+}

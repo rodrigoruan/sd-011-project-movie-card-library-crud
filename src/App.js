@@ -5,6 +5,7 @@ import MovieDetails from './pages/MovieDetails';
 import NewMovie from './pages/NewMovie';
 import NotFound from './pages/NotFound';
 import EditMovie from './pages/EditMovie';
+import movieData from './services/movieData';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Switch>
         <Route exact path="/" render={(props) => <MovieList {...props} />} />
         <Route exact path="/movies/new" render={(props) => <NewMovie {...props} />} />
-        <Route exact path="/movies/:id" render={(props) => <MovieDetails {...props} />} />
+        <Route exact path="/movies/:id" render={(props) => <MovieDetails {...props} movies={movieData} />} />
         <Route exact path="/movies/:id/edit" render={(props) => <EditMovie {...props} />} />
         <Route component={NotFound} />
       </Switch>
