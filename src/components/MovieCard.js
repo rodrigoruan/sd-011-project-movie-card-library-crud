@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import './style.css';
 
 class MovieCard extends React.Component {
   render() {
@@ -9,14 +10,16 @@ class MovieCard extends React.Component {
       id, title, subtitle, genre, imagePath, rating, storyline,
     } = movie;
     return (
-      <div data-testid="movie-card">
-        <h1>{ title }</h1>
-        <h1>{ subtitle }</h1>
-        <img src={ imagePath } alt="poke" />
-        <h1>{ genre }</h1>
-        <h1>{ rating }</h1>
-        <h1>{ storyline }</h1>
-        <Link to={ `/movies/${id}` } params={ id }>VER DETALHES</Link>
+      <div className="container">
+        <div className="card" data-testid="movie-card">
+          <h1>{ title }</h1>
+          <h5>{ subtitle }</h5>
+          <img src={ imagePath } alt="poke" />
+          <h3>{ genre }</h3>
+          <p>{ rating }</p>
+          <p>{ storyline }</p>
+          <Link to={ `/movies/${id}` } params={ id }>VER DETALHES</Link>
+        </div>
       </div>
     );
   }
