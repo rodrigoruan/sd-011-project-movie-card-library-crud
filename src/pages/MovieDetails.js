@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getMovie } from '../services/movieAPI';
+import { getMovie, deleteMovie } from '../services/movieAPI';
 import Loading from '../components/Loading';
 
 class MovieDetails extends Component {
   constructor(props) {
     super(props);
     this.fetchMovieDetails = this.fetchMovieDetails.bind(this);
+    this.deleteMovie = this.deleteMovie.bind(this);
     this.state = {
       movie: [],
       loading: true,
@@ -26,6 +27,11 @@ class MovieDetails extends Component {
         movie: data,
         loading: false,
       }));
+  }
+
+  deleteMovie() {
+    const { match: { params: { id } } } = this.props;
+    deleteMovie(id);
   }
 
   render() {
@@ -54,6 +60,12 @@ class MovieDetails extends Component {
         <span>
           <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
           <Link to="/">VOLTAR</Link>
+          <Link
+            to="/"
+            onClick={ () => { this.deleteMovie(); } }
+          >
+            DELETAR
+          </Link>
         </span>
       </div>
     );
