@@ -8,15 +8,19 @@ import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Route exact to="/" component={ MovieList } />
-      <Route to="/movies/new" component={ NewMovie } />
-      <Route to="/movies/:id" component={ MovieDetails } />
-      <Route to="/movies/:id/edit" component={ EditMovie } />
-      <Route to="" component={ NotFound } />
+    <>
       <div>Movie Card Library CRUD</div>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Route exact path="/" component={ MovieList } />
+        <Route path="/movies/new" component={ NewMovie } />
+        <Route path="/movies/:id" render={ (props) => <MovieDetails { ...props } /> } />
+        <Route path="/movies/:id/edit" component={ EditMovie } />
+        <Route path="/" component={ NotFound } />
+      </BrowserRouter>
+    </>
   );
 }
+
+// <Route to="/movies/:id" component={ MovieDetails } />
 
 export default App;
