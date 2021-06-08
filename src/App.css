@@ -4,14 +4,16 @@ body {
 }
 
 .movie-list {
-  display: inline;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .movie {
+  background-color: rgb(218, 214, 214);
   padding: 5px;
   display: flex;
   flex-direction: column;
   width: 500px;
-  height: 500px;
+  height: 600px;
   border: black solid 5px;
 }
