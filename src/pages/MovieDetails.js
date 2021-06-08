@@ -19,7 +19,9 @@ class MovieDetails extends Component {
     this.fetchApi();
   }
 
-  handleClick(id) {
+  handleClick() {
+    const { movie } = this.state;
+    const { id } = movie;
     const { deleteMovie } = movieAPI;
     deleteMovie(id);
   }
@@ -54,7 +56,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/">VOLTAR</Link>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-        <Link to="/" onClick={ this.handleClick(id) }>DELETAR</Link>
+        <Link to="/" onClick={ this.handleClick }>DELETAR</Link>
       </div>
     );
   }
