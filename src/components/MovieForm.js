@@ -5,6 +5,7 @@ class MovieForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { ...props.movie };
+    
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -19,7 +20,6 @@ class MovieForm extends React.Component {
 
   renderTitleInput() {
     const { title } = this.state;
-
     return (
       <div>
         <label htmlFor="movie_title">
