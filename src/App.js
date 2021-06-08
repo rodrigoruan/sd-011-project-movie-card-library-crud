@@ -11,17 +11,17 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path="/movies/new" component={ NewMovie } />
         <Route
           exact
           path="/movies/:id/edit"
-          render={ (props) => <EditMovie { ...props } /> }
+          render={ () => <EditMovie /> }
         />
         <Route
           exact
           path="/movies/:id"
-          render={ (props) => <MovieDetails { ...props } /> }
+          render={ () => <MovieDetails /> }
         />
-        <Route exact path="/movies/new" component={ NewMovie } />
         <Route exact path="/" component={ MovieList } />
         <Route component={ NotFound } />
       </Switch>
