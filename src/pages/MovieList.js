@@ -11,18 +11,17 @@ class MovieList extends Component {
       loading: true,
       movies: [],
     };
-    this.findMovies = this.findMovies.bind(this);
+    this.request = this.request.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.request();
+  }
+
+  async request() {
     const response = await movieAPI.getMovies();
-    console.log(response);
-    this.findMovies(response);
-  }
-
-  findMovies(param) {
     this.setState({
-      movies: param,
+      movies: response,
       loading: false,
     });
   }
