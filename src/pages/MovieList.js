@@ -1,8 +1,7 @@
-/* eslint-disable */ 
 import React, { Component } from 'react';
+import { Loading } from '../components';
 import MovieCard from '../components/MovieCard';
-
-import * as movieAPI from '../services/movieAPI';
+import { getMovies } from '../services/movieAPI';
 
 class MovieList extends Component {
   constructor() {
@@ -10,13 +9,30 @@ class MovieList extends Component {
 
     this.state = {
       movies: [],
+      loading: true,
     };
   }
 
-  render() {
-    const { movies } = this.state;
+  handleState(movies) {
+    this.setState({
+      movies,
+      loading: false,
+    })
+  }
+  componentDidMount() {
+    getMovies().then((movies) => {
+      this.handleState(movies)
+    })
+  }
 
-    // Render Loading here if the request is still happening
+  render() {
+    const { movies, loading} = this.state;
+
+    if(loading) {
+      return (
+        <Loading />
+      )
+    }
 
     return (
       <div data-testid="movie-list" style={ { border: '4px solid red' } }>
