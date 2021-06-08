@@ -20,7 +20,6 @@ class MovieList extends Component {
 
   async getAllMovies() {
     const movies2 = await movieAPI.getMovies();
-    console.log(movies2);
     this.setState({
       movies: movies2,
     });
