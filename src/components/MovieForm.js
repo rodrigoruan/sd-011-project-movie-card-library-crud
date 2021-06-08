@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { shape, string, number, func } from 'prop-types';
 
 class MovieForm extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class MovieForm extends React.Component {
   }
 
   updateMovie(field, newValue) {
-    this.setState({ [field]: newValue });
+    this.setState({ [ field ]: newValue });
   }
 
   renderTitleInput() {
@@ -126,7 +126,7 @@ class MovieForm extends React.Component {
             min={ 0 }
             max={ 5 }
             value={ rating }
-            onChange={ (event) => this.updateMovie('rating', event.target.value) }
+            onChange={ (event) => this.updateMovie('rating', event.target.valueAsNumber) }
           />
           Avaliação
         </label>
@@ -151,17 +151,30 @@ class MovieForm extends React.Component {
     return (
       <div>
         <form>
-          {this.renderTitleInput()}
-          {this.renderSubtitleInput()}
-          {this.renderImagePathInput()}
-          {this.renderStorylineInput()}
-          {this.renderGenreSelection()}
-          {this.renderRatingInput()}
-          {this.renderSubmitButton()}
+          { this.renderTitleInput() }
+          { this.renderSubtitleInput() }
+          { this.renderImagePathInput() }
+          { this.renderStorylineInput() }
+          { this.renderGenreSelection() }
+          { this.renderRatingInput() }
+          { this.renderSubmitButton() }
         </form>
       </div>
     );
   }
 }
+
+MovieForm.propTypes = {
+  movie: shape({
+    id: number,
+    title: string,
+    subtitle: string,
+    storyline: string,
+    rating: number,
+    imagePath: string,
+    genre: string,
+  }).isRequired,
+  onSubmit: func.isRequired,
+};
 
 export default MovieForm;
