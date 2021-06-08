@@ -33,8 +33,9 @@ class MovieList extends React.Component {
 
     return (
       <div data-testid="movie-list">
-        { loading ? <Loading /> : movies.map((movie) => <MovieCard
-          key={ movie.title } movie={ movie } />)}
+        { loading
+          ? <Loading />
+          : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
         <Link to="/movies/new">ADICIONAR CARTÃO</Link>
       </div>
     );
