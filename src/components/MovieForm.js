@@ -173,11 +173,11 @@ MovieForm.propTypes = {
     storyline: PropTypes.string,
     rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     imagePath: PropTypes.string,
-  }).isRequired,
-  onSubmit: PropTypes.func.isRequired,
+  }),
+  onSubmit: PropTypes.func,
 };
 
-MovieCard.defaultProps = {
-  movie: [{}],
+MovieForm.defaultProps = {
+  movie: {},
   onSubmit: '',
 };
