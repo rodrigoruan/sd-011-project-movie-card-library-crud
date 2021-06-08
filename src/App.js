@@ -13,7 +13,11 @@ function App() {
       <Switch>
         <Route exact path="/" render={ () => <MoveList /> } />
         <Route path="/movies/new" render={ () => <NewMovie /> } />
-        <Route exact path="/movies/:id" render={ (props) => <MovieDetails { ...props } /> } />
+        <Route
+          exact
+          path="/movies/:id"
+          render={ (props) => <MovieDetails { ...props } /> }
+        />
         <Route path="/movies/:id/edit" render={ (props) => <EditMovie { ...props } /> } />
         <Route NoMatch render={ () => <NotFound /> } />
       </Switch>

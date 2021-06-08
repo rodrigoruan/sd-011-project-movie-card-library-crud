@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class MovieCard extends React.Component {
@@ -13,5 +14,13 @@ class MovieCard extends React.Component {
     );
   }
 }
+
+MovieCard.propTypes = {
+  movie: PropTypes.objectOf({
+    id: PropTypes.number,
+    storyline: PropTypes.string,
+    title: PropTypes.string,
+  }).isRequired,
+};
 
 export default MovieCard;
