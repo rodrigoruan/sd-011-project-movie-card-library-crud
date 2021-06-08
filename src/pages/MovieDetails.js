@@ -12,10 +12,16 @@ class MovieDetails extends Component {
       movie: {},
     };
     this.fetchApi = this.fetchApi.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.fetchApi();
+  }
+
+  handleClick(id) {
+    const { deleteMovie } = movieAPI;
+    deleteMovie(id);
   }
 
   async fetchApi() {
@@ -48,6 +54,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/">VOLTAR</Link>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+        <Link to="/" onClick={ this.handleClick(id) }>DELETAR</Link>
       </div>
     );
   }
@@ -56,7 +63,7 @@ class MovieDetails extends Component {
 MovieDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
     }).isRequired,
   }).isRequired,
 };
