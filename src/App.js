@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import MoveList from './pages/MovieList';
+import MovieList from './pages/MovieList';
 import NewMovie from './pages/NewMovie';
 import MovieDetails from './pages/MovieDetails';
 import EditMovie from './pages/EditMovie';
@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" render={ () => <MoveList /> } />
+        <Route exact path="/" render={ () => <MovieList /> } />
         <Route path="/movies/new" render={ () => <NewMovie /> } />
         <Route
           exact

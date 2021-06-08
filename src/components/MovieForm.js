@@ -165,7 +165,7 @@ class MovieForm extends React.Component {
 }
 
 MovieForm.propTypes = {
-  movie: PropTypes.objectOf({
+  movie: PropTypes.shape({
     id: PropTypes.number,
     storyline: PropTypes.string,
     title: PropTypes.string,
