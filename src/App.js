@@ -14,9 +14,13 @@ function App() {
         <Switch>
           <Route path="/movies/new" render={ () => <NewMovie /> } />
           <Route path="/movies/:id/edit" render={ () => <EditMovie /> } />
-          <Route path="/movies/:id" render={ () => <MovieDetails /> } />
-          <Route exact path="/" render={ () => <MovieList /> } />
+          <Route exact path="/" render={ (props) => <MovieList { ...props } /> } />
           <Route NoMatch render={ () => <NotFound /> } />
+          <Route
+            exact
+            path="/movies/:id"
+            render={ (props) => <MovieDetails { ...props } /> }
+          />
         </Switch>
       </BrowserRouter>
     </div>
