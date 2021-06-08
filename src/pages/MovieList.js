@@ -13,18 +13,20 @@ class MovieList extends Component {
     };
 
     this.renderMovieCards = this.renderMovieCards.bind(this);
+    this.setMovies = this.setMovies.bind(this);
   }
 
   async componentDidMount() {
     const { getMovies } = movieAPI;
     const data = await getMovies();
-    this.setState(
-      ({ loading: true }), 
-      () => this.setState(() => ({
+    this.setMovies(data);
+  }
+
+  setMovies(data) {
+    this.setState({
         movies: data,
         loading: false,
-      }))
-      )
+      })
   }
 
   renderMovieCards() {
