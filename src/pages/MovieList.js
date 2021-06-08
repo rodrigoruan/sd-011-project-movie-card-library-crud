@@ -22,9 +22,9 @@ class MovieList extends Component {
 
   // Usamos async para criar uma função assíncrona e retorna uma promisse
   async getMovies() {
-    const boxMovies = await movieAPI.getMovies();
+    const requestReturn = await movieAPI.getMovies();
     this.setState({
-      movies: boxMovies,
+      movies: requestReturn,
     });
   }
 
