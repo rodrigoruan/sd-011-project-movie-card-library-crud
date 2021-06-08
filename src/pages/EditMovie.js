@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import { MovieForm } from '../components';
 import * as movieAPI from '../services/movieAPI';
 
 class EditMovie extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.match.params.id);
-    this.state = {};
+    const { match } = this.props;
+    const { id } = match.params;
+    this.state = {
+      id,
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -31,5 +34,13 @@ class EditMovie extends Component {
     );
   }
 }
+
+EditMovie.propTypes = {
+  match: PropTypes.objectOf({
+    params: PropTypes.objectOf({
+      id: PropTypes.number,
+    }),
+  }).isRequired,
+};
 
 export default EditMovie;
