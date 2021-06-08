@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default class Movie extends Component {
@@ -22,3 +23,19 @@ export default class Movie extends Component {
     );
   }
 }
+
+Movie.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    storyline: PropTypes.string,
+    imagePath: PropTypes.string,
+    genre: PropTypes.string,
+    rating: PropTypes.number,
+    subtitle: PropTypes.string,
+    id: PropTypes.number,
+  }),
+};
+
+Movie.defaultProps = {
+  movie: {},
+};
