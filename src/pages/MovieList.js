@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
 
 import * as movieAPI from '../services/movieAPI';
-import movies from '../services/movieData';
 
 class MovieList extends Component {
   constructor() {
@@ -16,19 +15,19 @@ class MovieList extends Component {
   }
 
   async componentDidMount() {
-    await movieAPI.getMovies();
-    this.updateMovie();
+    const theMovies = await movieAPI.getMovies();
+    this.updateMovie(theMovies);
   }
 
-  updateMovie() {
-    this.setState((state) => ({
-      movies: [...state.movies, movies],
+  updateMovie(param) {
+    this.setState(() => ({
+      movies: param,
       load: false,
     }));
   }
 
   render() {
-    const { load } = this.state;
+    const { load, movies } = this.state;
 
     // Render Loading here if the request is still happening
     const loading = 'Carregando...';
