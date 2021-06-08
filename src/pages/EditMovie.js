@@ -39,27 +39,25 @@ class EditMovie extends Component {
       status: 'loaded',
     });
 
-  render() {
-    const { status, shouldRedirect, movie } = this.state;
-    if (shouldRedirect) {
-      return <Redirect to="/" />;
+    render() {
+      const { status, shouldRedirect, movie } = this.state;
+      if (shouldRedirect) {
+        return <Redirect to="/" />;
+      }
+      if (status === 'loading') {
+        return <Loading />;
+      }
+      return (
+        <div data-testid="edit-movie">
+          <MovieForm movie={ movie } onSubmit={ this.handleSubmit } />
+        </div>
+      );
     }
-
-    if (status === 'loading') {
-      return <Loading />;
-    }
-
-    return (
-      <div data-testid="edit-movie">
-        <MovieForm movie={ movie } onSubmit={ this.handleSubmit } />
-      </div>
-    );
   }
-}
 
 EditMovie.propTypes = {
-  match: PropTypes.objectOf({
-    params: PropTypes.objectOf({
+  match: PropTypes.shape({
+    params: PropTypes.shape({
       id: PropTypes.number,
     }),
   }).isRequired,
