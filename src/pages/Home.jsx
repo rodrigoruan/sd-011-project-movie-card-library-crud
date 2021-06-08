@@ -15,17 +15,17 @@ class Home extends Component {
           <Route
             exact
             path="/movies/new"
-            render={ (props) => <NewMovie { ...props } /> }
+            component={ NewMovie }
           />
           <Route
             exact
             path="/movies/:id"
-            render={ (props) => <MovieDetails { ...props } /> }
+            component={ MovieDetails }
           />
           <Route
             exact
             path="/movies/:id/edit"
-            render={ (props) => <EditMovie { ...props } /> }
+            component={ EditMovie }
           />
           <Route component={ NotFound } />
         </Switch>
