@@ -2,6 +2,7 @@ body {
   background-color: whitesmoke;
   box-sizing: border-box;
 }
+
 .movie-card {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.125);
