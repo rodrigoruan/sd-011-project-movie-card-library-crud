@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import MovieList from './pages/MovieList';
 import NewMovie from './pages/NewMovie';
 import MovieDetails from './pages/MovieDetails';
@@ -21,7 +21,6 @@ function App() {
           render={ (props) => <MovieDetails { ...props } /> }
         />
         <Route
-          exact
           path="/movies/:id/edit"
           render={ (props) => <EditMovie { ...props } /> }
         />
