@@ -14,6 +14,7 @@ class MovieList extends Component {
   async componentDidMount() {
     const response = await movieAPI.getMovies();
     this.setState({ movies: response });
+    
   }
 
   render() {
@@ -24,7 +25,7 @@ class MovieList extends Component {
     return movies.length >0? (
       <div data-testid="movie-list">
         {movies.map((movie) => (
-          <MovieCard key={movie.title} movie={movie} />
+          <MovieCard key={movie.title} movie={movie}/>
           
         ))}
       </div>
