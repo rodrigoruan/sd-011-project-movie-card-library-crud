@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
-
 import * as movieAPI from '../services/movieAPI';
+import Loading from '../components/Loading';
 
 class MovieList extends Component {
   constructor() {
     super();
 
     this.state = {
-      movies: [],
+      movies: '',
+      // loading: true,
     };
+    this.captureMovies = this.captureMovies.bind(this);
+  }
+
+  componentDidMount() {
+    this.captureMovies();
+  }
+
+  async captureMovies() {
+    const moviesImported = await movieAPI.getMovies();
+    this.setState({
+      movies: moviesImported,
+    });
   }
 
   render() {
@@ -19,7 +32,9 @@ class MovieList extends Component {
 
     return (
       <div data-testid="movie-list">
-        {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
+        {movies // Se movies for verdadeiro imprima o map, senao imprima o "Carregando..."
+          ? movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)
+          : <Loading />}
       </div>
     );
   }
