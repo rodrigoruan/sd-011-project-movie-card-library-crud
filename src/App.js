@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import MovieList from './pages/MovieList';
 import NewMovie from './pages/NewMovie';
 import MovieDetails from './pages/MovieDetails';
@@ -13,6 +13,7 @@ export default class App extends React.Component {
       <div>
         <h1>Movie Card Library CRUD</h1>
         <BrowserRouter>
+          <Link to="/movies/new">ADICIONAR CARTÃO</Link>
           <Switch>
             <Route
               exact
