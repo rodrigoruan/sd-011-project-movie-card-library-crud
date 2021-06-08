@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
+import Movie from '../components/Movie';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
-import Movie from '../components/Movie';
 
 class MovieDetails extends Component {
   constructor() {
@@ -53,7 +53,7 @@ export default MovieDetails;
 MovieDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
     }),
   }),
 };
