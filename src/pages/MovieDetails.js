@@ -4,6 +4,7 @@ import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
 class MovieDetails extends Component {
+
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
