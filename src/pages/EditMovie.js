@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router';
+import PropTypes from 'prop-types';
 
-import { MovieForm, Loading } from '../components';
+import { Loading, MovieForm } from '../components';
 import * as movieAPI from '../services/movieAPI';
 
 class EditMovie extends Component {
   constructor(props) {
     super(props);
+
+    const { match } = this.props;
+    const { id } = match.params;
     this.state = {
-      movie: '',
-      status: 'loading',
       shouldRedirect: false,
+      movie: {},
+      status: 'loading',
+      id,
     };
+
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.settingState = this.settingState.bind(this);
+    this.fetchMovie = this.fetchMovie.bind(this);
   }
 
   async componentDidMount() {
-    const id = window.location.match(/(?<=\/)\d+(?=\/)/);
-
-    const response = await movieAPI.getMovie(id);
-    this.settingState(response);
+    const { id } = this.state;
+    const upMovie = await movieAPI.getMovie(id);
+    this.fetchMovie(upMovie);
   }
 
   handleSubmit(updatedMovie) {
@@ -28,13 +33,13 @@ class EditMovie extends Component {
     this.setState({ shouldRedirect: true });
   }
 
-  settingState(response) {
-    this.setState({ movie: response, status: '' });
+  async fetchMovie(upMovie) {
+    this.setState({ movie: upMovie, status: 'loaded' });
   }
 
   render() {
     const { status, shouldRedirect, movie } = this.state;
-    if (shouldRedirect) return <Redirect to="/movies/:id" />;
+    if (shouldRedirect) return <Redirect to="/" />;
 
     if (status === 'loading') return <Loading />;
 
@@ -45,5 +50,13 @@ class EditMovie extends Component {
     );
   }
 }
+
+EditMovie.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number,
+    }),
+  }).isRequired,
+};
 
 export default EditMovie;
