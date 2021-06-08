@@ -11,6 +11,8 @@ class MovieDetails extends Component {
       loading: true,
       movie: {},
     };
+
+    this.removerMovie = this.removerMovie.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +29,12 @@ class MovieDetails extends Component {
     });
   }
 
+  async removerMovie() {
+    const { match } = this.props; // https://stackoverflow.com/questions/54463073/react-router-match-with-params
+    const { id } = match.params;
+    await movieAPI.deleteMovie(id);
+  }
+
   render() {
     const { movie, loading } = this.state;
     const { id, title, storyline, imagePath, genre, rating, subtitle } = movie;
@@ -41,6 +49,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to={ `/movies/${id}/edit` } param={ id }>EDITAR</Link>
         <Link to="/">VOLTAR</Link>
+        <Link to="/" onClick={ this.removerMovie }>DELETAR</Link>
       </div>
     );
   }
