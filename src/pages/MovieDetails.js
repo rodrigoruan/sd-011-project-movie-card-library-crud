@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
 class MovieDetails extends Component {
   constructor(props) {
-    super(props)
-  
+    super(props);
+
     this.state = {
       loading: true,
       movie: '',
-    }
+    };
     this.setMovieId = this.setMovieId.bind(this);
   }
 
@@ -27,13 +28,15 @@ class MovieDetails extends Component {
     this.setState({
       movie: data,
       loading: false,
-    })
+    });
   }
 
   renderDetails() {
-    const { title, storyline, imagePath, genre, rating, subtitle, id } = this.state.movie;
-    
-    return(
+    const { movie } = this.state;
+    const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
+    const { deleteMovie } = movieAPI;
+
+    return (
       <div data-testid="movie-details">
         <p>{ `Title: ${title}` }</p>
         <img alt="Movie Cover" src={ `../${imagePath}` } />
@@ -42,24 +45,29 @@ class MovieDetails extends Component {
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
         <button type="button">
-        <Link to={`/movies/${id}/edit`}>EDITAR</Link>
+          <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
         </button>
         <button type="button">
-        <Link to="/">VOLTAR</Link>
+          <Link to="/">VOLTAR</Link>
         </button>
+        <Link onClick={ () => deleteMovie(id) } to="/">DELETAR</Link>
       </div>
-    )
+    );
   }
-  
+
   render() {
     const { loading } = this.state;
 
-    return (
-      <>
-      { loading ? <Loading /> : this.renderDetails() }
-      </>
-    );
+    return (loading ? <Loading /> : this.renderDetails());
   }
 }
 
 export default MovieDetails;
+
+MovieDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
