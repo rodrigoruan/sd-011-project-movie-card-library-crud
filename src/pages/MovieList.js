@@ -35,7 +35,7 @@ class MovieList extends Component {
     }
 
     return (
-      <div data-testid="movie-list" style={ { border: '4px solid red' } }>
+      <div data-testid="movie-list">
         {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
       </div>
     );
