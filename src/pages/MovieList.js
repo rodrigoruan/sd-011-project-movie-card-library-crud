@@ -38,8 +38,10 @@ class MovieList extends Component {
   }
 }
 
-MovieList.protoTypes = {
-  loading: PropTypes.bool,
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
 };
 
 export default MovieList;
