@@ -30,7 +30,6 @@ class MovieList extends Component {
 
   render() {
     const { movies, msg } = this.state;
-    // Render Loading here if the request is still happening
     return (
       <div data-testid="movie-list">
         {msg ? <Loading />
