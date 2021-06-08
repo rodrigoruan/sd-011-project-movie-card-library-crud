@@ -24,7 +24,7 @@ class MovieList extends Component {
     console.log(requested);
     this.setState({
       movies: requested,
-      loading: false,
+      loading: false, // Tales e Rodrigo me ajudaram nessa função
     });
   }
 

@@ -51,6 +51,7 @@ class MovieDetails extends Component {
             <p>{ `Rating: ${rating}` }</p>
             <Link to={ `/movies/${id}/edit` } params={ id }>EDITAR</Link>
             <Link to="/" onClick={ this.Delete }>DELETAR</Link>
+            {/* Tales ajudou a fazer isso o Bônus */}
             <Link to="/">VOLTAR</Link>
           </div>)}
       </div>
