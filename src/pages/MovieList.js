@@ -26,7 +26,6 @@ class MovieList extends Component {
       { loading: true }, // Primeiro parâmetro da setState()!
       async () => {
         const requestedMovies = await movieAPI.getMovies();
-        console.log(requestedMovies);
         this.setState({
           loading: false,
           movies: requestedMovies,
