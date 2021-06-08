@@ -17,21 +17,22 @@ class MovieList extends Component {
     this.setState({
       movies,
       loading: false,
-    })
+    });
   }
+
   componentDidMount() {
     getMovies().then((movies) => {
-      this.handleState(movies)
-    })
+      this.handleState(movies);
+    });
   }
 
   render() {
-    const { movies, loading} = this.state;
+    const { movies, loading } = this.state;
 
-    if(loading) {
+    if (loading) {
       return (
         <Loading />
-      )
+      );
     }
 
     return (
