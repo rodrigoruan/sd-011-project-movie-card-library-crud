@@ -13,6 +13,7 @@ class MovieDetails extends Component {
       loading: true,
     };
     this.request = this.request.bind(this);
+    this.deleteFilm = this.deleteFilm.bind(this);
   }
 
   // this.props.match.param
