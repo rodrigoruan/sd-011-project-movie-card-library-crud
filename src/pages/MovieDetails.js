@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
@@ -49,9 +49,11 @@ class MovieDetails extends Component {
 }
 
 export default MovieDetails;
+
 MovieDetails.propTypes = {
   match: PropTypes.objectOf({
     params: PropTypes.objectOf({
-      id: PropTypes.number }),
+      id: PropTypes.number,
+    }),
   }).isRequired,
 };
