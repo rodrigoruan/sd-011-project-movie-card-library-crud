@@ -8,48 +8,47 @@ import Loading from '../components/Loading';
 class MovieDetails extends Component {
   constructor() {
     super();
+
     this.state = {
+      movie: '',
       loading: true,
-      movieId: '',
     };
+
+    this.deleteFilm = this.deleteFilm.bind(this);
+  }
+
+  async deleteFilm() {
+    const { id } = this.props.params;
+    await movieAPI.deleteMovie(id);
   }
 
   async componentDidMount() {
-    const { match } = this.props;
-    const { id } = match.params;
-    const requestedMovie = await movieAPI.getMovie(id);
-    this.setLoadingFalse(requestedMovie);
-  }
-
-  setLoadingFalse(param) {
+    const { id } = this.props.params;
+    const response = await movieAPI.getMovie(id);
     this.setState({
+      movie: response,
       loading: false,
-      movieId: param,
     });
   }
 
   render() {
-    // Change the condition to check the state
-    // if (true) return <Loading />;
+    const { loading, movie } = this.state;
+    const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
 
-    const { loading, movieId } = this.state;
-    const { title, storyline, imagePath, genre, rating, subtitle, id } = movieId;
-
+    if (loading) return <Loading />;
     return (
       <div>
-        {loading ? (
-          <Loading />
-        ) : (
-          <div data-testid="movie-details">
-            <img alt="Movie Cover" src={ `../${imagePath}` } />
-            <p>{ `Title: ${title}` }</p>
-            <p>{ `Subtitle: ${subtitle}` }</p>
-            <p>{ `Storyline: ${storyline}` }</p>
-            <p>{ `Genre: ${genre}` }</p>
-            <p>{ `Rating: ${rating}` }</p>
-          </div>)}
-        <Link to={ `/movies/${id}/edit` } params={ id }>EDITAR</Link>
-        <Link to="/">VOLTAR</Link>
+        <div data-testid="movie-details">
+          <img alt="Movie Cover" src={ `../${imagePath}` } />
+          <p>{ `Title: ${title}` }</p>
+          <p>{ `Subtitle: ${subtitle}` }</p>
+          <p>{ `Storyline: ${storyline}` }</p>
+          <p>{ `Genre: ${genre}` }</p>
+          <p>{ `Rating: ${rating}` }</p>
+        </div>
+      <Link to={ `/movies/${id}/edit` } params={ id }>EDITAR</Link>
+      <Link to="/">VOLTAR</Link>
+      <Link onClick={ () => this.deleteFilm(id) } to="/">DELETAR</Link>
       </div>
     );
   }
