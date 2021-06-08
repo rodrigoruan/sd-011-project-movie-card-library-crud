@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Loading } from '../components';
 import MovieCard from '../components/MovieCard';
 
 import * as movieAPI from '../services/movieAPI';
@@ -8,13 +9,24 @@ class MovieList extends Component {
     super();
 
     this.state = {
-      movies: [],
+      movies: '',
     };
+
+    this.getMovies = this.getMovies.bind(this);
   }
 
-  // componentDidMount() {
-  //  this.getMovies()   //usar async await
-  // }
+  // Aqui, o componentDidMount vai ler o código antes do retorno da API
+  componentDidMount() {
+    this.getMovies();
+  }
+
+  // Usamos async para criar uma função assíncrona e retorna uma promisse
+  async getMovies() {
+    const boxMovies = await movieAPI.getMovies();
+    this.setState({
+      movies: boxMovies,
+    });
+  }
 
   render() {
     const { movies } = this.state;
@@ -23,7 +35,8 @@ class MovieList extends Component {
 
     return (
       <div data-testid="movie-list">
-        {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
+        {movies ? movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)
+          : <Loading />}
       </div>
     );
   }

@@ -5,6 +5,7 @@ import EditMovie from './pages/EditMovie';
 import MovieDetails from './pages/MovieDetails';
 import NewMovie from './pages/NewMovie';
 import NotFound from './pages/NotFound';
+import './App.css';
 
 function App() {
   return (
@@ -15,13 +16,10 @@ function App() {
           <Route exact path="/" render={ () => (<MovieList />) } />
           <Route path="/movies/new" render={ () => (<NewMovie />) } />
           <Route exact path="/movies/:id" render={ () => (<MovieDetails />) } />
-          {' '}
           {/* rota dinâmica, usa-se exact */}
           <Route exact path="/movies/:id/edit" render={ () => (<EditMovie />) } />
-          {' '}
           {/* rota dinâmica, usa-se exact */}
           <Route component={ NotFound } />
-          {' '}
           {/* caso não encontre alguma página, retona not found */}
         </Switch>
       </BrowserRouter>
