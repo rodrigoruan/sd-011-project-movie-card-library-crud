@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
@@ -14,6 +14,7 @@ class MovieDetails extends Component {
     };
 
     this.fetchMovie = this.fetchMovie.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
   componentDidMount() {
@@ -27,13 +28,18 @@ class MovieDetails extends Component {
     this.setState({ movie: response, loading: false });
   }
 
+  deleteCard(id) {
+    movieAPI.deleteMovie(id);
+  }
+
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
-    const { movie, loading } = this.state;
+    const { movie, loading, shouldRedirect } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
 
     if (loading) return <Loading />;
+    if (shouldRedirect) return <Redirect to="/" />;
     return (
       <div data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
@@ -44,6 +50,7 @@ class MovieDetails extends Component {
         <p>{`Rating: ${rating}`}</p>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
         <Link to="/">VOLTAR</Link>
+        <Link onClick={ () => this.deleteCard(id) } to="/">DELETAR</Link>
       </div>
     );
   }
