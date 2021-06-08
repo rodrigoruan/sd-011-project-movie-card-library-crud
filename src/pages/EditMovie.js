@@ -27,8 +27,7 @@ class EditMovie extends Component {
   }
 
   async fechApi() {
-    const { match } = this.props;
-    const { id } = match.params;
+    const { id } = this.props.match.params;
     const movieResolve = await movieAPI.getMovie(id);
     this.setState({
       movie: movieResolve,
