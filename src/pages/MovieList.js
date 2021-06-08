@@ -27,12 +27,10 @@ class MovieList extends Component {
       movies: request,
       loading: false,
     });
-
   }
 
   render() {
     const { movies, loading } = this.state;
-
     // Render Loading here if the request is still happening
 
     return (
