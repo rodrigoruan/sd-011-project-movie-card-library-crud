@@ -44,7 +44,7 @@ class MovieDetails extends Component {
             <p>{ `Genre: ${genre}` }</p>
             <p>{ `Rating: ${rating}` }</p>
             <Link to="/">VOLTAR</Link>
-            <Link to={ `/movies/${id}/edit` }>Editar</Link>
+            <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
           </div>)}
       </div>
     );
