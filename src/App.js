@@ -19,7 +19,7 @@ function App() {
           <Route NoMatch render={ () => <NotFound /> } />
         </Switch>
       </BrowserRouter>
-    </div>   
+    </div>
   );
 }
 
