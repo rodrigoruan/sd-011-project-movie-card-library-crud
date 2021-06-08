@@ -65,6 +65,6 @@ MovieDetails.propTypes = {
   match: PropTypes.objectOf({
     params: PropTypes.objectOf({
       id: PropTypes.number,
-    }),
+    }), /* source:  https://pt-br.reactjs.org/docs/typechecking-with-proptypes.html */
   }).isRequired,
 };
