@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import Proptypes from 'prop-types';
 class MovieCard extends React.Component {
   render() {
     const { movie } = this.props;
