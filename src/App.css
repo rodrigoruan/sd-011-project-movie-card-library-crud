@@ -3,3 +3,9 @@ body {
   box-sizing: border-box;
 }
 
+.loadingEl {
+  font-size: 2em;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+}
