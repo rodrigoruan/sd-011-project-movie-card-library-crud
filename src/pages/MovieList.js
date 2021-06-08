@@ -15,10 +15,14 @@ class MovieList extends Component {
     this.fetchMovies = this.fetchMovies.bind(this);
   }
 
+  // O component did mount é usado aqui pois queremos que os filmes sejam buscados apos o carregamento inicial da pagina
   componentDidMount() {
     this.fetchMovies();
   }
 
+  // função fetchMovies ->
+  // função usando async / await pois precisamos esperar a o retorno de getMovies
+  // enquanto espera o retorno coloca o loading no state para false apos isso coloca a lista de filmes no array state movies
   async fetchMovies() {
     const fetchResult = await movieAPI.getMovies();
     this.setState({
@@ -28,10 +32,13 @@ class MovieList extends Component {
   }
 
   render() {
+    // busco os estados movies e loading
+    // faço uma consdicional caso loading seja true renderiza o componente <Loading />
     const { movies, loading } = this.state;
     if (loading) {
       return <Loading />;
     }
+    // faz um map em movies e exibe o array de obejetos - Movies
     return (
       <div data-testid="movie-list">
         {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
