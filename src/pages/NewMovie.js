@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-
 import MovieForm from '../components/MovieForm';
 import * as movieAPI from '../services/movieAPI';
 
@@ -13,6 +12,7 @@ class NewMovie extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  //  Função para criar um novo filme, chama a função createMovie da "API" criando o novo filme e seta o shouldRedirect true, para redirecionar para a página inicial.
   handleSubmit(newMovie) {
     movieAPI.createMovie(newMovie);
     this.setState({ shouldRedirect: true });
