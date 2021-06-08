@@ -7,19 +7,19 @@ class NewMovie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      shouldRedirect: false,
+      Redirect: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(newMovie) {
     movieAPI.createMovie(newMovie);
-    this.setState({ shouldRedirect: true });
+    this.setState({ Redirect: true });
   }
 
   render() {
-    const { shouldRedirect } = this.props;
-    if (shouldRedirect) {
+    const { Redirect } = this.props;
+    if (Redirect) {
       return <Redirect to="/" />;
     }
     return (
@@ -29,4 +29,5 @@ class NewMovie extends React.Component {
     );
   }
 }
+
 export default NewMovie;
