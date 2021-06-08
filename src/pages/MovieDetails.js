@@ -39,7 +39,7 @@ class MovieDetails extends Component {
     return (
       <div>
         <div data-testid="movie-details">
-          <h1 { title } />
+          <h1 { ...title } />
           <img alt="Movie Cover" src={ `../${imagePath}` } />
           <p>{ `Subtitle: ${subtitle}` }</p>
           <p>{ `Storyline: ${storyline}` }</p>
@@ -54,10 +54,9 @@ class MovieDetails extends Component {
 }
 
 MovieDetails.propTypes = {
-  match: PropTypes.objectOf({
-    params: PropTypes.objectOf({
-      id: PropTypes.number,
-    }),
+  match: PropTypes.objectOf(PropTypes.object).isRequired,
+  params: PropTypes.objectOf({
+    id: PropTypes.string,
   }).isRequired,
 };
 
