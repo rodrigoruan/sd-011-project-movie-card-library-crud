@@ -1,10 +1,12 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <Router>
-      <div>Movie Card Library CRUD</div>
-    </Router>
+    <BrowserRouter>
+      <Home />
+    </BrowserRouter>
   );
 }
 
