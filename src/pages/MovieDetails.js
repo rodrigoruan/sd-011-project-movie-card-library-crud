@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Link } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
@@ -11,14 +10,26 @@ class MovieDetails extends Component {
     this.state = {
       loading: true,
       movie: {},
+      id: undefined,
     };
 
     this.onMount = this.onMount.bind(this);
     this.renderMovieDetails = this.renderMovieDetails.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
+    this.mounted = true;
     this.onMount(this.props);
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
+  handleSubmit() {
+    const { id } = this.state;
+    movieAPI.deleteMovie(id);
   }
 
   onMount(props) {
@@ -27,10 +38,13 @@ class MovieDetails extends Component {
       { loading: true }, // Primeiro parâmetro da setState()!
       async () => {
         const requestedMovie = await movieAPI.getMovie(id);
-        this.setState({
-          loading: false,
-          movie: requestedMovie,
-        });
+        if (this.mounted) {
+          this.setState({
+            loading: false,
+            movie: requestedMovie,
+            id,
+          });
+        }
       },
     );
   }
@@ -48,6 +62,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/"> VOLTAR </Link>
         <Link to={ `/movies/${id}/edit` }> EDITAR </Link>
+        <Link to="/" onClick={ this.handleSubmit }> DELETAR </Link>
       </div>
     );
   }
@@ -57,6 +72,7 @@ class MovieDetails extends Component {
     // if (true) return <Loading />;
 
     const { loading } = this.state;
+
     return (
       <div>
         {loading ? <Loading /> : this.renderMovieDetails() }

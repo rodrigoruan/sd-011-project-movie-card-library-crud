@@ -15,7 +15,12 @@ class EditMovie extends Component {
   }
 
   async componentDidMount() {
+    this.mounted = true;
     this.onMount(this.props);
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   handleSubmit(updatedMovie) {
@@ -31,10 +36,12 @@ class EditMovie extends Component {
       { status: 'loading' }, // Primeiro parâmetro da setState()!
       async () => {
         const requestedMovie = await movieAPI.getMovie(id);
-        this.setState({
-          status: 'loaded',
-          movie: requestedMovie,
-        });
+        if (this.mounted) {
+          this.setState({
+            status: 'loaded',
+            movie: requestedMovie,
+          });
+        }
       },
     );
   }
