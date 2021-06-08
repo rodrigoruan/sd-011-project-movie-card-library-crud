@@ -13,16 +13,16 @@ class MovieList extends Component {
     };
   }
 
+  componentDidMount() {
+    getMovies().then((movies) => {
+      this.handleState(movies);
+    });
+  }
+
   handleState(movies) {
     this.setState({
       movies,
       loading: false,
-    });
-  }
-
-  componentDidMount() {
-    getMovies().then((movies) => {
-      this.handleState(movies);
     });
   }
 

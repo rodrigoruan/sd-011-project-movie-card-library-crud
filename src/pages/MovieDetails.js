@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { getMovie } from '../services/movieAPI';
 import { Loading } from '../components';
-import { Link } from 'react-router-dom';
 
 class MovieDetails extends Component {
   constructor() {
@@ -13,6 +13,13 @@ class MovieDetails extends Component {
     };
   }
 
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    getMovie(id).then((movie) => {
+      this.handleState(movie);
+    });
+  }
+
   handleState(movie) {
     this.setState({
       movie,
@@ -20,16 +27,8 @@ class MovieDetails extends Component {
     });
   }
 
-  componentDidMount() {
-    const { id } = this.props.match.params;
-    getMovie(id).then((movie) => {
-      this.handleState(movie);
-    });
-  }
   render() {
     const { movie, loading } = this.state;
-    // Change the condition to check the state
-    // if (true) return <Loading />;
 
     if (loading) {
       return (
@@ -47,7 +46,7 @@ class MovieDetails extends Component {
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-        <Link to='/'>VOLTAR</Link>
+        <Link to="/">VOLTAR</Link>
       </div>
     );
   }
