@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import './App.css';
 import MovieList from './pages/MovieList';
 import MovieDetails from './pages/MovieDetails';
@@ -35,6 +35,9 @@ function App() {
           render={ () => <NotFound /> }
         />
       </Switch>
+      <button type="button">
+        <Link to="/movies/new">ADICIONAR CARTÃO</Link>
+      </button>
     </BrowserRouter>
   );
 }
