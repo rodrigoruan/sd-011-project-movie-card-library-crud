@@ -8,6 +8,7 @@ class MovieDetails extends Component {
     super();
     this.state = {
       loading: false,
+      id: '',
       title: '',
       subtitle: '',
       storyline: '',
@@ -16,6 +17,7 @@ class MovieDetails extends Component {
       rating: 0,
     };
     this.getMovie = this.getMovie.bind(this);
+    this.idEdit = this.idEdit.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +34,7 @@ class MovieDetails extends Component {
       movieAPI.getMovie(idMovie)
         .then((resolve) => {
           this.setState({
+            id: resolve.id,
             title: resolve.title,
             subtitle: resolve.subtitle,
             storyline: resolve.storyline,
@@ -42,6 +45,12 @@ class MovieDetails extends Component {
           });
         });
     });
+  }
+
+  idEdit() {
+    const { id } = this.state;
+    const pathEdith = `/movies/${ id }/edit`;
+    return pathEdith;
   }
 
   render() {
@@ -58,6 +67,8 @@ class MovieDetails extends Component {
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/">VOLTAR</Link>
+        <Link to={ this.idEdit() }>EDITAR</Link>
+
       </div>
     );
   }
