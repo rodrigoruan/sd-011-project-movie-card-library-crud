@@ -20,11 +20,9 @@ class MovieDetails extends Component {
     this.getInfoMovie();
   }
 
-  getInfoMovie() {
+  async getInfoMovie() {
     const { idMv } = this.state;
-    movieAPI.getMovie(idMv).then((result) => this.setState({
-      info: result,
-    }));
+    this.setState({ info: await movieAPI.getMovie(idMv) });
   }
 
   infosLoad() {
