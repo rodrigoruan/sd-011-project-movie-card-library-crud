@@ -6,15 +6,15 @@ import * as movieAPI from '../services/movieAPI';
 class MovieList extends Component {
   constructor() {
     super();
-
+    const { getMovies } = movieAPI;
     this.state = {
-      movies: [],
+      movies: [getMovies()],
     };
   }
 
   render() {
     const { movies } = this.state;
-
+    console.log(movies);
     // Render Loading here if the request is still happening
 
     return (
