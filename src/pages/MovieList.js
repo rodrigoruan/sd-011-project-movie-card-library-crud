@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MovieCard from '../components/MovieCard';
 
 import * as movieAPI from '../services/movieAPI';
 
 class MovieList extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      movies: [],
-    };
-  }
 
   render() {
-    const { movies } = this.state;
-
+    const { movies } = this.props;
     // Render Loading here if the request is still happening
 
     return (
@@ -26,3 +19,7 @@ class MovieList extends Component {
 }
 
 export default MovieList;
+
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf().isRequired,
+};
