@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
+import Loading from '../components/Loading';
 
 import * as movieAPI from '../services/movieAPI';
 
@@ -27,8 +28,8 @@ class MovieList extends Component {
             movies: [...response],
             isLoading: false,
           });
-        } catch (error) {
-          console.log(error);
+        } catch (e) {
+          console.error(e);
         }
       },
     );
@@ -36,11 +37,10 @@ class MovieList extends Component {
 
   render() {
     const { movies, isLoading } = this.state;
-    const loadingMessage = <span>Carregando...</span>;
     return (
       <div data-testid="movie-list">
         {isLoading
-          ? loadingMessage
+          ? <Loading />
           : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
       </div>
     );
