@@ -1,70 +1,63 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
-class MovieDetails extends Component {
+class MovieDetails extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      movie: {},
+      movie: '',
       loading: true,
     };
-    this.request = this.request.bind(this);
-    this.deleteFilm = this.deleteFilm.bind(this);
+
+    this.fetchMovie = this.fetchMovie.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
-  // this.props.match.param
-
+  // Pega o ID do filme e afunção que vai setar no state do filme quando o componente for montado.
   componentDidMount() {
-    this.request();
+    const { pathname } = window.location;
+    const id = pathname.match(/(?<=\/)\d+/);
+    this.fetchMovie(id);
   }
 
-  async request() {
-    const { match } = this.props;
-    const { id } = match.params;
+  // Fazer requisição na API e retorna o filme setando no state.
+  async fetchMovie(id) {
     const response = await movieAPI.getMovie(id);
-    this.setState({
-      movie: response,
-      loading: false,
-    });
+    this.setState({ movie: response, loading: false });
   }
 
-  async deleteFilm() {
-    const { match } = this.props;
-    const { id } = match.params;
-    await movieAPI.deleteMovie(id);
+  // Recebe um ID como parâmetro e deleta o filme com o mesmo ID.
+  deleteCard(id) {
+    movieAPI.deleteMovie(id);
   }
 
   render() {
-    const { loading, movie } = this.state;
-    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
+    const { loading, movie, shouldRedirect } = this.state;
+    const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
 
-    return loading ? <Loading /> : (
-      <div>
-        <div data-testid="movie-details">
-          <h1>{ title }</h1>
-          <img alt="Movie Cover" src={ `../${imagePath}` } />
-          <p>{ `Subtitle: ${subtitle}` }</p>
-          <p>{ `Storyline: ${storyline}` }</p>
-          <p>{ `Genre: ${genre}` }</p>
-          <p>{ `Rating: ${rating}` }</p>
-        </div>
-        <Link to={ `/movies/${movie.id}/edit` } params={ movie.id }>EDITAR</Link>
-        <Link to="/" onClick={ this.deleteFilm }>DELETAR</Link>
+     //  Se o loading for verdadeiro vai renderizar o componente Loading...
+     if (loading) return <Loading />;
+
+     //  Se o shouldRedirect for verdadeiro vai redirecionar para a home.
+     if (shouldRedirect) return <Redirect to="/" />;
+
+    return (
+      <div data-testid="movie-details">
+        <h1>{ `Title: ${ title }` }</h1>
+        <img alt="Movie Cover" src={ `../${imagePath}` } />
+        <p>{ `Subtitle: ${subtitle}` }</p>
+        <p>{ `Storyline: ${storyline}` }</p>
+        <p>{ `Genre: ${genre}` }</p>
+        <p>{ `Rating: ${rating}` }</p>
+        <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+        <Link onClick={ () => this.deleteCard(id) } to="/">DELETAR</Link>
         <Link to="/">VOLTAR</Link>
       </div>
     );
   }
 }
-
-MovieDetails.propTypes = {
-  match: PropTypes.objectOf(PropTypes.object).isRequired,
-  params: PropTypes.objectOf({
-    id: PropTypes.string,
-  }).isRequired,
-};
 
 export default MovieDetails;

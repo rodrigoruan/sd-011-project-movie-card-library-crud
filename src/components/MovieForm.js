@@ -137,10 +137,7 @@ class MovieForm extends React.Component {
   renderSubmitButton() {
     return (
       <div>
-        <button
-          type="button"
-          onClick={ this.handleSubmit }
-        >
+        <button type="button" onClick={ this.handleSubmit }>
           Submit
         </button>
       </div>
@@ -164,18 +161,13 @@ class MovieForm extends React.Component {
   }
 }
 
+export default MovieForm;
+
 MovieForm.propTypes = {
   movie: PropTypes.shape({
     id: PropTypes.number,
-    storyline: PropTypes.string,
     title: PropTypes.string,
-    subtitle: PropTypes.string,
-    rating: PropTypes.number,
-    imagePath: PropTypes.string,
-    bookmarked: PropTypes.bool,
-    genre: PropTypes.string,
+    storyline: PropTypes.string,
   }).isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
-
-export default MovieForm;
