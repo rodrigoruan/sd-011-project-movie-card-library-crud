@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getMovie } from '../services/movieAPI';
+import { getMovie, deleteMovie } from '../services/movieAPI';
 import { Loading } from '../components';
 
 class MovieDetails extends Component {
@@ -30,6 +30,10 @@ class MovieDetails extends Component {
     });
   }
 
+  async removeMovie(id) {
+    await deleteMovie(id);
+  }
+
   render() {
     const { loading, movie } = this.state;
     if (loading) {
@@ -48,6 +52,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/">VOLTAR</Link>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+        <Link to="/" onClick={ () => this.removeMovie(id) }>DELETAR</Link>
       </div>
     );
   }
