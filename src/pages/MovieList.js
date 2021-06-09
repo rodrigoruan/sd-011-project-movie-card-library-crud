@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
-
 import * as movieAPI from '../services/movieAPI';
-import NewMovie from './NewMovie';
 
 export default class MovieList extends Component {
   constructor() {
@@ -29,22 +27,20 @@ export default class MovieList extends Component {
     });
   };
 
-  loadingScreen = () => {
-    return <div> Carregando...</div>;
-  };
+  loadingScreen = () => <div> Carregando...</div>;
 
   renderMovieCards = () => {
     const { movies } = this.state;
     return (
       <div>
-        <button className="btn btn-success">
+        <button type="button" className="btn btn-success">
           <Link className="btn btn-success add-link" to="/movies/new">
             ADICIONAR CARTÃO
           </Link>
         </button>
         <div data-testid="movie-list" className="movie-list">
           {movies.map((movie) => (
-            <MovieCard key={movie.title} movie={movie} />
+            <MovieCard key={ movie.title } movie={ movie } />
           ))}
         </div>
       </div>
@@ -53,8 +49,6 @@ export default class MovieList extends Component {
 
   render() {
     const { loading } = this.state;
-
-    // prettier-ignore
-    {return loading ? this.loadingScreen() : this.renderMovieCards()}
+    return loading ? this.loadingScreen() : this.renderMovieCards();
   }
 }

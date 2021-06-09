@@ -1,20 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default class MovieCard extends React.Component {
   render() {
-    const { bookmarked, genre, id, imagePath, rating, storyline, subtitle, title } = this.props.movie;
-    const { style } = this.props;
+    const {
+      movie: { id, imagePath, rating, storyline, subtitle, title },
+    } = this.props;
+
     return (
       <div data-testid="movie-card" className="card movie-card">
-        <img src={imagePath} className="card-img-top" alt="" />
-        <div className="card-header text-center"> Rating: {rating}</div>
+        <img src={ imagePath } className="card-img-top" alt="" />
+        <div className="card-header text-center">
+          Rating:
+          {rating}
+        </div>
         <div className="card-body">
           <h5 className="card-title text-center">{title}</h5>
+          <p className="card-text text-center">{subtitle}</p>
           <p className="card-text">{storyline}</p>
         </div>
         <div className="card-footer">
-          <Link className="card-link" to={`/movies/${id}`}>
+          <Link className="card-link" to={ `/movies/${id}` }>
             VER DETALHES
           </Link>
         </div>
@@ -22,3 +29,14 @@ export default class MovieCard extends React.Component {
     );
   }
 }
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    storyline: PropTypes.string,
+    rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    imagePath: PropTypes.string,
+    id: PropTypes.string,
+  }).isRequired,
+};
