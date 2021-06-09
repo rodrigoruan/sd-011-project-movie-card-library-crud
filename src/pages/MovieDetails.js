@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class MovieDetails extends Component {
   constructor() {
@@ -15,6 +15,7 @@ class MovieDetails extends Component {
 
     this.getMovieData = this.getMovieData.bind(this);
     this.renderMovie = this.renderMovie.bind(this);
+    this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   async getMovieData() {
@@ -23,7 +24,7 @@ class MovieDetails extends Component {
     this.setState({ 
       id: id,
       movie: movie,
-      load: false
+      load: false,
     });
   }
   
@@ -42,13 +43,17 @@ class MovieDetails extends Component {
     );
   }
 
+  deleteMovie() {
+    const { id } = this.state;
+    movieAPI.deleteMovie(id);
+  }
+
   componentDidMount() {
     this.getMovieData();
   }
 
   render() {
-
-    const { load, id } = this.state;
+    const { load, id, clicked } = this.state;
     const loadingComponent = <Loading />;
     const movieComponent = this.renderMovie();
     const editPath = `/movies/${id}/edit`;
@@ -58,6 +63,7 @@ class MovieDetails extends Component {
         { load ? loadingComponent : movieComponent }
         <Link to="/" >VOLTAR</Link>
         <Link to={ editPath } >EDITAR</Link>
+        <Link to="/" onClick={this.deleteMovie} >DELETAR</Link>
       </div>
     );
   }
