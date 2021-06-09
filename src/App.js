@@ -18,5 +18,6 @@ function App() {
     </Router>
   );
 }
+// Req.1 - BrowserRouter agora chama Router. Utilizado para criar as rotas. Route vai mapear as rotas e o Switch vai encapsular todas as rotas.
 
 export default App;
