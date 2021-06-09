@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import Loading from '../components/Loading';
 import { MovieForm } from '../components';
@@ -18,7 +19,10 @@ class EditMovie extends Component {
   // Encontrar o filme de acordo com o id e jogar os dados do filme no state
   componentDidMount() {
     const { match } = this.props;
-    const { id } = match.params;
+    const { params } = match;
+    const { id } = params;
+    console.log(match);
+    console.log(params);
     movieAPI.getMovie(id)
       .then((movie) => {
         this.setState({
@@ -55,3 +59,7 @@ class EditMovie extends Component {
 }
 
 export default EditMovie;
+
+EditMovie.propTypes = {
+  match: PropTypes.shape({}).isRequired,
+};
