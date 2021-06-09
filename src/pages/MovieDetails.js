@@ -24,10 +24,7 @@ class MovieDetails extends Component {
   }
 
   async fetchMovie() {
-    const { match } = this.props;
-    const { params } = match;
-    const { id } = params;
-
+    const { match: { params: { id } } } = this.props;
     this.setState(
       { isLoading: true },
       async () => {
