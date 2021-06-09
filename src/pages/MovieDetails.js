@@ -14,6 +14,7 @@ class MovieDetails extends Component {
     };
 
     this.fecthGetMovie = this.fecthGetMovie.bind(this);
+    this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +29,12 @@ class MovieDetails extends Component {
       movie: data,
       loading: false,
     });
+  }
+
+  async deleteMovie() {
+    const { match } = this.props;
+    const { id } = match.params;
+    await movieAPI.deleteMovie(id);
   }
 
   render() {
@@ -45,19 +52,18 @@ class MovieDetails extends Component {
     if (loading) return <Loading />;
 
     return (
-      <div data-testid="movie-details">
-        <img alt="Movie Cover" src={ `../${imagePath}` } />
-        <p>{ `Title: ${title}` }</p>
-        <p>{ `Subtitle: ${subtitle}` }</p>
-        <p>{ `Storyline: ${storyline}` }</p>
-        <p>{ `Genre: ${genre}` }</p>
-        <p>{ `Rating: ${rating}` }</p>
-        <div>
-          <Link to="/">VOLTAR</Link>
+      <div>
+        <div data-testid="movie-details">
+          <img alt="Movie Cover" src={ `../${imagePath}` } />
+          <p>{ `Title: ${title}` }</p>
+          <p>{ `Subtitle: ${subtitle}` }</p>
+          <p>{ `Storyline: ${storyline}` }</p>
+          <p>{ `Genre: ${genre}` }</p>
+          <p>{ `Rating: ${rating}` }</p>
         </div>
-        <div>
-          <Link to={ `/movies/${movie.id}/edit` }>EDITAR</Link>
-        </div>
+        <Link to={ `/movies/${movie.id}/edit` }>EDITAR</Link>
+        <Link to="/">VOLTAR</Link>
+        <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
       </div>
     );
   }
