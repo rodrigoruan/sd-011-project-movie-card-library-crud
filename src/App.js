@@ -9,6 +9,7 @@ import EditMovie from './pages/EditMovie';
 function App() {
   return (
     <BrowserRouter>
+      <header className="header">Movie Card Library </header>
       <Switch>
         <Route exact path="/" component={ MovieList } />
         <Route path="/movies/new" component={ NewMovie } />
@@ -17,7 +18,6 @@ function App() {
         <Route component={ NotFound } />
       </Switch>
     </BrowserRouter>
-    // <div>Movie Card Library </div>
   );
 }
 

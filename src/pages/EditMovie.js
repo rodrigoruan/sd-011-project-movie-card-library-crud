@@ -42,17 +42,6 @@ class EditMovie extends Component {
     );
   }
 
-  async showMovie(currentId) {
-    this.setState(
-      async () => {
-        const movieToShow = await movieAPI.getMovie(currentId);
-        this.setState({
-          movie: movieToShow,
-        });
-      },
-    );
-  }
-
   render() {
     const { status, shouldRedirect, movie } = this.state;
     if (shouldRedirect) {
