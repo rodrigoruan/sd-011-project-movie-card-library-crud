@@ -20,7 +20,7 @@ class Home extends Component {
           <Route
             exact
             path="/movies/:id"
-            component={ MovieDetails }
+            render={ (props) => <MovieDetails { ... props } /> }
           />
           <Route
             exact
