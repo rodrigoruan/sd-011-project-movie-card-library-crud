@@ -11,6 +11,7 @@ class MovieDetails extends Component {
       movie: '',
     };
     this.importMovieFromApi = this.importMovieFromApi.bind(this);
+    this.removeMovie = this.removeMovie.bind(this);
   }
 
   componentDidMount() {
@@ -18,13 +19,15 @@ class MovieDetails extends Component {
   }
 
   async importMovieFromApi() {
-    const { match } = this.props;
-    const { params } = match;
-    const { id } = params;
+    const { match: { params: { id } } } = this.props;
     const movieData = await movieAPI.getMovie(id);
     this.setState({
       movie: movieData,
     });
+  }
+
+  async removeMovie(id) {
+    await movieAPI.deleteMovie(id);
   }
 
   movieDetails() {
@@ -46,6 +49,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
         <Link to="/">VOLTAR</Link>
+        <Link onClick={ () => this.removeMovie(id) } to="/">DELETAR</Link>
       </div>
     );
   }
