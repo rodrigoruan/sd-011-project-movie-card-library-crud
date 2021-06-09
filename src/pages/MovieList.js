@@ -15,8 +15,6 @@ class MovieList extends Component {
   render() {
     const { movies } = this.state;
 
-    // Render Loading here if the request is still happening
-
     return (
       <div>
         <div data-testid="movie-list">
