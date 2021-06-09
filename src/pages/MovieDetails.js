@@ -50,7 +50,6 @@ class MovieDetails extends Component {
   
   render() {
     const { loading } = this.state;
-    
     return (
       <div>
         <div>{loading
