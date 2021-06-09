@@ -46,7 +46,7 @@ class MovieDetails extends Component {
     const loadingElement = <Loading />;
 
     return (
-      <div data-testid="movie-details">
+      <div className="container" data-testid="movie-details">
         { loading ? loadingElement : <Movie
           movie={ movie }
           deleteMovieCard={ this.deleteMovieCard }

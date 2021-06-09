@@ -8,12 +8,12 @@ class MovieCard extends React.Component {
     const { title, storyline, imagePath, id } = movie;
     const details = `movies/${id}`;
     return (
-      <div data-testid="movie-card">
+      <div className="movieCard" data-testid="movie-card">
         <img alt="Movie Cover" className="movie-card-image" src={ imagePath } />
-        <h4 data-testid="movie-card-title" className="movie-card-title">{title}</h4>
+        <h1 data-testid="movie-card-title" className="movie-card-title">{title}</h1>
         <div className="movie-card-body">
           <p className="movie-card-storyline">{storyline}</p>
-          <Link to={ details }> VER DETALHES </Link>
+          <Link className="button" to={ details }> VER DETALHES </Link>
         </div>
       </div>
     );

@@ -20,17 +20,19 @@ export default class Movie extends Component {
     const details = `${id}/edit`;
 
     return (
-      <div>
+      <div className="movieDetails">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
-        <p>{ `Title: ${title}` }</p>
-        <p>{ `Subtitle: ${subtitle}` }</p>
-        <p>{ `Storyline: ${storyline}` }</p>
-        <p>{ `Genre: ${genre}` }</p>
-        <p>{ `Rating: ${rating}` }</p>
-        <div>
-          <Link to="/"> VOLTAR </Link>
-          <Link to={ details }> EDITAR </Link>
-          <Link to="/" onClick={ this.deleteCard }>DELETAR</Link>
+        <div className="infoMovieDetails">
+          <h1>{ `Title: ${title}` }</h1>
+          <h2>{ `Subtitle: ${subtitle}` }</h2>
+          <p>{ `Storyline: ${storyline}` }</p>
+          <p>{ `Genre: ${genre}` }</p>
+          <p>{ `Rating: ${rating}` }</p>
+        </div>
+        <div className="navMovieDetails">
+          <Link className="button" to="/"> VOLTAR </Link>
+          <Link className="button" to={ details }> EDITAR </Link>
+          <Link className="button" to="/" onClick={ this.deleteCard }>DELETAR</Link>
         </div>
       </div>
     );

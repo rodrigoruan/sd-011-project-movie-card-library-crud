@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class NotFound extends Component {
   render() {
-    return <div data-testid="404-error">Página não encontrada</div>;
+    return (
+      <div className="containerLoading" data-testid="404-error">
+        <h1>Página não encontrada</h1>
+        <Link className="button" to="/"> Página Inicial </Link>
+      </div>
+    );
   }
 }
 

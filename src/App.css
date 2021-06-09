@@ -1,5 +1,130 @@
 body {
-  background-color: whitesmoke;
+  background-color: black;
   box-sizing: border-box;
 }
 
+h1 {
+  font-size: 30px;
+}
+
+h2, h3, h4 {
+  font-size: 20px;
+}
+
+.container {
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.containerMovies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.containerNewMovie {
+  padding: 30px;
+}
+
+.movieCard {
+  background-color: rgba(255, 255, 255, 0.356);
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  margin: 10px auto;
+  padding: 30px;
+  text-align: center;
+  width: 40%;
+}
+
+.movie-card-body {
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  justify-content: space-between;
+}
+
+.movie-card-image {
+  width: 100%;
+}
+
+.movie-card-storyline {
+  margin: 10px auto;
+  width: 80%;
+}
+
+.button {
+  background: none;
+  border: 2px solid white;
+  border-radius: 8px;
+  color: white;
+  font-weight: 800;
+  margin: 5px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.button:hover {
+  border: 2px solid lightcoral;
+  color: lightcoral;
+}
+
+.containerLoading {
+  color: white;
+  text-align: center;
+}
+
+.movieDetails {
+  background-color: rgba(255, 255, 255, 0.356);
+  border: 2px solid white;
+  margin: 10px auto;
+  width: 40%;
+}
+
+.movieDetails img {
+  width: 100%;
+}
+
+.infoMovieDetails {
+  margin: 0 auto;
+  width: 70%;
+}
+
+.navMovieDetails {
+  padding: 20px;
+}
+
+.form {
+  background-color: rgba(255, 255, 255, 0.356);
+  margin: 0 auto;
+  padding: 50px;
+  width: 70vh;
+}
+
+.formInput {
+  font-size: 25px;
+  padding: 10px;
+  text-align: center;
+}
+
+.formInput input, .formInput textarea, .formInput select {
+  font-size: 20px;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.formInput textarea {
+  height: 250px;
+}
+
+.formInputButton {
+  font-size: 25px;
+}
