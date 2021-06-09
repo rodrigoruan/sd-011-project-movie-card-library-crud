@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Loading, MovieForm } from '../components';
 import * as movieAPI from '../services/movieAPI';
-// import MovieList from './MovieList';
 
 class EditMovie extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class EditMovie extends Component {
     this.state = {
       status: '',
       shouldRedirect: false,
-      movie: [],
+      movie: {},
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getEditMovie = this.getEditMovie.bind(this);
@@ -17,17 +17,33 @@ class EditMovie extends Component {
     console.log(props);
   }
 
-  handleSubmit(updatedMovie) {
-    movieAPI.updateMovie(updatedMovie)
-      .then((resolve) => {
-        this.setState({
-          shouldRedirect: true,
-        })
-      })
-  }
-
   componentDidMount() {
     this.getEditMovie();
+  }
+
+  handleSubmit(updatedMovie) {
+    movieAPI.updateMovie(updatedMovie)
+      .then(() => {
+        this.setState({
+          shouldRedirect: true,
+        });
+      });
+  }
+
+  getEditMovie() {
+    const { match } = this.props;
+    const idMovie = match.params.id;
+    this.setState({
+      status: 'loading',
+    }, () => {
+      movieAPI.getMovie(idMovie)
+        .then((resolve) => {
+          this.setState({
+            movie: resolve,
+            status: '',
+          });
+        });
+    });
   }
 
   returnHome() {
@@ -35,30 +51,14 @@ class EditMovie extends Component {
     history.push('/');
   }
 
-  getEditMovie() {
-    const { match } = this.props;
-    const idMovie = match.params.id
-    this.setState({
-      status: 'loading',
-    }, () => {
-     movieAPI.getMovie(idMovie)
-      .then((resolve) => {
-        this.setState({
-          movie: resolve,
-          status: '',
-        });
-      });
-    });
-  }
-
   render() {
     const { status, shouldRedirect, movie } = this.state;
     if (shouldRedirect) {
-     this.returnHome();
+      this.returnHome();
     }
 
     if (status === 'loading') {
-     return <Loading />
+      return <Loading />;
     }
 
     return (
@@ -70,3 +70,28 @@ class EditMovie extends Component {
 }
 
 export default EditMovie;
+
+EditMovie.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    storyline: PropTypes.string,
+    rating: PropTypes.number,
+    imagePath: PropTypes.string,
+    bookmarked: PropTypes.bool,
+    genre: PropTypes.string,
+  }),
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
+EditMovie.defaultProps = {
+  movie: {},
+};

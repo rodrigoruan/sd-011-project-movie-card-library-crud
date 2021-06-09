@@ -11,9 +11,10 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" render={ () => <MovieList /> } />
-        <Route path="/movies/new" render={ () => <NewMovie /> } />
+        <Route path="/movies/new" render={ (props) => <NewMovie { ...props } /> } />
         <Route
-          exact path="/movies/:id"
+          exact
+          path="/movies/:id"
           render={
             (props) => <MovieDetails { ...props } />
           }
