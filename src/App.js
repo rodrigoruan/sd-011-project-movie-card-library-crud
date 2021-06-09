@@ -35,9 +35,7 @@ function App() {
           render={ () => <NotFound /> }
         />
       </Switch>
-      <button type="button">
-        <Link to="/movies/new">ADICIONAR CARTÃO</Link>
-      </button>
+      <Link to="/movies/new">ADICIONAR CARTÃO</Link>
     </BrowserRouter>
   );
 }
