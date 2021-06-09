@@ -43,3 +43,7 @@
   margin-right: 2em;
   text-decoration: none;
 }
+
+.cardFooter a:last-of-type {
+  color: red;
+}
