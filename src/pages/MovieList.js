@@ -5,13 +5,15 @@ import * as movieAPI from '../services/movieAPI';
 import Loading from '../components/Loading';
 
 class MovieList extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       movies: [],
       loading: true,
     };
+
+    this.fetchGetMovies = this.fetchGetMovies.bind(this);
   }
 
   componentDidMount() {
@@ -31,12 +33,10 @@ class MovieList extends Component {
     const { movies, loading } = this.state;
 
     // Render Loading here if the request is still happening
-    if (loading === true) {
-      return <Loading />;
-    }
 
     return (
       <div data-testid="movie-list">
+        {loading && <Loading />}
         {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
       </div>
     );
