@@ -11,8 +11,8 @@ class MovieCard extends React.Component {
         <img src={ imagePath } alt={ title } />
         <p>{ title }</p>
         <p>{ storyline }</p>
-        <button type="submit">
-          <Link to={ `/movies/${id}` }>VER DETALHES</Link>
+        <button type="button">
+          <Link to={ `/movies/${id}` } movie={ movie }>VER DETALHES</Link>
         </button>
       </div>
     );
