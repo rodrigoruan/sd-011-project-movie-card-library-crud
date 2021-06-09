@@ -8,13 +8,7 @@ function App() {
     <Router>
       <div>Movie Card Library CRUD</div>
       <span>
-        <Link to="/movies/new">New Movie</Link>
-      </span>
-      <span>
-        <Link to="/movies/:id">Movie Details</Link>
-      </span>
-      <span>
-        <Link to="/movies/:id/edit">Movie Edit</Link>
+        <Link to="/movies/new">ADICIONAR CARTÃO</Link>
       </span>
       <span>
         <Link to="/">Return to Main</Link>
