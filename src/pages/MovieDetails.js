@@ -48,10 +48,18 @@ class MovieDetails extends Component {
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/">VOLTAR</Link>
-        <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+        <Link to={ `/movies/${id}/edit` } param={ id }>EDITAR</Link>
       </div>
     );
   }
 }
 
 export default MovieDetails;
+
+MovieDetails.propTypes = {
+  match: PropTypes.objectOf({
+    params: PropTypes.objectOf({
+      id: PropTypes.number,
+    }),
+  }).isRequired,
+};
