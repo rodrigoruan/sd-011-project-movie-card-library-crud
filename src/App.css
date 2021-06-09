@@ -4,8 +4,16 @@ body {
   font-size: 18px;
 }
 
+.movie-list {
+  display: flex;
+}
+
 .movie-card-image {
   height: 195px;
+}
+
+.movie-card-container {
+  height: 260px;
 }
 
 .movie-card {
