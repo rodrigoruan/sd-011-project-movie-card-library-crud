@@ -14,7 +14,6 @@ class MovieList extends Component {
     this.fechMovies = this.fechMovies.bind(this);
   }
 
-  //  não posso usar async await aqui
   componentDidMount() {
     this.fechMovies();
   }
