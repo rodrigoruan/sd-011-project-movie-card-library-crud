@@ -14,6 +14,7 @@ class MovieDetails extends Component {
     };
 
     this.saveMovie = this.saveMovie.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   async componentDidMount() {
@@ -22,6 +23,10 @@ class MovieDetails extends Component {
     const { id } = params;
     const request = await movieAPI.getMovie(id);
     this.saveMovie(request);
+  }
+
+  handleDelete(id) {
+    movieAPI.deleteMovie(id);
   }
 
   saveMovie(obj) {
@@ -46,7 +51,9 @@ class MovieDetails extends Component {
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+        <Link to="/" onClick={ () => this.handleDelete(id) }>DELETAR</Link>
         <Link to="/">VOLTAR</Link>
+
       </div>
     );
   }
