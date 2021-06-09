@@ -14,15 +14,17 @@ class EditMovie extends Component {
       shouldRedirect: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleGetMovieEdit = this.handleGetMovieEdit.bind(this);
   }
 
-  // Encontrar o filme de acordo com o id e jogar os dados do filme no state
   componentDidMount() {
+    this.handleGetMovieEdit();
+  }
+
+  handleGetMovieEdit() {
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
-    console.log(match);
-    console.log(params);
     movieAPI.getMovie(id)
       .then((movie) => {
         this.setState({
@@ -32,7 +34,6 @@ class EditMovie extends Component {
       });
   }
 
-  // enviar uma função para MovieForm para pegar o state filho e trazer pra cá
   handleSubmit(updatedMovie) {
     movieAPI.updateMovie(updatedMovie)
       .then(
@@ -61,5 +62,9 @@ class EditMovie extends Component {
 export default EditMovie;
 
 EditMovie.propTypes = {
-  match: PropTypes.shape({}).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
 };
