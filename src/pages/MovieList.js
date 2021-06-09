@@ -10,9 +10,14 @@ class MovieList extends Component {
 
     this.state = {
       movies: [],
+      verified: false,
     };
 
     this.fetchMovies = this.fetchMovies.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchMovies();
   }
 
   fetchMovies() {
@@ -21,6 +26,7 @@ class MovieList extends Component {
         .forEach((value, index, array) => {
           this.setState({
             movies: [...array],
+            verified: true,
           });
           return value;
         }));
@@ -28,13 +34,11 @@ class MovieList extends Component {
 
   render() {
     // Render Loading here if the request is still happening
-    const { movies } = this.state;
+    const { movies, verified } = this.state;
     return (
       <div>
-        <button type="button" onClick={ this.fetchMovies }>Clica em mim =D</button>
-        <Loading />
+        { verified ? this.fetchMovies() : <Loading /> }
         <div data-testid="movie-list">
-          <MovieCard movieInfos={ this.fetchMovies } />
           { movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />) }
         </div>
       </div>
