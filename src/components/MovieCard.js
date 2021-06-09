@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class MovieCard extends React.Component {
   constructor(){
@@ -15,8 +16,13 @@ class MovieCard extends React.Component {
       gender,
       bookmarked } = this.props.movie;
     return (
-      <div data-testid="movie-card">
-        Movie Card
+      <div key={id} data-testid="movie-card">
+        <img src={imagePath} alt={title} />
+        <p>{title}</p>
+        <p>{storyline}</p>
+        <button type="submit">
+          <Link to={`/movies/${id}`} >VER DETALHES</Link>
+        </button>
       </div>
     );
   }
