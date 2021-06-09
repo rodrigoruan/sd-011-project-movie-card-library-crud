@@ -69,12 +69,20 @@ class MovieDetails extends Component {
           </button>
 
           <button type="button">
-            <Link to="/" onClick={this.deleteMovie}>DELETAR</Link>
+            <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
           </button>
         </section>
       </main>
     );
   }
 }
+
+MovieDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 export default MovieDetails;

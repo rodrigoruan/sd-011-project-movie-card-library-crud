@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Loading, MovieCard } from '../components';
-import { NewMovie } from '.';
 
 import * as movieAPI from '../services/movieAPI';
 
