@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Switch, Route } from 'react-router-dom';
 import MovieDetails from '../pages/MovieDetails';
 
 class MovieCard extends React.Component {
@@ -11,7 +11,7 @@ class MovieCard extends React.Component {
         <h2>{ subtitle }</h2>
         <p>{ storyline }</p>
         <img alt="Movie Cover" src={ imagePath } />
-        <Link to={ `/movies/${id}` }>VER DETALHES</Link>
+        <Link to={ `movies/${id}`} params={id}>VER DETALHES</Link>
       </div>
     );
   }
