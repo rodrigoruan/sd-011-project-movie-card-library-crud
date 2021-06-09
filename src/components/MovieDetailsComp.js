@@ -29,5 +29,4 @@ MovieDetailsComp.propTypes = {
   rating: PropTypes.number.isRequired,
   imagePath: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
-
 };

@@ -36,13 +36,13 @@ class MovieDetails extends Component {
       <div data-testid="movie-details">
         { movieData
           ? <MovieDetailsComp
-            id={ id }
-            title={ title }
-            storyline={ storyline }
-            imagePath={ imagePath }
-            genre={ genre }
-            rating={ rating }
-            subtitle={ subtitle }
+              id={ id }
+              title={ title }
+              storyline={ storyline }
+              imagePath={ imagePath }
+              genre={ genre }
+              rating={ rating }
+              subtitle={ subtitle }
           />
           : <Loading />}
       </div>
