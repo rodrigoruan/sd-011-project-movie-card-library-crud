@@ -14,6 +14,7 @@ class MovieDetails extends Component {
     };
 
     this.fetchMovie = this.fetchMovie.bind(this);
+    this.deleteMovieCard = this.deleteMovieCard.bind(this);
   }
 
   componentDidMount() {
@@ -36,13 +37,20 @@ class MovieDetails extends Component {
     );
   }
 
+  async deleteMovieCard(idMovie) {
+    await movieAPI.deleteMovie(idMovie);
+  }
+
   render() {
     const { movie, loading } = this.state;
     const loadingElement = <Loading />;
 
     return (
       <div data-testid="movie-details">
-        { loading ? loadingElement : <Movie movie={ movie } /> }
+        { loading ? loadingElement : <Movie
+          movie={ movie }
+          deleteMovieCard={ this.deleteMovieCard }
+        /> }
       </div>
     );
   }
