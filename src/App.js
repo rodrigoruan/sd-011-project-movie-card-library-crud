@@ -17,7 +17,7 @@ function App() {
           />
           <Route
             path="/movies/:id"
-            render={ () => <MovieDetails /> }
+            render={ (props) => <MovieDetails { ...props } /> }
           />
           <Route path="*" component={ NotFound } />
         </Switch>
