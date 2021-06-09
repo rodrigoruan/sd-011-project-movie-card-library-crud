@@ -7,7 +7,7 @@ import * as movieAPI from '../services/movieAPI';
 class EditMovie extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       shouldRedirect: false,
       movie: '',

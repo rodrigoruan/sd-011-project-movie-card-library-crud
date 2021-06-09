@@ -38,15 +38,15 @@ class MovieDetails extends React.Component {
     const { loading, movie, shouldRedirect } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
 
-     //  Se o loading for verdadeiro vai renderizar o componente Loading...
-     if (loading) return <Loading />;
+    //  Se o loading for verdadeiro vai renderizar o componente Loading...
+    if (loading) return <Loading />;
 
-     //  Se o shouldRedirect for verdadeiro vai redirecionar para a home.
-     if (shouldRedirect) return <Redirect to="/" />;
+    //  Se o shouldRedirect for verdadeiro vai redirecionar para a home.
+    if (shouldRedirect) return <Redirect to="/" />;
 
     return (
       <div data-testid="movie-details">
-        <h1>{ `Title: ${ title }` }</h1>
+        <h1>{ `Title: ${title}` }</h1>
         <img alt="Movie Cover" src={ `../${imagePath}` } />
         <p>{ `Subtitle: ${subtitle}` }</p>
         <p>{ `Storyline: ${storyline}` }</p>

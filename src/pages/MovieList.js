@@ -31,7 +31,7 @@ class MovieList extends React.Component {
 
     // Se o loading for verdadeiro vai retornar o componente loading.
     if (loading) return <Loading />;
-    
+
     return (
       <div data-testid="movie-list">
         {movies.map((movie) => (
