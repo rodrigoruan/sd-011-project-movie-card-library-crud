@@ -35,7 +35,8 @@ class MovieDetails extends Component {
     return (
       <div data-testid="movie-details">
         { movieData
-          ? <MovieDetailsComp
+          ? (
+            <MovieDetailsComp
               id={ id }
               title={ title }
               storyline={ storyline }
@@ -43,8 +44,10 @@ class MovieDetails extends Component {
               genre={ genre }
               rating={ rating }
               subtitle={ subtitle }
-          />
-          : <Loading />}
+            />
+          ) : (
+            <Loading />
+          )}
       </div>
     );
   }
