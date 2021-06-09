@@ -7,6 +7,8 @@ class MovieList extends Component {
   constructor() {
     super();
 
+    this.setMovies = this.setMovies.bind(this);
+
     this.state = {
       movies: [],
     };
