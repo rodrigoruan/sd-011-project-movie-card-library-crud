@@ -1,0 +1,37 @@
+.card {
+  background-color: white;
+  border-radius: 0.25em;
+  box-shadow: 2px 2px #c9c9c9;
+  display: flex;
+  flex: 0 35%;
+  flex-direction: column;
+  height: fit-content;
+  margin: 1em;
+}
+
+.cardHeader {
+  position: relative;
+}
+
+.cardHeader img {
+  border-radius: 0.25em;
+  width: 100%;
+}
+
+.cardHeader span {
+  bottom: 1.5em;
+  color: white;
+  left: 1em;
+  position: absolute;
+}
+
+.cardBody, .cardFooter {
+  padding: 0 1em;
+}
+
+.cardFooter {
+  border-top: 1px solid #c9c9c9;
+  color: orange;
+  margin-bottom: 1em;
+  padding-top: 1em;
+}
