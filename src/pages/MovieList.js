@@ -9,13 +9,33 @@ class MovieList extends Component {
 
     this.state = {
       movies: [],
+      isLoading: true,
     };
   }
 
-  render() {
-    const { movies } = this.state;
+  componentDidMount() {
+    this.requestMovies();
+  }
 
-    // Render Loading here if the request is still happening
+  async requestMovies() {
+    this.setState(
+      { isLoading: true },
+      async () => {
+        await movieAPI.getMovies().then((response) => {
+          this.setState({
+            movies: response,
+            isLoading: false });
+        });
+      },
+    );
+  }
+
+  render() {
+    const { movies, isLoading } = this.state;
+
+    if (isLoading) {
+      return <p>Carregando...</p>;
+    }
 
     return (
       <div data-testid="movie-list">
