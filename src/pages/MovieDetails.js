@@ -13,6 +13,7 @@ class MovieDetails extends Component {
     };
 
     this.setState = this.setState.bind(this);
+    this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +33,12 @@ class MovieDetails extends Component {
     );
   }
 
+  deleteMovie() {
+    const { movie } = this.state;
+    const { id } = movie;
+    movieAPI.deleteMovie(id);
+  }
+
   renderMovie() {
     const { movie } = this.state;
     const { id, title, storyline, imagePath, genre, rating, subtitle } = movie;
@@ -45,6 +52,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
         <Link to="/">VOLTAR</Link>
+        <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
       </div>
     );
   }
@@ -60,7 +68,7 @@ class MovieDetails extends Component {
 MovieDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
     }),
   }).isRequired,
 };
