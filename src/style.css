@@ -1,0 +1,18 @@
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  border: solid 1px;
+  margin: 20px;
+  padding: 20px;
+}
+
+
+.container {
+
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+ 
+}
