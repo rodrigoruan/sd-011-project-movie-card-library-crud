@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "acorn": "7.1.1",
+    "axios": "^0.21.1",
     "minimist": "1.2.3",
     "mutationobserver-shim": "0.3.7",
     "react": "16.14.0",
