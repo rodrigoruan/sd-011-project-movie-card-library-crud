@@ -19,6 +19,7 @@ class MovieDetails extends Component {
     };
     this.getMovie = this.getMovie.bind(this);
     this.idEdit = this.idEdit.bind(this);
+    this.eraseMovie = this.eraseMovie.bind(this);
   }
 
   componentDidMount() {
@@ -54,8 +55,20 @@ class MovieDetails extends Component {
     return pathEdith;
   }
 
+  eraseMovie() {
+    const { id } = this.state;
+    const { history } = this.props;
+    movieAPI.deleteMovie(id)
+      .then((resolve) => {
+        if (resolve.status === 'OK') {
+          history.push('/');
+        }
+      });
+  }
+
   render() {
     const { title, storyline, imagePath, genre, rating, subtitle, loading } = this.state;
+    const { history } = this.props;
     if (loading === true) {
       return (<Loading />);
     }
@@ -69,6 +82,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/">VOLTAR</Link>
         <Link to={ this.idEdit() }>EDITAR</Link>
+        <Link to={ history } onClick={ () => { this.eraseMovie(); } }>DELETAR</Link>
 
       </div>
     );
@@ -78,6 +92,9 @@ class MovieDetails extends Component {
 export default MovieDetails;
 
 MovieDetails.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
