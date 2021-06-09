@@ -15,21 +15,18 @@ class MovieDetails extends Component {
   }
 
   componentDidMount() {
-    const { match } = this.props;
-    const { params } = match;
-    const { id } = params;
-    this.handleLoading(id);
+    this.handleLoading();
   }
 
-  handleLoading(id) {
+  handleLoading() {
     const timer = 2000;
     setTimeout(() => {
-      this.fetchMovies(id);
+      this.fetchMovies();
     }, timer);
   }
 
-  fetchMovies(id) {
-    getMovie(id)
+  fetchMovies() {
+    getMovie()
       .then((movieInfo) => {
         this.setState({ movieInfo });
       });
