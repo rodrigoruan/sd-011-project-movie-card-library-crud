@@ -4,29 +4,16 @@ import './App.css';
 
 import { MovieList, NewMovie, MovieDetails, EditMovie, NotFound } from './pages/index';
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
-      <div>Movie Card Library CRUD</div>
       <Switch>
-        <Route path="/" exact>
-          <MovieList />
-        </Route>
-        <Route path="/movies/new" exact>
-          <NewMovie />
-        </Route>
-        <Route path="/movies/:id" exact>
-          <MovieDetails />
-        </Route>
-        <Route path="/movies/:id/edit" exact>
-          <EditMovie />
-        </Route>
-        <Route>
-          <NotFound />
-        </Route>
+        <Route exact path="/" component={ MovieList } />
+        <Route path="/movies/new" component={ NewMovie } />
+        <Route path="/movies/:id/edit" component={ EditMovie } />
+        <Route path="/movies/:id" component={ MovieDetails } />
+        <Route path="*" component={ NotFound } />
       </Switch>
     </BrowserRouter>
   );
 }
-
-export default App;

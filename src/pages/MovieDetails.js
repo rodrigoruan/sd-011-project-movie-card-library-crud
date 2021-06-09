@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import Loading from '../components/Loading';
 import * as movieAPI from '../services/movieAPI';
-import { Loading } from '../components';
 
 export default class MovieDetails extends Component {
   constructor() {
@@ -12,64 +12,46 @@ export default class MovieDetails extends Component {
     this.state = {
       movie: {},
       loading: true,
-      id: '',
     };
 
-    this.renderMovie = this.renderMovie.bind(this);
+    this.fetchMovie = this.fetchMovie.bind(this);
   }
 
   componentDidMount() {
     this.fetchMovie();
   }
 
-  async fetchMovie() {
+  fetchMovie() {
+    const { match: { params: { id } } } = this.props;
     this.setState(
       { loading: true },
       async () => {
-        const { match } = this.props;
-        const { params } = match;
-        const { id } = params;
-        const movie = await movieAPI.getMovie(id);
+        const getMovie = await movieAPI.getMovie(id);
         this.setState({
-          movie,
           loading: false,
-          id,
+          movie: getMovie,
         });
       },
     );
   }
 
-  renderMovie() {
-    const { movie } = this.state;
-    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
+  render() {
+    const { loading, movie } = this.state;
+    const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
+
+    if (loading) return <Loading />;
+
     return (
-      <>
+      <div data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
-        <h1>{ `Title: ${title}` }</h1>
+        <h1>{ title }</h1>
         <p>{ `Subtitle: ${subtitle}` }</p>
         <p>{ `Storyline: ${storyline}` }</p>
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
-      </>
-    );
-  }
-
-  render() {
-    const loadingElement = <span>Carregando...</span>;
-    const { loading, id } = this.state;
-
-    return (
-      <div data-testid="movie-details">
-        { loading
-          ? loadingElement
-          : this.renderMovie() }
-
-        <button type="button">
-          <Link to="/">VOLTAR</Link>
-        </button>
-        <button type="button">
-          <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-        </button>
+        <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+        <Link to="/">VOLTAR</Link>
+        <Link to="/" onClick={ () => movieAPI.deleteMovie(id) }>DELETAR</Link>
       </div>
     );
   }
@@ -78,7 +60,7 @@ export default class MovieDetails extends Component {
 MovieDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
     }).isRequired,
   }).isRequired,
 };
