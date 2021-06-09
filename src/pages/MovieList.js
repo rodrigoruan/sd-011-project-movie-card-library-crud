@@ -13,34 +13,33 @@ class MovieList extends Component {
     };
   }
 
-  async fetchMovies() {
-    const requestMovies = await movieAPI.getMovies()
-    this.setState({
-      movies: requestMovies,
-      loading: false,
-    })
-  }
-
   componentDidMount() {
-    this.fetchMovies()
+    this.fetchMovies();
   }
 
   getMovieList() {
     const { movies, loading } = this.state;
-    return(
-      loading ? <Loading /> :
+    return loading ? (
+      <Loading />
+    ) : (
       <div data-testid="movie-list">
-      {movies.map((movie) => <MovieCard 
-        key={ movie.title }
-        movie={ movie } />)}
+        {movies.map((movie) => (
+          <MovieCard key={ movie.title } movie={ movie } />
+        ))}
       </div>
     );
   }
 
+  async fetchMovies() {
+    const requestMovies = await movieAPI.getMovies();
+    this.setState({
+      movies: requestMovies,
+      loading: false,
+    });
+  }
+
   render() {
-    return (
-      this.getMovieList()
-    );
+    return this.getMovieList();
   }
 }
 
