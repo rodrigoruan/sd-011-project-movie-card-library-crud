@@ -21,7 +21,6 @@ class EditMovie extends Component {
     const { id } = match.params;
     const response = await movieAPI.getMovie(id);
     this.updateState(response);
-    // console.log(response);
   }
 
   // Função do botão 'submit';
