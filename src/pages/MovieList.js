@@ -15,23 +15,23 @@ class MovieList extends Component {
     this.loadMovies = this.loadMovies.bind(this);
   }
 
+  componentDidMount() {
+    this.loadMovies();
+  }
+
   loadMovies() {
     this.setState({
       loading: true,
     },
-      () => {
-        movieAPI.getMovies()
-          .then(resolve => {
-            this.setState({
+    () => {
+      movieAPI.getMovies()
+        .then((resolve) => {
+          this.setState({
             movies: [...resolve],
             loading: false,
-          })
-        })
-    })
-  }
-
-  componentDidMount() {
-    this.loadMovies();
+          });
+        });
+    });
   }
 
   render() {
@@ -39,9 +39,10 @@ class MovieList extends Component {
 
     return (
       <div data-testid="movie-list">
-        {loading === true ? <Loading /> : 
-          movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)
-         }
+        {
+          loading === true ? <Loading />
+            : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)
+        }
       </div>
     );
   }
