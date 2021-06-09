@@ -89,6 +89,31 @@ body {
   text-decoration: none;
 }
 
+.createMovie .link {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5em;
+  padding: 35px 110px;
+  text-decoration: none;
+}
+
 .movieCardDetails .link:hover {
   color: rgba(0, 0, 0, 0.95);
+}
+
+.createMovie {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  margin: 50px;
+  min-width: 450px;
+  width: 450px;
+}
+
+.createMovie .link:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.95);
 }
