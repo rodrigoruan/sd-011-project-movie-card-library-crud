@@ -12,14 +12,19 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Link to="/movies/new">ADICIONAR CARTÃO</Link>
-      <Switch>
-        <Route path="/movies/:id/edit" render={ (props) => <EditMovie { ...props } /> } />
-        <Route path="/movies/new" render={ () => <NewMovie /> } />
-        <Route path="/movies/:id" render={ (props) => <MovieDetails { ...props } /> } />
-        <Route exact path="/" render={ () => <MovieList /> } />
-        <Route path="*" render={ () => <NotFound /> } />
-      </Switch>
+      <main>
+        <Link to="/movies/new">ADICIONAR CARTÃO</Link>
+        <Switch>
+          <Route
+            path="/movies/:id/edit"
+            render={ (props) => <EditMovie { ...props } /> }
+          />
+          <Route path="/movies/new" render={ () => <NewMovie /> } />
+          <Route path="/movies/:id" render={ (props) => <MovieDetails { ...props } /> } />
+          <Route exact path="/" render={ () => <MovieList /> } />
+          <Route path="*" render={ () => <NotFound /> } />
+        </Switch>
+      </main>
     </BrowserRouter>
   );
 }
