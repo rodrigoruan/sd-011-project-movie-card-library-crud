@@ -60,9 +60,11 @@ class MovieDetails extends Component {
 }
 
 MovieDetails.propTypes = {
-  match: PropTypes.shapeOf().isRequired,
-  params: PropTypes.shapeOf().isRequired,
-  id: PropTypes.number.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number,
+    }),
+  }).isRequired,
 };
 
 export default MovieDetails;
