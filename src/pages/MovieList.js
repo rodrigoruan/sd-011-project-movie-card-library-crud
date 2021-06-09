@@ -12,10 +12,17 @@ class MovieList extends Component {
     };
   }
 
+  componentDidMount() {
+    movieAPI.getMovies()
+      .then((response) => this.setState({ movies: response }));
+  }
+
   render() {
     const { movies } = this.state;
 
-    // Render Loading here if the request is still happening
+    if (!movies.length) {
+      return (<div>Carregando...</div>);
+    }
 
     return (
       <div data-testid="movie-list">
