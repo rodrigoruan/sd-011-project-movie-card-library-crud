@@ -25,15 +25,21 @@ class MovieList extends Component {
     this.fetchMovies()
   }
 
-  render() {
+  getMovieList() {
     const { movies, loading } = this.state;
+    return(
+      loading ? <Loading /> :
+      <div data-testid="movie-list">
+      {movies.map((movie) => <MovieCard 
+        key={ movie.title }
+        movie={ movie } />)}
+      </div>
+    );
+  }
 
-    const request = loading ? <Loading /> : <div data-testid="movie-list">
-    {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
-  </div>
-    // Render Loading here if the request is still happening
+  render() {
     return (
-      { request }
+      this.getMovieList()
     );
   }
 }
