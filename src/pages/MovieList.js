@@ -15,7 +15,6 @@ class MovieList extends Component {
 
   componentDidMount() {
     movieAPI.getMovies().then((data) => {
-      console.log(data);
       this.setState({
         movies: data,
         loading: false,
@@ -25,15 +24,14 @@ class MovieList extends Component {
 
   render() {
     const { movies, loading } = this.state;
-
-    // Render Loading here if the request is still happening
-
+    if (loading) {
+      return <Loading />;
+    }
     return (
-      <div data-testid='movie-list'>
+      <div data-testid="movie-list">
         {movies.map((movie) => (
-          <MovieCard key={movie.title} movie={movie} />
+          <MovieCard key={ movie.title } movie={ movie } />
         ))}
-        <p>{loading ? <Loading /> : null}</p>
       </div>
     );
   }
