@@ -10,9 +10,11 @@ class MovieDetails extends Component {
     super();
 
     this.state = {
-      movie: {},
+      movie: [],
       loading: true,
     };
+    this.renderMovies = this.renderMovies.bind(this);
+    this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +22,13 @@ class MovieDetails extends Component {
   }
 
   // para realizar este exercicio, utilizei o seguinte material: https://stackoverflow.com/questions/54463073/react-router-match-with-params
+  deleteMovie() {
+    const { match } = this.props;
+    const { id } = match.params;
+
+    movieAPI.deleteMovie(id);
+  }
+  
   async renderMovies() {
     const { match } = this.props;
     const { id } = match.params;
@@ -30,6 +39,7 @@ class MovieDetails extends Component {
       loading: false,
     });
   }
+
 
   render() {
     // Change the condition to check the state
@@ -47,8 +57,9 @@ class MovieDetails extends Component {
         <p>{ `Storyline: ${storyline}` }</p>
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
-        <Link to="/">VOLTAR</Link>
         <Link to={ `/movies/${id}/edit` } param={ id }>EDITAR</Link>
+        <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
+        <Link to="/">VOLTAR</Link>
       </div>
     );
   }
