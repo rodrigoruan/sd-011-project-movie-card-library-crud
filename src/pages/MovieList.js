@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import Loading from '../components/Loading';
 import MovieCard from '../components/MovieCard';
-
-import * as movieAPI from '../services/movieAPI';
+import { getMovies } from '../services/movieAPI';
 
 class MovieList extends Component {
   constructor() {
@@ -9,11 +9,28 @@ class MovieList extends Component {
 
     this.state = {
       movies: [],
+      loading: true,
     };
   }
 
+  componentDidMount() {
+    getMovies().then((movies) => {
+      this.handleState(movies);
+    });
+  }
+
+  handleState(movies) {
+    this.setState({
+      movies,
+      loading: false,
+    });
+  }
+
   render() {
-    const { movies } = this.state;
+    const { loading, movies } = this.state;
+    if (loading) {
+      return <Loading />;
+    }
 
     // Render Loading here if the request is still happening
 
