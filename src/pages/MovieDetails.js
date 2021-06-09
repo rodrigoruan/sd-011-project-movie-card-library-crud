@@ -12,7 +12,7 @@ class MovieDetails extends Component {
       subtitle: '',
       genre: 'action',
       rating: 0,
-      title:' ',
+      title: ' ',
       imagePath: '',
       loading: true,
     };
@@ -49,7 +49,9 @@ class MovieDetails extends Component {
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
-    const { title,subtitle, storyline, genre, rating, imagePath, loading, id } = this.state;
+    const { subtitle, storyline, genre, rating, imagePath, loading, id } = this.state;
+    const { title } = this.state;
+
     return (
       <section data-testid="movie-details">
         {loading ? (
@@ -57,7 +59,7 @@ class MovieDetails extends Component {
         ) : (
           <div className="movie-card">
             <img alt="Movie Cover" src={ `../${imagePath}` } />
-           <h2>{ `Title: ${title}`}</h2>
+            <h2>{ `Title: ${title}`}</h2>
             <p>{ `Subtitle: ${subtitle}` }</p>
             <p>{ `Genre: ${genre}` }</p>
             <p>{ `Storyline: ${storyline}` }</p>
