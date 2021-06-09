@@ -35,7 +35,7 @@ class EditMovie extends Component {
       async () => {
         const movieToEdit = await movieAPI.getMovie(currentId);
         this.setState({
-          status: 'not loading',
+          status: 'finished',
           movie: movieToEdit,
         });
       },
