@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
-import { Loading } from '../components';
-import { MovieForm } from '../components';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Loading, MovieForm } from '../components';
 import * as movieAPI from '../services/movieAPI';
 
 class EditMovie extends Component {
@@ -13,21 +13,16 @@ class EditMovie extends Component {
       movie: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.fetchMovie = this.fetchMovie.bind(this)
+    this.fetchMovie = this.fetchMovie.bind(this);
   }
 
-  async fetchMovie(id) {
-    this.setState({ 
-      loading: true
+  componentDidMount() {
+    const {
+      match: {
+        params: { id },
       },
-      async () => {
-        const data = await movieAPI.getMovie(id);
-        this.setState({
-          loading: false,
-          movie: data,
-        })  
-      }
-    )
+    } = this.props;
+    this.fetchMovie(id);
   }
 
   handleSubmit(updatedMovie) {
@@ -36,55 +31,73 @@ class EditMovie extends Component {
     });
   }
 
+  async fetchMovie(id) {
+    this.setState({
+      loading: true,
+    },
+    async () => {
+      const data = await movieAPI.getMovie(id);
+      this.setState({
+        loading: false,
+        movie: data,
+      });
+    });
+  }
+
   renderForm() {
-    const { title, storyline, imagePath, genre, subtitle } = this.state.movie;
+    const { title, storyline, imagePath, genre, subtitle } = this.state;
     return (
       <div data-testid="edit-movie">
         <form>
-          <label htmlFor="">Título
-            <input type="text" value={title} />
+          <label htmlFor="title">
+            Título
+            <input id="title" type="text" value={ title } />
           </label>
-          <label htmlFor="">Subtítulo
-            <input value={subtitle} type="text" />
+          <label htmlFor="subtitle">
+            Subtítulo
+            <input value={ subtitle } id="subtitle" type="text" />
           </label>
-          <label htmlFor="">Imagem
-            <input value={imagePath} type="text" />
+          <label htmlFor="image">
+            Imagem
+            <input value={ imagePath } id="image" type="text" />
           </label>
-          <label htmlFor="">Sinopse
-            <textarea value={storyline} name="" id="" cols="30" rows="10"></textarea>
+          <label htmlFor="storyline">
+            Sinopse
+            <textarea value={ storyline } name="" id="storyline" cols="30" rows="10" />
           </label>
-          <select name="" id="" value={genre}>
+          <select name="" id="" value={ genre }>
             <option value="action">Ação</option>
             <option value="comedy">Comédia</option>
             <option value="thriller">Suspense</option>
             <option value="fantasy">Fantasia</option>
           </select>
         </form>
-        <div>
-        </div>
+        <div />
       </div>
-    )
-  }
-
-  componentDidMount() {
-    const { id } = this.props.match.params;
-    this.fetchMovie(id);
+    );
   }
 
   render() {
-    const { status, shouldRedirect, movie, loading } = this.state;
+    const { shouldRedirect, movie, loading } = this.state;
     if (shouldRedirect) {
-      return <Redirect to="/" />
+      return <Redirect to="/" />;
     }
 
     return (
       <div data-testid="edit-movie">
         {loading
           ? <Loading />
-          :<MovieForm movie={ movie } onSubmit={ this.handleSubmit } />}
+          : <MovieForm movie={ movie } onSubmit={ this.handleSubmit } />}
       </div>
     );
   }
 }
 
 export default EditMovie;
+EditMovie.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
