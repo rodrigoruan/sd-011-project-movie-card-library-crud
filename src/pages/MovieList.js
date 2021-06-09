@@ -41,7 +41,6 @@ class MovieList extends Component {
     const { load } = this.state;
     const loadingComponent = <Loading />;
     const movieCardComponent = this.renderMovieCard();
-    // Render Loading here if the request is still happening
 
     return (
         <div>
