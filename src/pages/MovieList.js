@@ -19,9 +19,10 @@ class MovieList extends Component {
     this.findMovies(response);
   }
 
-  findMovies(objectFromAPI) {
+  //Recomendado fazer funções fora do ciclo de vida
+  findMovies(arrayFromAPI) {
     this.setState({
-      movies: objectFromAPI,
+      movies: arrayFromAPI,
       loading: false,
     });
   }
