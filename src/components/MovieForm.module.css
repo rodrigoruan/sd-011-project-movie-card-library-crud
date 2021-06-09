@@ -1,3 +1,7 @@
+.container {
+  width: 50%;
+}
+
 .form {
   background-color: white;
   border-radius: 0.25em;
