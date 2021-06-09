@@ -15,7 +15,7 @@ body {
   border-radius: 3px;
   display: flex;
   flex-direction: column;
-  height: 450px;
+  height: 500px;
   margin: 5px;
   overflow: hidden;
   width: 300px;
@@ -46,4 +46,35 @@ body {
 .movie-card-storyline {
   font-size: 14px;
   text-align: justify;
+}
+
+.rating {
+  background-color: #007bff;
+  border-radius: 25px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 3px 9px;
+}
+
+.movie-card-rating {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 0 20px;
+}
+
+.links {
+  color: black;
+  display: flex;
+  height: 100px;
+  justify-content: space-evenly;
+}
+
+.links a {
+  color: rgb(0, 109, 251);
+  text-decoration: none;
+}
+
+a:active, a:focus, a:hover {
+  color: rgb(0, 109, 251);
 }
