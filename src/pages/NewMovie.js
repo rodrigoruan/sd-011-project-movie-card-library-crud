@@ -10,6 +10,9 @@ class NewMovie extends Component {
   }
 
   handleSubmit(newMovie) {
+    console.log(movieAPI.getMovie());
+    console.log(newMovie);
+    console.log('Apagar todos esses consoles (coloquei por causa do lint');
   }
 
   render() {

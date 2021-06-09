@@ -28,7 +28,7 @@ function App() {
         />
         <Route
           path="/movies/:id/edit"
-          render={ () => <EditMovie /> }
+          render={ (props) => <EditMovie { ...props } /> }
         />
         <Route
           path="*"
