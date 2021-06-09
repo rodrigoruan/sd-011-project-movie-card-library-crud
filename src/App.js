@@ -15,7 +15,6 @@ function App() {
         <Route path="/movies/:id/edit" component={ EditMovie } />
         <Route path="/movies/:id" component={ MovieDetails } />
         <Route component={ NotFound } />
-
       </Switch>
     </BrowserRouter>
     // <div>Movie Card Library </div>
