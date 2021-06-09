@@ -3,3 +3,19 @@ body {
   box-sizing: border-box;
 }
 
+.movie-card-image {
+  max-width: 100%;
+  padding: 2%;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 5px 5px;
+}
+
+.movie-list {
+ display: flex;
+ flex-direction: row; 
+}

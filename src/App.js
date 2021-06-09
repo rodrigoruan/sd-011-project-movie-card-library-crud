@@ -5,6 +5,7 @@ import NewMovie from './pages/NewMovie';
 import NotFound from './pages/NotFound';
 import MovieDetails from './pages/MovieDetails';
 import EditMovie from './pages/EditMovie';
+import './App.css';
 
 function App() {
   return (
