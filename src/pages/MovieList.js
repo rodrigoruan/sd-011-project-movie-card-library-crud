@@ -20,6 +20,7 @@ class MovieList extends Component {
     const { movies } = this.state;
     return (
       <div data-testid="movie-list">
+        <h1>Movie Card Library CRUD</h1>
         {movies ? movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)
           : <Loading />}
       </div>
