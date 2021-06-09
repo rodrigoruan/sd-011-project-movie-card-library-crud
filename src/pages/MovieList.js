@@ -22,14 +22,12 @@ class MovieList extends Component {
 
   fetchMovies() {
     getMovies()
-      .then((recevedContent) => recevedContent
-        .forEach((value, index, array) => {
-          this.setState({
-            movies: [...array],
-            verified: true,
-          });
-          return value;
-        }));
+      .then((recevedContent) => {
+        this.setState({
+          movies: [...recevedContent],
+          verified: true,
+        });
+      });
   }
 
   render() {
