@@ -3,14 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/lab": "*",
     "acorn": "7.1.1",
     "minimist": "1.2.3",
     "mutationobserver-shim": "0.3.7",
+    "node-sass": "^4.14.1",
     "react": "16.14.0",
     "react-bootstrap": "^1.6.1",
     "react-dom": "16.14.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "3.2.0",
+    "sass-loader": "^7.2.0",
     "serialize-javascript": "3.1.0"
   },
   "scripts": {

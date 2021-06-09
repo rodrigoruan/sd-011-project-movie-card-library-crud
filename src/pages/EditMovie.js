@@ -51,7 +51,7 @@ export default class EditMovie extends Component {
 
     return (
       <div data-testid="edit-movie">
-        <MovieForm movie={ movie } onSubmit={ this.handleSubmit } />
+        <MovieForm movie={movie} onSubmit={this.handleSubmit} />
       </div>
     );
   }

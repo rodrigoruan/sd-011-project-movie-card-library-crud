@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
-import { Button } from 'react-bootstrap';
-import ButtonHook from '../components/ButtonHook';
+import Button from '../components/Button';
 
 export default class MovieDetails extends Component {
   constructor(props) {
@@ -55,23 +54,36 @@ export default class MovieDetails extends Component {
           <img src={`../${imagePath}`} className="card-img-top img-fluid" alt="Movie Cover" />
         </div>
         <div className="col-lg-6 card ">
+          <div className="btnDetails">
+            <Button name={`Rating: ${rating}`} size="lg" variant="outline-primary"></Button>
+            <Button
+              name={` ${genre.charAt(0).toUpperCase() + genre.slice(1)}`}
+              size="lg"
+              genre={genre}
+            ></Button>
+          </div>
           <div className="text-center mt-3">
             <h1 className="display-5 fw-bold lh-1 mb-3">{title}</h1>
             <h4 className="fw-bold lh-1 mb-3">{subtitle}</h4>
             <p className="lead">{storyline}</p>
           </div>
-          <div className="container">
-            <p>
-              {' '}
-              Genre:
-              {genre}
-            </p>
-            <p>{`Rating: ${rating}`}</p>
-          </div>
-          <div className="d-flex justify-content-md-center">
-            <ButtonHook name="Voltar" variant="success" />
-            <ButtonHook name="Editar" path={`/movies/${id}/edit`} variant="warning" />
-            <ButtonHook name="Apagar" func={this.handleDelete} variant="danger" size="lg" />
+
+          <div className="d-flex justify-content-evenly m-3">
+            <Button name="Back" variant="success" size="lg" />
+            <Button
+              name="Edit"
+              path={`/movies/${id}/edit`}
+              variant="warning"
+              className="btnDetails"
+              size="lg"
+            />
+            <Button
+              className="btnDetails"
+              name="Delete"
+              func={this.handleDelete}
+              variant="danger"
+              size="lg"
+            />
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Star from './Stars';
+import { Button } from '@material-ui/core';
 
 export default class MovieCard extends React.Component {
   render() {
@@ -10,20 +11,26 @@ export default class MovieCard extends React.Component {
 
     return (
       <div data-testid="movie-card" className="card movie-card">
-        <img src={ imagePath } className="card-img-top" alt="" />
+        <img src={imagePath} className="card-img-top" alt="" />
         <div className="card-header text-center">
-          Rating:
-          {rating}
+          <Star value={rating} />
         </div>
+
         <div className="card-body">
           <h5 className="card-title text-center">{title}</h5>
           <p className="card-text text-center">{subtitle}</p>
           <p className="card-text">{storyline}</p>
         </div>
         <div className="card-footer">
-          <Link className="card-link" to={ `/movies/${id}` }>
-            VER DETALHES
-          </Link>
+          <Button
+            className="card-link"
+            variant="contained"
+            color="primary"
+            size="large"
+            href={`/movies/${id}`}
+          >
+            See more
+          </Button>
         </div>
       </div>
     );
