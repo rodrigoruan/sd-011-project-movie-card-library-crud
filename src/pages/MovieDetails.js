@@ -14,30 +14,16 @@ class MovieDetails extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.listMovies();
-  // }
-
-  // listMovies() {
-  //   const { match } = this.props;
-  //   const { params } = match;
-  //   const { id } = params;
-  //   movieAPI.getMovie(id)
-  //     .then((movie) => this.setState({ movie, loading: false }));
-  // }
-
   componentDidMount() {
-    const { match } = this.props;
-    const { params } = match;
-    const { id } = params;
-
+    const { match: { params: { id } } } = this.props;
     movieAPI.getMovie(id)
       .then((movie) => this.setState({ movie, loading: false }));
   }
 
   render() {
     const { movie, loading } = this.state;
-    const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
+    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
+    const { match: { params: { id } } } = this.props;
 
     if (loading) {
       return <Loading />;

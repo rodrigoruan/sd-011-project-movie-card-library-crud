@@ -17,17 +17,20 @@ class EditMovie extends Component {
   }
 
   componentDidMount() {
-    const { match } = this.props;
-    const { params } = match;
-    const { id } = params;
-
-    movieAPI.getMovie(id)
-      .then((movie) => this.setState({ movie, status: '' }));
+    this.movieEdtit();
   }
 
   handleSubmit(updatedMovie) {
     movieAPI.updateMovie(updatedMovie);
-    this.setState({ shouldRedirect: true });
+    this.setState({
+      shouldRedirect: true,
+    });
+  }
+
+  async movieEdtit() {
+    const { match: { params: { id } } } = this.props;
+    const getMovie = await movieAPI.getMovie(id);
+    this.setState({ movie: getMovie, status: '' });
   }
 
   render() {
