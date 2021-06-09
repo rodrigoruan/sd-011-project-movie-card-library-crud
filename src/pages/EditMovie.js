@@ -6,7 +6,7 @@ import * as movieAPI from '../services/movieAPI';
 
 class EditMovie extends Component {
   constructor({ match: { params: { id } } }) {
-    super(id);
+    super();
     this.state = {
       status: 'loading',
       shouldRedirect: false,
@@ -54,5 +54,9 @@ class EditMovie extends Component {
 export default EditMovie;
 
 EditMovie.propTypes = {
-  match: PropTypes.objectOf().isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
 };
