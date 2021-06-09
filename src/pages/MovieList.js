@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
 import Loading from '../components/Loading';
 import style from './MovieList.module.css';
@@ -32,13 +33,16 @@ class MovieList extends Component {
     const { loading, movies } = this.state;
 
     return (
-      <div data-testid="movie-list" className={ style.container }>
-        {
-          loading
-            ? <Loading />
-            : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)
-        }
-      </div>
+      <>
+        <Link to="/movies/new" className={ style.addMovieLink }>ADICIONAR CARTÃO</Link>
+        <div data-testid="movie-list" className={ style.container }>
+          {
+            loading
+              ? <Loading />
+              : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)
+          }
+        </div>
+      </>
     );
   }
 }
