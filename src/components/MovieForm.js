@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 class MovieForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ...props.movie };
+    const { movie } = props;
+    this.state = { ...movie };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -14,7 +15,12 @@ class MovieForm extends React.Component {
   }
 
   updateMovie(field, newValue) {
-    this.setState({ [field]: newValue });
+    if (field === 'rating') {
+      const value = Number(newValue);
+      this.setState({ [field]: value });
+    } else {
+      this.setState({ [field]: newValue });
+    }
   }
 
   renderTitleInput() {

@@ -37,7 +37,7 @@ class MovieList extends Component {
     );
     const load = loading ? <Loading /> : movieCard;
     return (
-      <div data-testid="movie-list">
+      <div className="movie-list" data-testid="movie-list">
         { load }
       </div>
     );

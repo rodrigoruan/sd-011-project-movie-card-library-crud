@@ -1,28 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class MovieCard extends React.Component {
   render() {
     const { movie } = this.props;
     return (
-      <BrowserRouter>
-        <div className="movie-card-wrapper" data-testid="movie-card">
-          { [movie].map(({ id, title, storyline }) => (
-            <div className="movie-card-body" key={ id }>
-              <div className="movie-card-title">
-                { title }
-              </div>
-              <div className="movie-card-storyline">
-                { storyline }
-              </div>
-              <div className="movie-card-details">
-                <Link to={ `/movies/${id}` }>VER DETALHES</Link>
-              </div>
+      <div className="movie-card-wrapper" data-testid="movie-card">
+        { [movie].map(({ id, title, storyline, imagePath }) => (
+          <div className="movie-card-body" key={ id }>
+            <img className="movie-card-image" src={ `../${imagePath}` } alt={ title } />
+            <div className="movie-card-title">
+              { title }
             </div>
-          )) }
-        </div>
-      </BrowserRouter>
+            <div className="movie-card-storyline">
+              { storyline }
+            </div>
+            <div className="movie-card-details">
+              <Link to={ `/movies/${id}` }>VER DETALHES</Link>
+            </div>
+          </div>
+        )) }
+      </div>
     );
   }
 }

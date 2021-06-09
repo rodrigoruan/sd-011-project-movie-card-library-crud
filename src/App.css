@@ -1,5 +1,38 @@
 body {
   background-color: whitesmoke;
   box-sizing: border-box;
+  text-align: justify;
 }
 
+header {
+  text-align: center;
+}
+
+.movie-list {
+  display: flex;
+  flex-flow: row wrap;
+  /* justify-content: space-around; */
+  /* overflow: hidden; */
+}
+
+.content {
+  width: 95%;
+  margin: auto;
+}
+
+.movie-card-image {
+  height: 170px;
+  /* margin: auto; */
+}
+
+.movie-card-wrapper {
+  display: flex;
+  width: 300px;
+  margin: 20px 10px;
+  /* height: 300px; */
+}
+
+.movie-card-body {
+  display: flex;
+  flex-direction: column;
+}
