@@ -12,11 +12,28 @@ function App() {
     <BrowserRouter>
       <div className="page-title">Movie Card Library CRUD</div>
       <Switch>
-        <Route exact path="/" render={ () => <MovieList /> } />
-        <Route path="/movies/new" render={ () => <NewMovie /> } />
-        <Route exact path="/movies/:id" render={ () => <MovieDetails /> } />
-        <Route path="/movies/:id/edit" render={ () => <EditMovie /> } />
-        <Route path="*" render={ () => <NotFound /> } />
+        <Route
+          exact
+          path="/"
+          render={ () => <MovieList /> }
+        />
+        <Route
+          path="/movies/new"
+          render={ () => <NewMovie /> }
+        />
+        <Route
+          exact
+          path="/movies/:id"
+          render={ (props) => <MovieDetails { ...props } /> }
+        />
+        <Route
+          path="/movies/:id/edit"
+          render={ () => <EditMovie /> }
+        />
+        <Route
+          path="*"
+          render={ () => <NotFound /> }
+        />
       </Switch>
     </BrowserRouter>
   );
