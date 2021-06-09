@@ -12,7 +12,7 @@ const renderPath = (path) => {
   const history = createBrowserHistory();
   history.push(path);
   const { ...resources } = render(
-    <Router history={ history }>
+    <Router history={history}>
       <App />
     </Router>,
   );
@@ -20,7 +20,6 @@ const renderPath = (path) => {
 };
 
 describe('1 - Renderize `BrowserRouter` no componente `App` usando rotas', () => {
-
   test('Será validado se a rota `/` renderiza a página MovieList', async () => {
     const { unmount, getByTestId } = renderPath('/');
     await waitFor(() => movieAPI.getMovies());

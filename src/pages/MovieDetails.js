@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
-class MovieDetails extends Component {
+export default class MovieDetails extends Component {
   constructor(props) {
     super(props);
 
@@ -48,7 +48,7 @@ class MovieDetails extends Component {
     const { movie } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
     return (
-      <div className="movie-details">
+      <div data-testid="movie-details" className="movie-details">
         <div className="col-10 col-sm-8 col-lg-6">
           <img
             src={ `../${imagePath}` }
@@ -108,8 +108,6 @@ class MovieDetails extends Component {
     return loading ? <Loading /> : this.renderDetails();
   }
 }
-
-export default MovieDetails;
 
 MovieDetails.propTypes = {
   match: PropTypes.shape({
