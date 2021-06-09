@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
 import Loading from '../components/Loading';
@@ -38,3 +39,9 @@ class MovieList extends Component {
 }
 
 export default MovieList;
+
+MovieList.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
+};
