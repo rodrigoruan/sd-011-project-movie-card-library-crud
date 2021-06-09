@@ -3,7 +3,7 @@ import MovieCard from '../components/MovieCard';
 
 import * as movieAPI from '../services/movieAPI';
 import Loading from '../components/Loading';
-import movies from '../services/movieData';
+// import movies from '../services/movieData';
 
 class MovieList extends Component {
   constructor() {
@@ -12,16 +12,22 @@ class MovieList extends Component {
     this.state = {
       movies: [],
     };
+
+    this.fetchAPI = this.fetchAPI.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchAPI();
+  }
+
+  async fetchAPI() {
     const data = await movieAPI.getMovies();
-    this.setState({movies: data})
+    this.setState({ movies: data });
   }
-
+  
   render() {
     const { movies } = this.state;
-    let loading = movies.length === 0;
+    const loading = movies.length === 0;
 
     return (
       <div data-testid="movie-list">
