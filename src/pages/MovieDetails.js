@@ -16,7 +16,6 @@ class MovieDetails extends Component {
 
   componentDidMount() {
     const { match } = this.props;
-    console.log(this.props);
     this.fetchMovie(match.params.id);
   }
 
