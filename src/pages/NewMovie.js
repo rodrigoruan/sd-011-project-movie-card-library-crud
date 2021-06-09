@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Loading } from '../components';
+import PropTypes from 'prop-types';
 import MovieForm from '../components/MovieForm';
 import { createMovie, getMovie } from '../services/movieAPI';
 
@@ -10,18 +10,21 @@ class NewMovie extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       shouldRedirect: false,
-      movie: '',
+      movie: {},
     };
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
     getMovie(id).then((movie) => {
       this.handleState(movie);
     });
   }
 
-  handleState(movie) {
+  handleState() {
+    const { movie } = this.state;
     this.setState({
       movie,
     });
@@ -38,8 +41,8 @@ class NewMovie extends Component {
     const { shouldRedirect } = this.state;
     if (shouldRedirect) {
       return (
-        <Redirect to='/' />
-      )
+        <Redirect to="/" />
+      );
     }
 
     return (
@@ -49,4 +52,13 @@ class NewMovie extends Component {
     );
   }
 }
+
+NewMovie.propTypes = {
+  match: PropTypes.shape({
+    params: {
+      id: PropTypes.number,
+    },
+  }).isRequired,
+};
+
 export default NewMovie;
