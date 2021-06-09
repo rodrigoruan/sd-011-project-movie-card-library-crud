@@ -14,6 +14,18 @@ class MovieDetails extends Component {
     };
   }
 
+  // componentDidMount() {
+  //   this.listMovies();
+  // }
+
+  // listMovies() {
+  //   const { match } = this.props;
+  //   const { params } = match;
+  //   const { id } = params;
+  //   movieAPI.getMovie(id)
+  //     .then((movie) => this.setState({ movie, loading: false }));
+  // }
+
   componentDidMount() {
     const { match } = this.props;
     const { params } = match;
