@@ -21,9 +21,8 @@ class MovieDetails extends Component {
   async catchFavoriteMovie() {
     // localização das propriedades recebidas na URL e valido só os que irei utilizar
     const { match: { params: { id } } } = this.props;
-    // console.log(id);
     // consulta na APi para buscar o gato especifico com base no id que retorna uma promise
-    const catchFavorites = await movieAPI.getMovie(id); // ele nao esta lendo o id
+    const catchFavorites = await movieAPI.getMovie(id);
     this.setState({
       //  salva os catchFavorites no estado movie
       movie: catchFavorites,
