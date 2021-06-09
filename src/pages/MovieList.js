@@ -13,7 +13,8 @@ class MovieList extends Component {
       movies: [],
     };
 
-    this.fetchAPI = this.fetchAPI.bind(this);
+    this.fetchAPI = this.fetchAPI.bind(this); 
+    
   }
 
   componentDidMount() {
@@ -27,12 +28,10 @@ class MovieList extends Component {
   
   render() {
     const { movies } = this.state;
-    const loading = movies.length === 0;
+    if (movies.length === 0) return <Loading />;
 
     return (
       <div data-testid="movie-list">
-        <h1>Estou no Movie List</h1>
-        { loading ? <Loading /> : null }
         {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
       </div>
     );
