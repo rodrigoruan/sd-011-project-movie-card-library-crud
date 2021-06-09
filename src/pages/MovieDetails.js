@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { getMovie } from '../services/movieAPI';
+import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
 class MovieDetails extends Component {
@@ -12,6 +12,7 @@ class MovieDetails extends Component {
       movie: [],
       loading: true,
     };
+    this.delMovie = this.delMovie.bind(this);
   }
 
   componentDidMount() { this.catchMovie(); }
@@ -19,12 +20,18 @@ class MovieDetails extends Component {
   async catchMovie() {
     const { match } = this.props;
     const { id } = match.params;
-    getMovie(id).then((response) => {
+    movieAPI.getMovie(id).then((response) => {
       this.setState({
         movie: response,
         loading: false,
       });
     });
+  }
+
+  delMovie() {
+    const { match } = this.props;
+    const { id } = match.params;
+    movieAPI.deleteMovie(id);
   }
 
   render() {
@@ -44,6 +51,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/">VOLTAR</Link>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+        <Link to="/" onClick={ this.delMovie }>DELETAR</Link>
       </div>
     );
   }
