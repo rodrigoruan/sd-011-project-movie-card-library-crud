@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
-import { Link, Redirect } from 'react-router-dom';
 
 class MovieDetails extends Component {
   constructor() {
@@ -18,18 +19,28 @@ class MovieDetails extends Component {
     this.deleteMovie = this.deleteMovie.bind(this);
   }
 
+  componentDidMount() {
+    this.getMovieData();
+  }
+
   async getMovieData() {
-    const { id } = this.props.match.params;
+    const { match: { params: { id } } } = this.props;
     const movie = await movieAPI.getMovie(id);
-    this.setState({ 
-      id: id,
-      movie: movie,
+    this.setState({
+      id,
+      movie,
       load: false,
     });
   }
-  
+
+  deleteMovie() {
+    const { id } = this.state;
+    movieAPI.deleteMovie(id);
+  }
+
   renderMovie() {
-    const { title, storyline, imagePath, genre, rating, subtitle } = this.state.movie;
+    const { movie } = this.state;
+    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
 
     return (
       <div data-testid="movie-details">
@@ -43,17 +54,8 @@ class MovieDetails extends Component {
     );
   }
 
-  deleteMovie() {
-    const { id } = this.state;
-    movieAPI.deleteMovie(id);
-  }
-
-  componentDidMount() {
-    this.getMovieData();
-  }
-
   render() {
-    const { load, id, clicked } = this.state;
+    const { load, id } = this.state;
     const loadingComponent = <Loading />;
     const movieComponent = this.renderMovie();
     const editPath = `/movies/${id}/edit`;
@@ -61,12 +63,18 @@ class MovieDetails extends Component {
     return (
       <div>
         { load ? loadingComponent : movieComponent }
-        <Link to="/" >VOLTAR</Link>
-        <Link to={ editPath } >EDITAR</Link>
-        <Link to="/" onClick={this.deleteMovie} >DELETAR</Link>
+        <Link to="/">VOLTAR</Link>
+        <Link to={ editPath }>EDITAR</Link>
+        <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
       </div>
     );
   }
 }
 
 export default MovieDetails;
+
+MovieDetails.propTypes = {
+  match: PropTypes.objectOf(
+    PropTypes.object,
+  ).isRequired,
+};
