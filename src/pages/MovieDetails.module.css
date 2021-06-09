@@ -1,0 +1,45 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.25em;
+  box-shadow: 2px 2px #c9c9c9;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.cardHeader {
+  position: relative;
+}
+
+.cardHeader img {
+  border-radius: 0.25em 0.25em 0 0;
+  width: 100%;
+}
+
+.cardHeader span {
+  bottom: 1.5em;
+  color: white;
+  left: 1em;
+  position: absolute;
+}
+
+.cardBody {
+  padding: 0 1em;
+}
+
+.cardFooter {
+  border-top: 1px solid #c9c9c9;
+  padding: 1em;
+}
+
+.cardFooter a {
+  color: orange;
+  margin-right: 2em;
+  text-decoration: none;
+}
