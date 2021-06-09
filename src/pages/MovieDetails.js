@@ -7,6 +7,7 @@ import { Loading } from '../components';
 class MovieDetails extends Component {
   constructor(props) {
     super(props);
+    this.handleDelete = this.handleDelete.bind(this);
     const { id } = props.match.params;
     this.state = {
       id,
@@ -17,6 +18,11 @@ class MovieDetails extends Component {
 
   componentDidMount() {
     this.fetchMovieDetails();
+  }
+
+  handleDelete() {
+    const { id } = this.state;
+    movieAPI.deleteMovie(id);
   }
 
   async fetchMovieDetails() {
@@ -47,6 +53,7 @@ class MovieDetails extends Component {
         </div>
         <Link to="/">VOLTAR</Link>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+        <Link to="/" onClick={ this.handleDelete }>DELETAR</Link>
       </section>
     );
   }
