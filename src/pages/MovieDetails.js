@@ -17,7 +17,7 @@ class MovieDetails extends Component {
     this.renderMovie = this.renderMovie.bind(this);
   }
 
-  async getMovieData(movieId) {
+  async getMovieData() {
     const { id } = this.props.match.params;
     const movie = await movieAPI.getMovie(id);
     this.setState({ 
