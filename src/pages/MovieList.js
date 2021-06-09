@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import MovieCard from "../components/MovieCard";
-import * as movieAPI from "../services/movieAPI";
+import MovieCard from '../components/MovieCard';
+import * as movieAPI from '../services/movieAPI';
 
 class MovieList extends Component {
   constructor() {
@@ -19,14 +19,14 @@ class MovieList extends Component {
 
   async fetchAPI() {
     this.setState(
-      { loading: true }, 
+      { loading: true },
       async () => {
         const requestedMovies = await movieAPI.getMovies();
         this.setState({
           movies: requestedMovies,
           loading: false,
         });
-      }
+      },
     );
   }
 
@@ -38,8 +38,7 @@ class MovieList extends Component {
       <div data-testid="movie-list">
         { loading
           ? loadingElement
-          : movies.map((movie) => <MovieCard key={movie.title} movie={movie} />)
-        }
+          : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
       </div>
     );
   }
