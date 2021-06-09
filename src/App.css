@@ -11,25 +11,21 @@ header {
 .movie-list {
   display: flex;
   flex-flow: row wrap;
-  /* justify-content: space-around; */
-  /* overflow: hidden; */
 }
 
 .content {
-  width: 95%;
   margin: auto;
+  width: 95%;
 }
 
 .movie-card-image {
   height: 170px;
-  /* margin: auto; */
 }
 
 .movie-card-wrapper {
   display: flex;
-  width: 300px;
   margin: 20px 10px;
-  /* height: 300px; */
+  width: 300px;
 }
 
 .movie-card-body {
