@@ -9,8 +9,10 @@ class NewMovie extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // handleSubmit(newMovie) {
-  // }
+  handleSubmit({ target }) {
+    const { value } = target;
+    console.log(value);
+  }
 
   render() {
     return (
