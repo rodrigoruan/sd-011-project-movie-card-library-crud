@@ -13,7 +13,7 @@ function App() {
           <Route exact path="/movies/new" component={ NewMovie } />
           <Route
             path="/movies/:id/edit"
-            render={ () => <EditMovie /> }
+            render={ (props) => <EditMovie { ...props } /> }
           />
           <Route
             path="/movies/:id"
