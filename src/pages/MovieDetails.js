@@ -28,7 +28,7 @@ class MovieDetails extends Component {
 
     movieAPI.deleteMovie(id);
   }
-  
+
   async renderMovies() {
     const { match } = this.props;
     const { id } = match.params;
@@ -39,7 +39,6 @@ class MovieDetails extends Component {
       loading: false,
     });
   }
-
 
   render() {
     // Change the condition to check the state
