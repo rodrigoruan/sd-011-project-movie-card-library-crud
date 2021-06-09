@@ -10,26 +10,28 @@ import NotFound from './pages/NotFound';
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <>
         <div>Movie Card Library CRUD</div>
-        <Route
-          exact
-          path="/"
-          component={ MovieList }
-        />
-        <Route
-          path="/movies/new"
-          component={ NewMovie }
-        />
-        <Route
-          path="/movies/:id"
-        />
-        <Route
-          path="/movies/:id/edit"
-        />
-        <Route component={ NotFound } />
-        <Link to="/movies/new">ADICIONAR CARTÃO</Link>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Route
+            exact
+            path="/"
+            component={ MovieList }
+          />
+          <Route
+            path="/movies/new"
+            component={ NewMovie }
+          />
+          <Route
+            path="/movies/:id"
+          />
+          <Route
+            path="/movies/:id/edit"
+          />
+          <Route component={ NotFound } />
+          <Link to="/movies/new">ADICIONAR CARTÃO</Link>
+        </BrowserRouter>
+      </>
     );
   }
 }

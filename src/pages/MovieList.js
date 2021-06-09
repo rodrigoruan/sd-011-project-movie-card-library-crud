@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import MovieCard from '../components/MovieCard';
 
 import * as movieAPI from '../services/movieAPI';
+import MovieCard from '../components/MovieCard';
+import Loading from '../components/Loading';
 
 class MovieList extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      movies: [],
+      loading: true,
+    };
+  }
+
+  componentDidMount() {
+    this.getMoviesFalseApi();
+  }
+
+  async getMoviesFalseApi() {
+    const { getMovies } = movieAPI;
+    const movies = await getMovies();
+    this.setState = ({ movies });
+  }
 
   render() {
-    const { movies } = this.props;
-    // Render Loading here if the request is still happening
+    const { movies, loading } = this.state;
+    if (loading) return <Loading />;
 
     return (
       <div data-testid="movie-list">
@@ -19,7 +37,3 @@ class MovieList extends Component {
 }
 
 export default MovieList;
-
-MovieList.propTypes = {
-  movies: PropTypes.arrayOf().isRequired,
-};
