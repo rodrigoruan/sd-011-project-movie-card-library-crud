@@ -166,6 +166,10 @@ class MovieForm extends React.Component {
 
 export default MovieForm;
 
+MovieForm.defaultProps = {
+  movie: {},
+};
+
 MovieForm.propTypes = {
   movie: PropTypes.shape({
     bookmarked: PropTypes.bool,
@@ -176,6 +180,6 @@ MovieForm.propTypes = {
     storyline: PropTypes.string,
     subtitle: PropTypes.string,
     title: PropTypes.string,
-  }).isRequired,
+  }),
   onSubmit: PropTypes.func.isRequired,
 };
