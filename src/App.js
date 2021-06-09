@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import './App.css';
 import MovieList from './pages/MovieList';
 import EditMovie from './pages/EditMovie';
 import MovieDetails from './pages/MovieDetails';
 import NewMovie from './pages/NewMovie';
 import NotFound from './pages/NotFound';
-import './App.css';
 
 function App() {
   return (
@@ -15,12 +15,20 @@ function App() {
         <Switch>
           <Route exact path="/" render={ () => (<MovieList />) } />
           <Route path="/movies/new" render={ () => (<NewMovie />) } />
-          <Route exact path="/movies/:id" render={ () => (<MovieDetails />) } />
           {/* rota dinâmica, pois tem um id, usa-se exact */}
-          <Route exact path="/movies/:id/edit" render={ () => (<EditMovie />) } />
+          <Route
+            exact
+            path="/movies/:id"
+            render={ (props) => (<MovieDetails { ...props } />) }
+          />
           {/* rota dinâmica, pois tem um id, usa-se exact */}
-          <Route component={ NotFound } />
+          <Route
+            exact
+            path="/movies/:id/edit"
+            render={ (props) => (<EditMovie { ...props } />) }
+          />
           {/* caso não encontre alguma página, retona not found */}
+          <Route component={ NotFound } />
         </Switch>
       </BrowserRouter>
     </div>
