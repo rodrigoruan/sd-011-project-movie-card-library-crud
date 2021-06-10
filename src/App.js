@@ -13,7 +13,9 @@ function App() {
     <BrowserRouter>
       <Header />
       <main>
-        <Link to="/movies/new">ADICIONAR CARTÃO</Link>
+        <div className="add-new-card">
+          <Link className="add-new-card-link" to="/movies/new">ADICIONAR CARTÃO</Link>
+        </div>
         <Switch>
           <Route
             path="/movies/:id/edit"

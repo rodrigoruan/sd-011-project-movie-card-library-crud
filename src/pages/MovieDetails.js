@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './MovieDetails.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Loading } from '../components';
@@ -52,16 +53,31 @@ class MovieDetails extends Component {
       return <Loading />;
     }
     return (
-      <div data-testid="movie-details">
-        <img alt="Movie Cover" src={ `../${imagePath}` } />
-        <p>{ `Title: ${title}` }</p>
-        <p>{ `Subtitle: ${subtitle}` }</p>
-        <p>{ `Storyline: ${storyline}` }</p>
-        <p>{ `Genre: ${genre}` }</p>
-        <p>{ `Rating: ${rating}` }</p>
-        <Link to="/">VOLTAR</Link>
-        <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-        <Link to="/" onClick={ () => this.removeMovie(id) }>DELETAR</Link>
+      <div className="movie-card-details-content">
+        <div className="movie-card" data-testid="movie-details">
+          <img className="movie-card-image" alt="Movie Cover" src={ `../${imagePath}` } />
+          <p className="movie-card-title">{ `Title: ${title}` }</p>
+          <p className="movie-card-subtitle">{ `Subtitle: ${subtitle}` }</p>
+          <p className="movie-card-storyline">{ `Storyline: ${storyline}` }</p>
+          <p>{ `Genre: ${genre}` }</p>
+          <p>{ `Rating: ${rating}` }</p>
+          <div className="movie-details-navegation">
+            <Link className="home-btn" to="/">VOLTAR</Link>
+            <Link
+              className="edit-movie-btn"
+              to={ `/movies/${id}/edit` }
+            >
+              EDITAR
+            </Link>
+            <Link
+              className="remove-movie-btn"
+              to="/"
+              onClick={ () => this.removeMovie(id) }
+            >
+              DELETAR
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }

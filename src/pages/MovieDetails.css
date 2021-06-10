@@ -1,0 +1,14 @@
+.home-btn {
+  background-color: rgb(59, 179, 59);
+  font-weight: 700;
+}
+
+.edit-movie-btn {
+  background-color: rgb(204, 204, 45);
+  font-weight: 700;
+}
+
+.remove-movie-btn {
+  background-color: rgb(233, 68, 68);
+  font-weight: 700;
+}

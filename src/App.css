@@ -51,6 +51,21 @@ body {
   flex-direction: column;
 }
 
+.add-new-card {
+  display: flex;
+  height: max-content;
+  justify-content: center;
+  padding-top: 48px;
+}
+
+a {
+  background-color: #007bff;
+  border-radius: 20px;
+  color: white;
+  padding: 15px;
+  text-decoration: none;
+}
+
 .movie-list {
   display: flex;
   flex-flow: row wrap;
@@ -64,13 +79,25 @@ body {
   border-radius: 3px;
   display: flex;
   flex-direction: column;
-  height: min-content;
+  justify-content: space-between;
   margin: 5px;
+  max-height: max-content;
+  min-height: 400px;
   overflow: hidden;
   width: 350px;
 }
 
+/* Para fazer a transição nos movie-cards utilizei os ensinamentos desse site:
+https://www.anicasagrande.com.br/detalhes-que-aparecem-quando-passa-o-mouse-sobre-imagem/
+*/
+
+/* Para fazer o blur utilizei o conteúdo desse site:
+https://www.maujor.com/tutorial/css3-filters.php
+*/
+
 .movie-card-content {
+  display: flex;
+  height: max-content;
   position: relative;
 }
 
@@ -90,14 +117,6 @@ body {
 
 .movie-card-content:hover .movie-card {
   filter: blur(2px);
-}
-
-.movie-details a {
-  background-color: #007bff;
-  border-radius: 20px;
-  color: white;
-  padding: 15px;
-  text-decoration: none;
 }
 
 .movie-card-image {
@@ -143,6 +162,18 @@ body {
   display: flex;
   justify-content: flex-end;
   padding: 12px 20px;
+}
+
+.movie-card-details-content {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.movie-details-navegation {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 16px;
 }
 
 .add-movie-form {

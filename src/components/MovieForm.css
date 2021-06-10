@@ -1,0 +1,51 @@
+.edit-movie {
+  display: flex;
+  justify-content: center;
+  padding: 48px 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+label {
+  display: flex;
+  font-weight: 700;
+  justify-content: space-between;
+  margin: 10px 0;
+  width: 100%;
+}
+
+label input {
+  padding: 5px;
+  width: 300px;
+}
+
+label textarea {
+  height: 150px;
+  padding: 5px;
+  resize: none;
+  width: 302px;
+}
+
+label select {
+  padding: 5px;
+  width: 314px;
+}
+
+.btn-div {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: rgb(59, 179, 59);
+  border: 2px solid rgb(59, 179, 59);
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px;
+}
