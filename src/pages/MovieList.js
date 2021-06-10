@@ -7,12 +7,10 @@ import * as movieAPI from '../services/movieAPI';
 class MovieList extends Component {
   constructor() {
     super();
-
     this.state = {
       movies: [],
       loading: true,
     };
-
     this.showMovieList = this.showMovieList.bind(this);
   }
 
@@ -21,16 +19,11 @@ class MovieList extends Component {
   }
 
   async showMovieList() {
-    this.setState(
-      { loading: true },
-      async () => {
-        const movieList = await movieAPI.getMovies();
-        this.setState({
-          loading: false,
-          movies: movieList,
-        });
-      },
-    );
+    const movies = await movieAPI.getMovies();
+    this.setState({
+      loading: false,
+      movies,
+    });
   }
 
   renderBody() {

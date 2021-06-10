@@ -7,12 +7,9 @@ import { Loading } from '../components';
 class MovieDetails extends Component {
   constructor() {
     super();
-
     this.state = {
       movie: '',
     };
-
-    this.setState = this.setState.bind(this);
     this.deleteMovie = this.deleteMovie.bind(this);
   }
 
@@ -21,7 +18,7 @@ class MovieDetails extends Component {
     this.showMovie();
   }
 
-  componentWillUnmount() { // resolvido warning 'Can't perform a React state update on an unmounted component' com ajuda de Inácio e Gabi Feijó 
+  componentWillUnmount() { // resolvido warning 'Can't perform a React state update on an unmounted component' com ajuda de Inácio e Gabi Feijó
     this.willUnmount = true;
   }
 
@@ -73,7 +70,7 @@ class MovieDetails extends Component {
 MovieDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
   }).isRequired,
 };

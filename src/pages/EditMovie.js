@@ -12,7 +12,6 @@ class EditMovie extends Component {
       shouldRedirect: false,
       movie: '',
     };
-    this.editThisMovie = this.editThisMovie.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -67,7 +66,7 @@ class EditMovie extends Component {
 EditMovie.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
   }).isRequired,
 };
