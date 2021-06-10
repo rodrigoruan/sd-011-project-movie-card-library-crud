@@ -30,6 +30,8 @@ class MovieDetails extends Component {
     });
   }
 
+  
+
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
@@ -55,8 +57,9 @@ class MovieDetails extends Component {
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
 
-        <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-        <Link to="/">VOLTAR</Link>
+        <Link to={ `/movies/${id}/edit` }>EDITAR</Link><br />
+        <Link to="/">VOLTAR</Link><br />
+        <Link to="/movies/new">DELETAR</Link>
       </div>
     );
   }
