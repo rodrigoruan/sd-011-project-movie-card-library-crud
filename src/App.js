@@ -10,8 +10,6 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <Router>
-      <Link to="/movies/new">ADICIONAR CARTÃO</Link>
-      <div>Movie Card Library CRUD</div>
       <Switch>
         <Route
           exact

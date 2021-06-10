@@ -3,3 +3,41 @@ body {
   box-sizing: border-box;
 }
 
+#loadingPage {
+  text-align: center;
+  margin-top: 20%;
+  font-size: xx-large;
+}
+
+#movieList { 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-around;
+}
+
+#movieCard {
+  background-color: white;
+  box-shadow: 8px 6px 5px -3px rgba(0,0,0,0.38);
+  max-width: 680px;
+  padding: 20px;
+  margin: 20px;
+  position: relative;
+}
+
+#movieTitle {
+  font-size: xx-large;
+  color: white;
+  position: absolute;
+  bottom: 120px;
+  left: 25px;
+}
+
+#movieCover {
+  max-width:100%;
+  height:auto;
+}
+
+#details {
+  color: orange;
+  text-decoration: none;
+}
