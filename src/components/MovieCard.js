@@ -21,20 +21,27 @@ class MovieCard extends React.Component {
           {' '}
         </p>
         <span>
-          <Link to={ `movies/${id}` }>VER DETALHES</Link>
+          <Link to={ { pathname: `movies/${id}` } }>VER DETALHES</Link>
         </span>
       </div>
     );
   }
 }
 
+/* Retirei do codigo do Hugo Sommers daqui: https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/45/files */
 MovieCard.propTypes = {
-  movie: PropTypes.arrayOf(PropTypes.string).isRequired,
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  storyline: PropTypes.string.isRequired,
-  imagePath: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired.isRequired,
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+    storyline: PropTypes.string.isRequired,
+    rating: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number]).isRequired,
+    imagePath: PropTypes.string.isRequired,
+    bookmarked: PropTypes.bool.isRequired,
+    genre: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default MovieCard;

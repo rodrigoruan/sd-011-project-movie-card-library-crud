@@ -21,12 +21,19 @@ class MovieDetails extends Component {
 
   async specificMovie() {
     // https://pt.stackoverflow.com/questions/391641/como-passar-parametros-via-url-para-uma-aplica%C3%A7%C3%A3o-em-react
-    console.log(this.props);
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
     const response = await movieAPI.getMovie(id);
     this.setState({ movie: response, status: false });
+  }
+
+  async deleteMovie() {
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
+    const response = await movieAPI.getMovies();
+    response.splice(id, 1);
   }
 
   render() {
@@ -47,10 +54,11 @@ class MovieDetails extends Component {
           <Link to="/"> VOLTAR </Link>
         </button>
         <button type="button">
-          <Link to={ `/movies/${id}/edit` }> EDITAR </Link>
+          {/* Retirei do codigo do Hugo Sommers daqui: https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/45/files */}
+          <Link to={ { pathname: `/movies/${id}/edit` } }>EDITAR</Link>
         </button>
-        <button type="button">
-          <Link to="/"> DELETAR </Link>
+        <button type="button" onClick={ this.deleteMovie }>
+          <Link to={ { pathname: '/' } }> DELETAR </Link>
         </button>
       </div>
     ) : (
