@@ -1,48 +1,43 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
 class MovieDetails extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      movie: [],
-      loading: true,
+      movie: '',
     };
-    this.getMoviesFalseApi = this.getMoviesFalseApi.bind(this);
-    this.deleteMovieByFalseApi = this.deleteMovieByFalseApi.bind(this);
+
+    this.setState = this.setState.bind(this);
+    this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   componentDidMount() {
-    this.getMoviesFalseApi();
+    const movie = this.props;
+    const { id } = movie.match.params;
+    this.showMovie(id);
   }
 
-  async getMoviesFalseApi() {
-    const { match } = this.props;
-    const { id } = match.params;
-    const { getMovie } = movieAPI;
-    const movies = await getMovie(id);
-
-    this.setState({ movie: movies, loading: false });
+  async showMovie(currentId) {
+    const movieToShow = await movieAPI.getMovie(currentId);
+    this.setState({
+      movie: movieToShow,
+    });
   }
 
-  deleteMovieByFalseApi() {
-    const { match } = this.props;
-    const { id } = match.params;
-    const { deleteMovie } = movieAPI;
-
-    deleteMovie(id);
+  deleteMovie() {
+    const { movie } = this.state;
+    const { id } = movie;
+    movieAPI.deleteMovie(id);
   }
 
-  render() {
-    const { match } = this.props;
-    const { movie, loading } = this.state;
-    const { id } = match.params;
-    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
-    if (loading) return <Loading />;
+  renderMovie() {
+    const { movie } = this.state;
+    const { id, title, storyline, imagePath, genre, rating, subtitle } = movie;
     return (
       <div data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
@@ -54,16 +49,26 @@ class MovieDetails extends Component {
         <div>
           <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
           <Link to="/">VOLTAR</Link>
-          <Link to="/" onClick={ this.deleteMovieByFalseApi }>DELETAR</Link>
+          <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
         </div>
       </div>
     );
   }
+
+  render() {
+    const { movie } = this.state;
+    return (
+      movie ? this.renderMovie() : <Loading />
+    );
+  }
 }
 
-export default MovieDetails;
-
 MovieDetails.propTypes = {
-  match: PropTypes.objectOf(PropTypes.array).isRequired,
-  id: PropTypes.string.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
 };
+
+export default MovieDetails;
