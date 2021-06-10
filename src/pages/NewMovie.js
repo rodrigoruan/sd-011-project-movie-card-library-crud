@@ -5,8 +5,8 @@ import MovieForm from '../components/MovieForm';
 import * as movieAPI from '../services/movieAPI';
 
 class NewMovie extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       shouldRedirect: false,
@@ -16,10 +16,12 @@ class NewMovie extends Component {
   }
 
   handleSubmit(newMovie) {
-    movieAPI.createMovie(newMovie);
-    this.setState({
-      shouldRedirect: true,
-    });
+    movieAPI.createMovie(newMovie)
+      .then(() => {
+        this.setState({
+          shouldRedirect: true,
+        });
+      });
   }
 
   render() {
