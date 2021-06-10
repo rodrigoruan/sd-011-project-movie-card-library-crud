@@ -16,12 +16,15 @@ class MovieDetails extends Component {
   }
 
   componentDidMount() {
+    this.getMovieAPI();
+  }
+
+  async getMovieAPI() { // Req.4, chamando a função getMovie, onde é passado o id
     const { match: { params: { id } } } = this.props;
-    movieAPI.getMovie(id).then((data) => { // Req.4, chamando a função getMovie
-      this.setState({
-        movie: data,
-        loading: false,
-      });
+    const request = await movieAPI.getMovie(id);
+    this.setState({
+      movie: request,
+      loading: false,
     });
   }
 
