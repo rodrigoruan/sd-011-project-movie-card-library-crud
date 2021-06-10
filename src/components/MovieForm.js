@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Loading from './Loading';
 
 class MovieForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ...props.movie };
+    this.state = { ...props.movie, isLoading: false };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -29,7 +30,7 @@ class MovieForm extends React.Component {
             type="text"
             className="validate"
             value={ title }
-            onChange={ (event) => this.updateMovie('title', event.target.value) }
+            onChange={ (event) => this.updateMovie("title", event.target.value) }
           />
           Título
         </label>
@@ -47,8 +48,10 @@ class MovieForm extends React.Component {
             placeholder="Insira o subtítulo"
             id="movie_subtitle"
             type="text"
-            value={ subtitle }
-            onChange={ (event) => this.updateMovie('subtitle', event.target.value) }
+            value={subtitle}
+            onChange={(event) =>
+              this.updateMovie("subtitle", event.target.value)
+            }
           />
           Subtítulo
         </label>
@@ -66,8 +69,10 @@ class MovieForm extends React.Component {
             placeholder="Insira o caminho da imagem"
             id="movie_image"
             type="text"
-            value={ imagePath }
-            onChange={ (event) => this.updateMovie('imagePath', event.target.value) }
+            value={imagePath}
+            onChange={(event) =>
+              this.updateMovie("imagePath", event.target.value)
+            }
           />
           Imagem
         </label>
@@ -83,8 +88,10 @@ class MovieForm extends React.Component {
         <label htmlFor="movie_storyline">
           <textarea
             id="movie_storyline"
-            value={ storyline }
-            onChange={ (event) => this.updateMovie('storyline', event.target.value) }
+            value={storyline}
+            onChange={(event) =>
+              this.updateMovie("storyline", event.target.value)
+            }
           />
           Sinopse
         </label>
@@ -100,8 +107,8 @@ class MovieForm extends React.Component {
           Gênero
           <select
             id="movie_genre"
-            value={ genre }
-            onChange={ (event) => this.updateMovie('genre', event.target.value) }
+            value={genre}
+            onChange={(event) => this.updateMovie("genre", event.target.value)}
           >
             <option value="action">Ação</option>
             <option value="comedy">Comédia</option>
@@ -122,11 +129,11 @@ class MovieForm extends React.Component {
             placeholder="Dê a avaliação do filme"
             id="movie_rating"
             type="number"
-            step={ 0.1 }
-            min={ 0 }
-            max={ 5 }
-            value={ rating }
-            onChange={ (event) => this.updateMovie('rating', event.target.value) }
+            step={0.1}
+            min={0}
+            max={5}
+            value={rating}
+            onChange={(event) => this.updateMovie("rating", event.target.value)}
           />
           Avaliação
         </label>
@@ -134,13 +141,12 @@ class MovieForm extends React.Component {
     );
   }
 
+  // Criar função que faz requisição de post updateMovie. Essa função deve passar o isLoad para true quando iniciar a requisição e para false quando terminar.
+
   renderSubmitButton() {
     return (
       <div>
-        <button
-          type="button"
-          onClick={ this.handleSubmit }
-        >
+        <button type="button" onClick={ this.handleSubmit }>
           Submit
         </button>
       </div>
@@ -148,17 +154,22 @@ class MovieForm extends React.Component {
   }
 
   render() {
+    const { isLoading } = this.state;
     return (
       <div>
-        <form>
-          {this.renderTitleInput()}
-          {this.renderSubtitleInput()}
-          {this.renderImagePathInput()}
-          {this.renderStorylineInput()}
-          {this.renderGenreSelection()}
-          {this.renderRatingInput()}
-          {this.renderSubmitButton()}
-        </form>
+        { isLoading ? (
+          <Loading />
+        ) : (
+          <form>
+            {this.renderTitleInput()}
+            {this.renderSubtitleInput()}
+            {this.renderImagePathInput()}
+            {this.renderStorylineInput()}
+            {this.renderGenreSelection()}
+            {this.renderRatingInput()}
+            {this.renderSubmitButton()}
+          </form>
+        )}
       </div>
     );
   }
