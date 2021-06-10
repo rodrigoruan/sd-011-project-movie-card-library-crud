@@ -3,41 +3,41 @@ body {
   box-sizing: border-box;
 }
 
-#loadingPage {
-  text-align: center;
-  margin-top: 20%;
+.loadingPage {
   font-size: xx-large;
+  margin-top: 20%;
+  text-align: center;
 }
 
-#movieList { 
+.movieList {
   display: flex;
   flex-wrap: wrap;
-  justify-content:space-around;
+  justify-content: space-around;
 }
 
-#movieCard {
+.movieCard {
   background-color: white;
-  box-shadow: 8px 6px 5px -3px rgba(0,0,0,0.38);
+  box-shadow: 8px 6px 5px -3px rgba(0, 0, 0, 0.38);
+  margin: 20px;
   max-width: 680px;
   padding: 20px;
-  margin: 20px;
   position: relative;
 }
 
-#movieTitle {
-  font-size: xx-large;
-  color: white;
-  position: absolute;
+.movieTitle {
   bottom: 120px;
+  color: white;
+  font-size: xx-large;
   left: 25px;
+  position: absolute;
 }
 
-#movieCover {
-  max-width:100%;
-  height:auto;
+.movieCover {
+  height: auto;
+  max-width: 100%;
 }
 
-#details {
+.details {
   color: orange;
   text-decoration: none;
 }
