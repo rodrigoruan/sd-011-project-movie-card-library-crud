@@ -12,7 +12,7 @@ function App() {
       <header>
         <div>Movie Card Library CRUD</div>
       </header>
-      <switch>
+      <Switch>
         <Route path="/" component={ MovieList } />
         <Route
           path="/movies/:id"
@@ -21,7 +21,7 @@ function App() {
         <Route path="/movies/:new" component={ NewMovie } />
         <Route path="/movies/:id/edit" component={ EditMovie } />
         <Route path="" component={ NotFound } />
-      </switch>
+      </Switch>
     </BrowserRouter>
   );
 }
