@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import * as movieAPI from '../services/movieAPI';
@@ -44,20 +45,34 @@ class MovieDetails extends Component {
     const { id, title, storyline, imagePath, genre, rating, subtitle } = this.state;
 
     return (
-      <div data-testid="movie-details">
-        <img alt="Movie Cover" src={ `../${imagePath}` } />
-        <p>{ `Title: ${title}` }</p>
-        <p>{ `Subtitle: ${subtitle}` }</p>
-        <p>{ `Storyline: ${storyline}` }</p>
-        <p>{ `Genre: ${genre}` }</p>
-        <p>{ `Rating: ${rating}` }</p>
-        <div className="movie-card-footer">
-          <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-          <Link to="/">VOLTAR</Link>
+      <div className="container">
+        <div className="card" data-testid="movie-details">
+          <div className="card-header">
+            <img alt="Movie Cover" src={ `../${imagePath}` } />
+            <h3>{title}</h3>
+          </div>
+          <div className="card-body">
+            <p>{ `Subtitle: ${subtitle}` }</p>
+            <p>{ `Storyline: ${storyline}` }</p>
+            <p>{ `Genre: ${genre}` }</p>
+            <p>{ `Rating: ${rating}` }</p>
+          </div>
+          <div className="card-footer">
+            <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+            <Link to="/">VOLTAR</Link>
+          </div>
         </div>
       </div>
     );
   }
 }
+
+MovieDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number,
+    }),
+  }).isRequired,
+};
 
 export default MovieDetails;
