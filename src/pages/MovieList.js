@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
-// import { Route } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
-// import * as movieAPI from '../services/movieAPI';
+import * as movieAPI from '../services/movieAPI';
+import Loading from '../components/Loading';
 
 class MovieList extends Component {
   constructor() {
     super();
-
     this.state = {
       movies: [],
+      status: true,
     };
   }
 
-  render() {
-    const { movies } = this.state;
+  componentDidMount() {
+  movieAPI.getMovies()
+      .then((results) => this.setState({ movies: results, status: false }));
+  }
 
+  render() {
+    const { movies, status } = this.state;
+    if (status) {
+      return <Loading />
+    }
     return (
       <div>
         <div data-testid="movie-list">
