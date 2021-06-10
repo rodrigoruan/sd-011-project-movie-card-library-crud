@@ -12,6 +12,7 @@ class MovieDetails extends Component {
       loading: true,
     };
     this.fetchAPI = this.fetchAPI.bind(this);
+    this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +25,16 @@ class MovieDetails extends Component {
     const requestMovies = await movieAPI.getMovie(id);
     this.setState({
       movie: requestMovies,
+      loading: false,
+    });
+  }
+
+  async deleteMovie() {
+    const { match } = this.props;
+    const { id } = match.params;
+    const deleteMovies = await movieAPI.deleteMovie(id);
+    this.setState({
+      movie: deleteMovies,
       loading: false,
     });
   }
@@ -49,6 +60,9 @@ class MovieDetails extends Component {
         </button>
         <button type="button">
           <Link to="/">VOLTAR</Link>
+        </button>
+        <button type="button">
+          <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
         </button>
       </div>
     );

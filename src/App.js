@@ -10,7 +10,7 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <Router>
-      <div>Movie Card Library CRUD</div>
+      <h1>Movie Card Library CRUD</h1>
       <Link to="/movies/new">ADICIONAR CARTÃO</Link>
       <Switch>
         <Route exact path="/" component={ MovieList } />
