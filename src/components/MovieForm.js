@@ -10,7 +10,7 @@ class MovieForm extends React.Component {
 
   handleSubmit() {
     const { onSubmit } = this.props;
-    onSubmit(this.state);
+    onSubmit(this.state); // ele pega o state atualizado do movie form e envia pro Edit Movie
   }
 
   updateMovie(field, newValue) {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import { MovieForm } from '../components'; // acrescentar o loading depois
-// import * as movieAPI from '../services/movieAPI';
+import PropTypes from 'prop-types';
+import { MovieForm, Loading } from '../components';
+import * as movieAPI from '../services/movieAPI';
 
 class EditMovie extends Component {
   constructor(props) {
@@ -9,31 +10,34 @@ class EditMovie extends Component {
     this.state = {
       movie: {},
       shouldRedirect: false,
-      // status: 'loading',
+      status: 'loading',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getTheMovie = this.getTheMovie.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.handleSubmit(updatedMovie);
-  // }
+  componentDidMount() {
+    this.getTheMovie();
+  }
 
   handleSubmit(updatedMovie) {
-    console.log(updatedMovie);
-    // const editedMovie = await movieAPI.updateMovie(updatedMovie);
-    // this.setState({
-    //   shouldRedirect: true,
-    //   movie: editedMovie,
-    // });
+    movieAPI.updateMovie(updatedMovie)
+      .then(
+        this.setState({
+          shouldRedirect: true,
+        }),
+      );
   }
 
-  // getMovies1(){
-
-  // }
-
-  // catchEditedMovie() {
-  //   const {match: {params: {id} } } = this.props;
-  // }
+  //  encontrar o filme a ser editado
+  async getTheMovie() {
+    const { match: { params: { id } } } = this.props;
+    const movietoBeEdit = await movieAPI.getMovie(id);
+    this.setState({
+      movie: movietoBeEdit,
+      status: 'loaded',
+    });
+  }
 
   render() {
     const { status, shouldRedirect, movie } = this.state;
@@ -44,7 +48,7 @@ class EditMovie extends Component {
 
     if (status === 'loading') {
       // render Loading
-      // return <Loading />;
+      return <Loading />;
     }
 
     return (
@@ -56,3 +60,11 @@ class EditMovie extends Component {
 }
 
 export default EditMovie;
+
+EditMovie.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
