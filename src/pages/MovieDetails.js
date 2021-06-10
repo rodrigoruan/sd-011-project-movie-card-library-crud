@@ -23,6 +23,10 @@ class MovieDetails extends Component {
     this.fetchMovie();
   }
 
+  handleDeleteMovie() {
+    console.log('ok');
+  }
+
   async fetchMovie() {
     const { match: { params: { id } } } = this.props;
     this.setState(
@@ -44,8 +48,6 @@ class MovieDetails extends Component {
   }
 
   render() {
-    // Change the condition to check the state
-    // if (true) return <Loading />;
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
@@ -72,8 +74,12 @@ class MovieDetails extends Component {
         </div>
         <div>
           <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-          <br />
+        </div>
+        <div>
           <Link to="/">VOLTAR</Link>
+        </div>
+        <div>
+          <Link to="/" onClick={ this.handleDeleteMovie }>DELETAR</Link>
         </div>
       </div>
     );
