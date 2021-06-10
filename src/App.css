@@ -11,9 +11,9 @@ body {
 .movie {
   background-color: rgb(218, 214, 214);
   display: flex;
-  padding: 5px;
-  flex-direction: column;
   border: black solid 5px;
+  flex-direction: column;
+  padding: 5px;
   height: 600px;
   width: 500px;
 }
