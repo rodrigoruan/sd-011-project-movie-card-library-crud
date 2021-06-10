@@ -13,8 +13,7 @@ class MovieList extends Component {
       movies: [],
     };
 
-    this.fetchAPI = this.fetchAPI.bind(this); 
-    
+    this.fetchAPI = this.fetchAPI.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +24,7 @@ class MovieList extends Component {
     const data = await movieAPI.getMovies();
     this.setState({ movies: data });
   }
-  
+
   render() {
     const { movies } = this.state;
     if (movies.length === 0) return <Loading />;
