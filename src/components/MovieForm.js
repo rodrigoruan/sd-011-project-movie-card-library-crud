@@ -168,9 +168,25 @@ export default MovieForm;
 
 MovieForm.propTypes = {
   movie: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     title: PropTypes.string,
+    subtitle: PropTypes.string,
     storyline: PropTypes.string,
-  }).isRequired,
+    rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    genre: PropTypes.string,
+    imagePath: PropTypes.string,
+  }),
   onSubmit: PropTypes.func.isRequired,
+};
+
+MovieForm.defaultProps = {
+  movie: {
+    id: '',
+    title: '',
+    subtitle: '',
+    storyline: '',
+    rating: 0,
+    genre: '',
+    imagePath: '',
+  },
 };

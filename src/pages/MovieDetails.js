@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
@@ -16,16 +17,24 @@ class MovieDetails extends Component {
   }
 
   componentDidMount() {
+    this.abobora = true;
     this.fetchAPI();
   }
 
-  async fetchAPI() {
+  componentWillUnmount() {
+    this.abobora = false;
+  }
+
+  fetchAPI() {
     const { match } = this.props;
     const { id } = match.params;
-    const requestMovies = await movieAPI.getMovie(id);
-    this.setState({
-      movie: requestMovies,
-      loading: false,
+    movieAPI.getMovie(id).then((movie) => {
+      if (this.abobora) {
+        this.setState({
+          movie,
+          loading: false,
+        });
+      } // NOT scape condition or early return
     });
   }
 
@@ -61,7 +70,7 @@ class MovieDetails extends Component {
         <button type="button">
           <Link to="/">VOLTAR</Link>
         </button>
-        <button type="button">
+        <button type="button" className={ Button }>
           <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
         </button>
       </div>
@@ -74,7 +83,7 @@ export default MovieDetails;
 MovieDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
   }).isRequired,
 };
