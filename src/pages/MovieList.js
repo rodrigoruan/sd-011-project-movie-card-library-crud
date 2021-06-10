@@ -10,10 +10,11 @@ class MovieList extends Component {
 
     this.state = {
       movies: [],
-      loading: true,
+      status: true,
     };
 
     this.showMovieList = this.showMovieList.bind(this);
+    this.renderCard = this.renderCard.bind(this);
   }
 
   componentDidMount() {
@@ -21,19 +22,15 @@ class MovieList extends Component {
   }
 
   async showMovieList() {
-    this.setState(
-      { loading: true },
-      async () => {
-        const movieList = await movieAPI.getMovies();
-        this.setState({
-          loading: false,
-          movies: movieList,
-        });
-      },
-    );
+    const { getMovies } = movieAPI;
+    const movieList = await getMovies();
+    this.setState({
+      movies: movieList,
+      status: false,
+    });
   }
 
-  renderBody() {
+  renderCard() {
     const { movies } = this.state;
     return (
       <main>
@@ -50,10 +47,10 @@ class MovieList extends Component {
   }
 
   render() {
-    const { loading } = this.state;
+    const { status } = this.state;
 
     return (
-      loading ? <Loading /> : this.renderBody()
+      status ? <Loading /> : this.renderCard()
     );
   }
 }
