@@ -17,16 +17,23 @@ class MovieDetails extends Component {
   }
 
   componentDidMount() {
-    const movie = this.props;
-    const { id } = movie.match.params;
-    this.showMovie(id);
+    this.willUnmount = false;
+    this.showMovie();
   }
 
-  async showMovie(currentId) {
-    const movieToShow = await movieAPI.getMovie(currentId);
-    this.setState({
-      movie: movieToShow,
-    });
+  componentWillUnmount() { // resolvido warning 'Can't perform a React state update on an unmounted component' com ajuda de Inácio e Gabi Feijó 
+    this.willUnmount = true;
+  }
+
+  async showMovie() {
+    const { match } = this.props;
+    const { id } = match.params;
+    const movie = await movieAPI.getMovie(id);
+    if (!this.willUnmount) {
+      this.setState({
+        movie,
+      });
+    }
   }
 
   deleteMovie() {
@@ -66,7 +73,7 @@ class MovieDetails extends Component {
 MovieDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
   }).isRequired,
 };

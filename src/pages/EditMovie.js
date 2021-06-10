@@ -17,9 +17,12 @@ class EditMovie extends Component {
   }
 
   componentDidMount() {
-    const movie = this.props;
-    const { id } = movie.match.params;
-    this.editThisMovie(id);
+    this.willUnmount = false;
+    this.editThisMovie();
+  }
+
+  componentWillUnmount() {
+    this.willUnmount = true;
   }
 
   handleSubmit(updatedMovie) {
@@ -29,17 +32,16 @@ class EditMovie extends Component {
     });
   }
 
-  async editThisMovie(currentId) {
-    this.setState(
-      { status: 'loading' },
-      async () => {
-        const movieToEdit = await movieAPI.getMovie(currentId);
-        this.setState({
-          status: 'finished',
-          movie: movieToEdit,
-        });
-      },
-    );
+  async editThisMovie() {
+    const { match } = this.props;
+    const { id } = match.params;
+    const movie = await movieAPI.getMovie(id);
+    if (!this.willUnmount) {
+      this.setState({
+        status: 'finished',
+        movie,
+      });
+    }
   }
 
   render() {
@@ -65,7 +67,7 @@ class EditMovie extends Component {
 EditMovie.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
   }).isRequired,
 };

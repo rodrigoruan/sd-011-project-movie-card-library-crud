@@ -177,7 +177,14 @@ MovieForm.propTypes = {
 };
 
 MovieForm.defaultProps = {
-  movie: [],
+  movie: {
+    id: '',
+    title: '',
+    subtitle: '',
+    storyline: '',
+    rating: '',
+    imagePath: '',
+  },
   onSubmit: () => {},
 };
 
