@@ -17,6 +17,7 @@ class MovieDetails extends Component {
       subtitle: '',
       isLoading: true,
     };
+    this.handleDeleteMovie = this.handleDeleteMovie.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +25,8 @@ class MovieDetails extends Component {
   }
 
   handleDeleteMovie() {
-    console.log('ok');
+    const { match: { params: { id } } } = this.props;
+    movieAPI.deleteMovie(id);
   }
 
   async fetchMovie() {
@@ -48,9 +50,7 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { match } = this.props;
-    const { params } = match;
-    const { id } = params;
+    const { match: { params: { id } } } = this.props;
     const {
       title,
       storyline,
