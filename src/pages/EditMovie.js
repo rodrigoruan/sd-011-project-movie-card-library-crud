@@ -29,6 +29,8 @@ class EditMovie extends Component {
       );
   }
 
+  // */Para resolver esta parte eu tive a ajuda do Mauricio Shoiti Leiri
+  // */Source: https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/18
   //  encontrar o filme a ser editado
   async getTheMovie() {
     const { match: { params: { id } } } = this.props;
