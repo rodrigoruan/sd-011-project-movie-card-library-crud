@@ -23,9 +23,9 @@ class MovieDetails extends Component {
     this.getMovieDetails();
   }
 
-  async componentWillUnmount() {
-    await this.deleteMovie();
-  }
+  // async componentWillUnmount() {
+  //   await this.deleteMovie();
+  // }
 
   async getMovieDetails() {
     const { match } = this.props;

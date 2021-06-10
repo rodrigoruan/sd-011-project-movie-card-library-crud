@@ -13,7 +13,7 @@ class EditMovie extends Component {
     this.state = {
       loading: true,
       shouldRedirect: false,
-      movie: null,
+      movieList: '',
     };
 
     this.getMovieDetails = this.getMovieDetails.bind(this);
@@ -21,45 +21,35 @@ class EditMovie extends Component {
   }
 
   componentDidMount() {
-    // this.getMovieDetails();
-    movieAPI
-      .getMovie(this.props.match.params.id)
-      .then((movie) => this.setState({ movie, loading: false }));
+    this.getMovieDetails();
   }
 
-  async getMovieDetails() {
+  getMovieDetails() {
     const { match } = this.props;
-    const movieDetails = await movieAPI.getMovie(match.params.id);
-    this.setState({
-      movie: movieDetails,
-      status: 'loaded',
-    });
+    movieAPI
+      .getMovie(match.params.id)
+      .then((movie) => this.setState({ movieList: movie, loading: false }));
   }
 
-  async handleSubmit(updatedMovie) {
-    console.log(updatedMovie);
-    await movieAPI.updateMovie(updatedMovie);
-    this.setState({
-      movie: updatedMovie,
-      shouldRedirect: true,
-    });
-  }
+  handleSubmit = (updatedMovie) => {
+    movieAPI
+      .updateMovie(updatedMovie)
+      .then((movie) => this.setState({ movieList: movie, shouldRedirect: true }));
+  };
 
   render() {
-    const { loading, shouldRedirect, movie } = this.state;
-    console.log('queremos ver', movie);
+    const { loading, shouldRedirect, movieList } = this.state;
+
     if (shouldRedirect) {
-      // Redirect
       return <Redirect to="/" />;
     }
-
     if (loading) {
       return <Loading />;
     }
 
     return (
       <div data-testid="edit-movie">
-        <MovieForm movie={ movie } onSubmit={ this.handleSubmit } />
+        <MovieForm movie={ movieList } onSubmit={ this.handleSubmit } />
       </div>
     );
   }
