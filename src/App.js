@@ -23,7 +23,7 @@ function App() {
         <Route
          exact
          path="/movies/:id"
-         component={ MovieDetails }
+         render={(props) => <MovieDetails { ...props } /> }
         />
         <Route
           exact
