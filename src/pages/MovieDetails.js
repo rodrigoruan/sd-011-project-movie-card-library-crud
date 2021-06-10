@@ -1,42 +1,43 @@
 import React, { Component } from 'react';
-import Loading from '../components/Loading'
-import * as movieAPI from '../services/movieAPI';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Loading from '../components/Loading';
+import * as movieAPI from '../services/movieAPI';
 
 class MovieDetails extends Component {
   constructor(props) {
-  super(props);
+    super(props);
 
-  this.state = {
-    movieID: undefined,
-    movie: [],
-    loading: true,
-  };
+    this.state = {
+      movie: [],
+      loading: true,
+    };
 
-  this.getMovieDetails = this.getMovieDetails.bind(this);
+    this.getMovieDetails = this.getMovieDetails.bind(this);
   }
 
-  async getMovieDetails() {
-    const movieGot = await movieAPI.getMovie(this.props.match.params.id);
+  componentDidMount() {
+    const { match: { params: { id } } } = this.props;
+    this.getMovieDetails(id);
+  }
+
+  async getMovieDetails(id) {
+    const movieGot = await movieAPI.getMovie(id);
     this.setState({
       movie: movieGot,
-      loading: false
-      })
+      loading: false,
+    });
   }
-  
-  componentDidMount() {
-    this.getMovieDetails();
-  }
-
 
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
 
-    const { title, storyline, imagePath, genre, rating, subtitle } = this.state.movie;
+    const { movie:
+      { title, storyline, imagePath, genre, rating, subtitle } } = this.state;
     const { loading } = this.state;
-    const { id } = this.props.match.params;
-    if (loading) return <Loading />
+    const { match: { params: { id } } } = this.props;
+    if (loading) return <Loading />;
     return (
       <div data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
@@ -46,10 +47,18 @@ class MovieDetails extends Component {
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/">VOLTAR</Link>
-        <Link to={`/movies/${id}/edit`}>EDITAR</Link>
+        <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
       </div>
     );
   }
 }
 
 export default MovieDetails;
+
+MovieDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};
