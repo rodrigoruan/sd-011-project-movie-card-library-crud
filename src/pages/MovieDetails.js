@@ -30,14 +30,16 @@ class MovieDetails extends Component {
     });
   }
 
+  clickAndDelete(id) {
+    movieAPI.deleteMovie(id);
+  }
+
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
     const { movie, loading } = this.state;
     // const { title, subtitle, storyline, genre, rating} = movie;
     const { id, title, storyline, imagePath, genre, rating, subtitle } = movie;
-    // */Para resolver o problema no lint relativo ao uso do ternário após os parenteses, eu consultei o repositório do Alberto Candido
-    // */Source: https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/7/files
 
     return loading ? <Loading /> : (
       <div data-testid="movie-details">
@@ -49,11 +51,14 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/">VOLTAR</Link>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+        <Link to="/" onClick={ () => this.clickAndDelete(id) }>DELETAR</Link>
       </div>
     );
   }
 }
 
+// Para resolver a questão 7, utlizei como base o link abaixo;
+// /*s ource: https://stackoverflow.com/questions/42800815/how-to-use-onclick-event-on-react-link-component
 export default MovieDetails;
 
 MovieDetails.propTypes = {

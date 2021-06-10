@@ -20,6 +20,8 @@ class EditMovie extends Component {
     this.getTheMovie();
   }
 
+  // */Para resolver esta etapa do handleSubmit eu tive a ajuda do Mauricio Shoiti Leiri
+  // */Source: https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/18
   // nesta etapa que ocorre a edição do arquivo
   async handleSubmit(updatedMovie) {
     await movieAPI.updateMovie(updatedMovie);
@@ -28,8 +30,6 @@ class EditMovie extends Component {
     });
   }
 
-  // */Para resolver esta parte eu tive a ajuda do Mauricio Shoiti Leiri
-  // */Source: https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/18
   //  encontrar o filme a ser editado
   async getTheMovie() {
     const { match: { params: { id } } } = this.props;

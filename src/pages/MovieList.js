@@ -31,6 +31,8 @@ class MovieList extends Component {
     const { movies, loading } = this.state;
     // Render Loading here if the request is still happening
     return (
+      // */Para resolver o problema relativo ao uso do ternário eu segui a dica postada pelo Alberto Candido
+    // */Source: https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/7/files
       <div data-testid="movie-list">
         { loading === true ? <Loading />
           : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
