@@ -10,10 +10,10 @@ body {
 
 .movie {
   background-color: rgb(218, 214, 214);
-  display: flex;
   border: black solid 5px;
+  display: flex;
   flex-direction: column;
-  padding: 5px;
   height: 600px;
+  padding: 5px;
   width: 500px;
 }
