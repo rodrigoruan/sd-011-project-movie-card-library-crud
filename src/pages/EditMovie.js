@@ -20,13 +20,12 @@ class EditMovie extends Component {
     this.getTheMovie();
   }
 
-  handleSubmit(updatedMovie) {
-    movieAPI.updateMovie(updatedMovie)
-      .then(
-        this.setState({
-          shouldRedirect: true,
-        }),
-      );
+  // nesta etapa que ocorre a edição do arquivo
+  async handleSubmit(updatedMovie) {
+    await movieAPI.updateMovie(updatedMovie);
+    this.setState({
+      shouldRedirect: true,
+    });
   }
 
   // */Para resolver esta parte eu tive a ajuda do Mauricio Shoiti Leiri
