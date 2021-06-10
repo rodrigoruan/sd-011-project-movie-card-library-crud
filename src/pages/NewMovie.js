@@ -15,13 +15,13 @@ class NewMovie extends Component {
     createMovie(newMovie);
     this.setState({
       shouldRedirect: true,
-    })
+    });
   }
 
   render() {
     const { shouldRedirect } = this.state;
     if (shouldRedirect === true) {
-      return <Redirect to="/"></Redirect>
+      return <Redirect to="/" />;
     }
 
     return (

@@ -10,11 +10,29 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={MovieList}/>
-        <Route path="/movies/new" exact component={NewMovie}/>
-        <Route path="/movies/:id" exact render={(props) => <MovieDetails {...props} />}/>
-        <Route path="/movies/:id/edit" exact render={(props) => <EditMovie {...props} />}/>
-        <Route path="" component={NotFound}/>
+        <Route
+          path="/"
+          exact
+          component={ MovieList }
+        />
+        <Route
+          path="/movies/new"
+          exact
+          component={ NewMovie }
+        />
+        <Route
+          path="/movies/:id"
+          exact
+          render={ (props) => <MovieDetails { ...props } /> }
+        />
+        <Route
+          path="/movies/:id/edit"
+          render={ (props) => <EditMovie { ...props } /> }
+        />
+        <Route
+          path=""
+          component={ NotFound }
+        />
       </Switch>
       <Link to="/movies/new">ADICIONAR CARTÃO</Link>
     </BrowserRouter>
