@@ -17,6 +17,7 @@ class MovieList extends Component {
     this.getMovieAsync();
   }
 
+  //   ----------- Adicionar tratamento de erro aqui ----------------
   async getMovieAsync() {
     const moviesApi = await movieAPI.getMovies();
     this.setState(() => ({
@@ -31,7 +32,11 @@ class MovieList extends Component {
 
     return (
       <div data-testid="movie-list">
-        {isLoading ? <Loading /> : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)
+        )}
       </div>
     );
   }
