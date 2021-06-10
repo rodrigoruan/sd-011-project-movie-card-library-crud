@@ -23,7 +23,7 @@ class MovieDetails extends Component {
   }
 
   fetchAPI() {
-    const { id } = this.props;
+    const { match: { params: { id } } } = this.props;
     this.setState({ loading: true }, async () => {
       const movie = await movieAPI.getMovie(id);
       this.setState({ movie, loading: false });
@@ -40,7 +40,7 @@ class MovieDetails extends Component {
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
         <div className="links">
-          <Link to={ `movies/${id}/edit` }>EDITAR</Link>
+          <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
           <Link to="/">VOLTAR</Link>
         </div>
       </div>
@@ -63,7 +63,14 @@ class MovieDetails extends Component {
 }
 
 MovieDetails.propTypes = {
-  id: PropTypes.number.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    }),
+  }).isRequired,
 };
 
 export default MovieDetails;
