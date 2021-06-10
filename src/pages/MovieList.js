@@ -15,11 +15,14 @@ class MovieList extends Component {
   }
 
   componentDidMount() { // Req. 2, a requisição deve ser feita no momento em que o MovieList for montado no DOM (componentDidMount).
-    movieAPI.getMovies().then((data) => {
-      this.setState({
-        movies: data,
-        loading: false,
-      });
+    this.getMoviesAPI();
+  }
+
+  async getMoviesAPI() {
+    const request = await movieAPI.getMovies();
+    this.setState({
+      movies: request,
+      loading: false,
     });
   }
 
