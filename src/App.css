@@ -16,7 +16,7 @@ body {
   box-shadow: 1px 1px 5px gray;
   display: flex;
   flex-direction: column;
-  margin: 50px;
+  margin: 40px 20px;
   width: 400px;
 }
 
@@ -71,6 +71,7 @@ body {
   background-color: white;
   box-shadow: 1px 1px 5px gray;
   padding: 30px;
+  max-width: 400px;
 }
 
 .form-container form {
@@ -93,4 +94,21 @@ body {
 .form-container form textarea {
   height: 100px;
   width: 302px;
+}
+
+.add-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  margin-top: 10px;
+}
+
+.add-header a {
+  background-color: teal;
+  border-radius: 3px;
+  color: whitesmoke;
+  font-size: 20px;
+  padding: 20px;
+  text-decoration: none;
 }
