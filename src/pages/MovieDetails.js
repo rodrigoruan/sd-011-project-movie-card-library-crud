@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
-
+// Requisito 4 - Faça uma requisição para buscar o filme que deverá ser renderizado dentro de Movie Details.
 class MovieDetails extends Component {
   constructor() {
     super();
