@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
 class MovieDetails extends Component {
-constructor(props) {
-  super(props);
-  this.state = {
-    movie: [],
-    loading: true,
-  };
-}
+  constructor(props) {
+    super(props);
+    this.state = {
+      movie: [],
+      loading: true,
+    };
+  }
 
-componentDidMount() {
-const { match } = this.props;
-const { id } = match.params;
-  movieAPI.getMovie(id)
+  componentDidMount() {
+    const { match } = this.props;
+    const { id } = match.params;
+    movieAPI.getMovie(id)
       .then((results) => this.setState({ movie: results, loading: false }));
   }
 
@@ -26,7 +27,7 @@ const { id } = match.params;
     const { id } = match.params;
 
     if (loading) {
-      return <Loading />
+      return <Loading />;
     }
 
     return (
@@ -38,7 +39,7 @@ const { id } = match.params;
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
         <nav>
-          <Link to={`/movies/${id}/edit`}>EDITAR</Link>
+          <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
           <Link to="/">VOLTAR</Link>
         </nav>
       </div>
@@ -47,3 +48,7 @@ const { id } = match.params;
 }
 
 export default MovieDetails;
+
+MovieDetails.propTypes = ({
+  match: PropTypes.arrayOf,
+}).isRequired;
