@@ -6,7 +6,9 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        Movie Card Library CRUD
+        <h1 className="page-title movie-card-header">
+          Movie Card Library CRUD
+        </h1>
         <Main />
       </BrowserRouter>
     </div>

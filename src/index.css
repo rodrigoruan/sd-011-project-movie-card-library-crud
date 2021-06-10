@@ -1,13 +1,114 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: whitesmoke;
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.movie-card-header {
+  align-items: center;
+  background-color: #343a40;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+}
+
+.page-title {
+  color: #f8f9fa;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.movie-list {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 48px 30px;
+}
+
+.movie-card {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  height: 530px;
+  margin: 5px;
+  overflow: hidden;
+  width: 400px;
+}
+
+.movie-card-image {
+  width: 100%;
+}
+
+.movie-card-body {
+  flex: 1 1 auto;
+  padding: 20px;
+}
+
+.movie-card-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+
+.movie-card-subtitle {
+  color: #6c757d;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 8px;
+}
+
+.movie-card-storyline {
+  font-size: 14px;
+  text-align: justify;
+  padding: 1%;
+}
+
+.rating {
+  background-color: #007bff;
+  border-radius: 25px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 3px 9px;
+}
+
+.movie-card-rating {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 20px;
+}
+
+.query {
+  display: flex;
+  justify-content: space-around;
+  padding: 2%;
+}
+
+.query input {
+  padding: 2%;
+}
+
+.query select {
+  padding: 2%;
+}
+
+.add-movie {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 3%;
+}
+
+button {
+  width: fit-content;
+}
+
+.link {
+  display: flex;
+  justify-content: space-around;
 }
