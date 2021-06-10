@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 class MovieCard extends React.Component {
   render() {
-    const {id, imagePath, title, storyline } = this.props.movie;
+    const { movie: { title, imagePath, storyline, id } } = this.props;
     return (
       <div data-testid="movie-card">
         <img src={ imagePath } alt="Imagem do filme" />
         <h2>{ title }</h2>
         <p>{ storyline }</p>
-        <Link to={`/movies/${id}`}>VER DETALHES</Link>
+        <Link to={ `/movies/${id}` }>VER DETALHES</Link>
       </div>
     );
   }

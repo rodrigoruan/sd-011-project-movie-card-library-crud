@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Loading } from '../components';
 import * as movieAPI from '../services/movieAPI';
-import PropTypes from 'prop-types';
-
 
 class MovieDetails extends Component {
   constructor() {
     super();
 
     this.state = {
-      id: 0,
       movie: {},
       load: true,
     };
@@ -75,10 +73,9 @@ class MovieDetails extends Component {
 MovieDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
     }).isRequired,
   }).isRequired,
 };
-
 
 export default MovieDetails;
