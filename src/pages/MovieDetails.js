@@ -14,10 +14,19 @@ class MovieDetails extends Component {
     };
 
     this.fetchMovie = this.fetchMovie.bind(this);
+    this.onClickDeleteMovie = this.onClickDeleteMovie.bind(this);
   }
 
   componentDidMount() {
     this.fetchMovie();
+  }
+
+  onClickDeleteMovie() {
+    const { movie: { id } } = this.state;
+    movieAPI.deleteMovie(id);
+    this.setState({
+      loading: false,
+    });
   }
 
   async fetchMovie() {
@@ -30,9 +39,9 @@ class MovieDetails extends Component {
   }
 
   render() {
+    const { match: { params: { id } } } = this.props;
     const { movie, loading } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
-    const { match: { params: { id } } } = this.props;
 
     if (loading === true) {
       return <Loading />;
@@ -48,9 +57,11 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
         <Link to="/">VOLTAR</Link>
+        <Link to="/" onClick={ this.onClickDeleteMovie }>DELETAR</Link>
       </div>
     );
   }
+  // referencia: https://stackoverflow.com/questions/42800815/how-to-use-onclick-event-on-react-link-component
 }
 
 MovieDetails.propTypes = {
