@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
-// import PropTypes from 'prop-types';
 
 class MovieDetails extends Component {
   constructor() {
@@ -27,7 +27,7 @@ class MovieDetails extends Component {
 
   functionDeleteCard(movieId) {
     movieAPI.deleteMovie(movieId);
-    // then()
+    // Se chama a função de movieAPI e deleta o movie pelo id.
   }
 
   render() {
@@ -58,20 +58,12 @@ class MovieDetails extends Component {
   }
 }
 
-// MovieDetails.propTypes = {
-// falta arrumar as props
-// };
-
-// MovieDetails.propTypes = {
-//   detailMovie: PropTypes.shape({
-//     id: PropTypes.string.isRequired,
-//     title: PropTypes.string.isRequired,
-//     subtitle: PropTypes.string.isRequired,
-//     storyline: PropTypes.string.isRequired,
-//     imagePath: PropTypes.string,
-//     genre: PropTypes.string.isRequired,
-//     rating: PropTypes.string.isRequired,
-//   }).isRequired,
-// };
+MovieDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 export default MovieDetails;
