@@ -32,7 +32,6 @@ class MovieDetails extends Component {
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
 
     if (movie.length === 0) return <Loading />;
-
     return (
       <div data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
@@ -42,7 +41,7 @@ class MovieDetails extends Component {
         <p>{ `Genre: ${genre}`}</p>
         <p>{ `Rating: ${rating}`}</p>
         <button type="button">
-          <Link to={ `/movie/${movieId}/edit` }>EDITAR</Link>
+          <Link to={ `/movies/${movieId}/edit` } movie={ movie }>EDITAR</Link>
         </button>
         <button type="button">
           <Link to="/">VOLTAR</Link>
