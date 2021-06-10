@@ -27,6 +27,10 @@ class MovieDetails extends Component {
     this.setState({ movie: data });
   }
 
+  async removeMovie(movieId) {
+    await movieAPI.deleteMovie(movieId);
+  }
+
   render() {
     const { movie, movieId } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
@@ -45,6 +49,9 @@ class MovieDetails extends Component {
         </button>
         <button type="button">
           <Link to="/">VOLTAR</Link>
+        </button>
+        <button type="button">
+          <Link to="/" onClick={ this.removeMovie }>DELETAR</Link>
         </button>
       </div>
     );
