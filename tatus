@@ -1,0 +1,35 @@
+[33mcommit a61af0d02750c6471e1b899930e2aa16a35ca9c4[m[33m ([m[1;36mHEAD -> [m[1;32mmarsleite-project-movie-card-library-crud[m[33m)[m
+Author: marsleite <marsleite@gmail.com>
+Date:   Wed Jun 9 06:43:21 2021 -0300
+
+    requisito 01 e requisito 02 - done
+
+[33mcommit e0752678647e4eac49a61f02f539f0003f6cbbd0[m[33m ([m[1;31morigin/marsleite-project-movie-card-library-crud[m[33m)[m
+Author: marsleite <marsleite@gmail.com>
+Date:   Tue Jun 8 14:45:09 2021 -0300
+
+    Iniciando o projeto movie card library crud :rocket:
+
+[33mcommit 067a83bbe04b365416d65fe683553d1eedb59004[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Diego Matheus Campos <62223980+DiegoCampos1@users.noreply.github.com>
+Date:   Mon Jun 7 14:57:57 2021 -0300
+
+    Update README.md
+
+[33mcommit 5edc00d60c4bbd744e1ab1d283a88c23708d03d8[m
+Author: Jean Paulo Silva Vasconcelos <jean.vasconcelos6@gmail.com>
+Date:   Mon Jun 7 14:47:47 2021 -0300
+
+    Updating .github/workflows/main.yml
+
+[33mcommit c916e7b7a8ac97b55ee6d36a70d55f2881b91c6d[m
+Author: Jean Paulo Silva Vasconcelos <jean.vasconcelos6@gmail.com>
+Date:   Mon Jun 7 14:47:47 2021 -0300
+
+    Updating README.md
+
+[33mcommit 209c8a0ea58a85d4d8a55b94da7e232ca49e077e[m
+Author: Jean Paulo Silva Vasconcelos <jean.vasconcelos6@gmail.com>
+Date:   Mon Jun 7 14:47:42 2021 -0300
+
+    Initial commit
