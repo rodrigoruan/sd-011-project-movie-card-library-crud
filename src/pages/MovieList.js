@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
 import * as movieAPI from '../services/movieAPI';
+import SearchBar from '../components/SearchBar';
 
 class MovieList extends Component {
   constructor() {
     super();
 
+    this.searchInfo = this.searchInfo.bind(this);
+    this.filterMovies = this.filterMovies.bind(this);
+
     this.state = {
       movies: [],
       isLoading: true,
+      searchText: '',
+      bookmarkedOnly: false,
+      selectedGenre: '',
     };
   }
 
@@ -31,17 +38,63 @@ class MovieList extends Component {
     );
   }
 
+  searchInfo({ target }) {
+    const { name } = target;
+    let { value } = target;
+
+    if (name === 'bookmarkedOnly') {
+      value = (target.checked === true);
+    }
+
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  filterMovies() {
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    if (bookmarkedOnly) {
+      return movies.filter((movie) => movie.bookmarked === true);
+    }
+
+    if (selectedGenre !== '') {
+      return movies.filter((movie) => movie.genre === selectedGenre);
+    }
+
+    if (searchText !== '') {
+      return movies.filter((movie) => (movie.title.includes(searchText)
+        || movie.subtitle.includes(searchText)
+        || movie.storyline.includes(searchText)
+      ));
+    }
+
+    return movies;
+  }
+
   render() {
-    const { movies, isLoading } = this.state;
+    const { isLoading, searchText, bookmarkedOnly, selectedGenre } = this.state;
 
     if (isLoading) {
       return <p>Carregando...</p>;
     }
 
     return (
-      <div className="movie-list" data-testid="movie-list">
-        {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
-      </div>
+      <>
+        <SearchBar
+          searchText={ searchText }
+          onSearchTextChange={ this.searchInfo }
+          bookmarkedOnly={ bookmarkedOnly }
+          onBookmarkedChange={ this.searchInfo }
+          selectedGenre={ selectedGenre }
+          onSelectedGenreChange={ this.searchInfo }
+        />
+        <div className="movie-list" data-testid="movie-list">
+          {this.filterMovies()
+            .map((movie) => (
+              <MovieCard key={ movie.title } movie={ movie } />
+            ))}
+        </div>
+      </>
     );
   }
 }

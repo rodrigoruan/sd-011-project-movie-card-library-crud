@@ -19,36 +19,47 @@ body {
   text-align: center;
 }
 
-.search-bar-form {
-  display: flex;
-  flex-direction: column;
+a {
+  background-color: #007bff;
+  border-radius: 20px;
+  color: white;
+  padding: 15px;
+  text-decoration: none;
+}
+
+.search-bar-title {
   padding: 0 30px;
 }
 
-.search-bar-input {
+.search-bar-form {
+  align-items: center;
   display: flex;
-  margin: 0;
-  padding: 10px 0;
+  flex-direction: row;
+  padding: 0 30px;
+  width: max-content;
+}
+
+.search-bar-input-checkbox {
+  width: min-content;
+}
+
+.search-bar-input-checkbox input {
+  margin-right: 10px;
+  width: min-content;
+}
+
+.search-bar-input {
+  align-items: center;
+  margin-right: 15px;
+  width: max-content;
+}
+
+.search-bar-input input {
+  margin-left: 10px;
 }
 
 .search-bar-input select {
-  padding: 5px;
-}
-
-.search-bar-form h3 {
-  padding-top: 15px;
-}
-
-.search-bar-form :nth-child( 2 ) {
-  flex-direction: column;
-}
-
-.search-bar-form :nth-child( 3 ) {
-  align-items: center;
-}
-
-.search-bar-form :nth-child( 4 ) {
-  flex-direction: column;
+  margin-left: 10px;
 }
 
 .add-new-card {
@@ -56,14 +67,6 @@ body {
   height: max-content;
   justify-content: center;
   padding-top: 48px;
-}
-
-a {
-  background-color: #007bff;
-  border-radius: 20px;
-  color: white;
-  padding: 15px;
-  text-decoration: none;
 }
 
 .movie-list {
