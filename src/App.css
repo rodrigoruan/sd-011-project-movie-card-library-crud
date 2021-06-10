@@ -54,7 +54,7 @@ body {
 .movie-list {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   padding: 48px 30px;
 }
 
@@ -64,10 +64,40 @@ body {
   border-radius: 3px;
   display: flex;
   flex-direction: column;
-  height: max-content;
+  height: min-content;
   margin: 5px;
   overflow: hidden;
   width: 350px;
+}
+
+.movie-card-content {
+  position: relative;
+}
+
+.movie-details {
+  display: none;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.movie-card-content:hover .movie-details {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.movie-card-content:hover .movie-card {
+  filter: blur(2px);
+}
+
+.movie-details a {
+  background-color: #007bff;
+  border-radius: 20px;
+  color: white;
+  padding: 15px;
+  text-decoration: none;
 }
 
 .movie-card-image {
