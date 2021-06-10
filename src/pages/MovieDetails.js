@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
@@ -70,7 +69,7 @@ class MovieDetails extends Component {
         <button type="button">
           <Link to="/">VOLTAR</Link>
         </button>
-        <button type="button" className={ Button }>
+        <button type="button">
           <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
         </button>
       </div>
