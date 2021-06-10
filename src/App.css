@@ -16,6 +16,10 @@ body {
   height: 260px;
 }
 
+.linkEditar {
+  padding: 10px;
+}
+
 .movie-card {
   background-color: rgb(255, 255, 255);
   border: 1px solid rgba(0, 0, 0, 0.125);
