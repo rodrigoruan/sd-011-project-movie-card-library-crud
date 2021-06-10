@@ -9,6 +9,7 @@ class MovieDetails extends Component {
     super();
 
     this.setSelectMovie = this.setSelectMovie.bind(this);
+    this.delMovie = this.delMovie.bind(this);
 
     this.state = {
       movieId: 0,
@@ -26,6 +27,12 @@ class MovieDetails extends Component {
     this.setState({
       movieId: selectMovie,
     });
+  }
+
+  async delMovie() {
+    const { match } = this.props;
+    const { id } = match.params;
+    await movieAPI.deleteMovie(id);
   }
 
   render() {
@@ -51,6 +58,7 @@ class MovieDetails extends Component {
             <section className="link">
               <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
               <Link to="/">VOLTAR</Link>
+              <Link to="/" onClick={ this.delMovie }>DELETAR</Link>
             </section>
           </div>)}
       </div>
