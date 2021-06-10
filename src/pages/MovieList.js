@@ -19,7 +19,6 @@ class MovieList extends Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: false });
     this.gettingMovies();
   }
 
@@ -28,17 +27,14 @@ class MovieList extends Component {
 
     this.setState({
       movies: response,
+      isLoading: false,
     });
   }
 
   render() {
     const { movies, isLoading } = this.state;
-    return (
+    return isLoading ? <Loading /> : (
       <div data-testid="movie-list">
-        isLoading
-        ?
-        <Loading />
-        :
         {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
       </div>
     );
