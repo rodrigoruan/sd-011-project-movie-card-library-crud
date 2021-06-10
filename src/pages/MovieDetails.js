@@ -26,7 +26,7 @@ class MovieDetails extends Component {
     const { id } = this.state;
     movieAPI.getMovie(id)
       .then(({ title, subtitle, storyline, rating, imagePath, genre }) => {
-        this.setState({
+        this.setState(() => ({
           loading: false,
           title,
           subtitle,
@@ -34,8 +34,12 @@ class MovieDetails extends Component {
           rating,
           imagePath,
           genre,
-        });
+        }));
       });
+  }
+
+  componentWillUnmount() {
+    this.setState = () => {};
   }
 
   render() {
@@ -70,7 +74,7 @@ class MovieDetails extends Component {
 MovieDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
     }),
   }).isRequired,
 };
