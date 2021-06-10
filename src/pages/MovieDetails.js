@@ -19,9 +19,7 @@ class MovieDetails extends Component {
   }
 
   updateState() {
-    const { match } = this.props;
-    const { params } = match;
-    const { id } = params;
+    const { match: { params: { id } } } = this.props;
     this.setState(() => ({
       loading: true,
     }),
@@ -51,16 +49,12 @@ class MovieDetails extends Component {
           <p>{ `Rating: ${rating}` }</p>
         </div>
         <div className="movie-btn">
-          <button type="button">
-            <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-          </button>
-          <button type="button">
-            <Link to="/">VOLTAR</Link>
-          </button>
+          <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+          <Link to="/">VOLTAR</Link>
+          <Link to="/" onClick={ () => movieAPI.deleteMovie(id) }>DELETAR</Link>
         </div>
       </div>
     );
-
     const load = loading ? <Loading /> : pageData;
     return (
       <div data-testid="movie-details">
