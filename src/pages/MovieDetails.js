@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
@@ -13,41 +14,31 @@ class MovieDetails extends Component {
     const { id } = params;
 
     this.state = {
-      movies: [],
-      movieFound: {},
+      movie: {},
       queryString: id,
     };
-    this.requestMovies = this.requestMovies.bind(this);
-    this.findMovie = this.findMovie.bind(this);
+    this.requestMovie = this.requestMovie.bind(this);
   }
 
   componentDidMount() {
-    this.requestMovies();
+    this.requestMovie();
   }
 
-  async requestMovies() {
-    const moviesArray = await movieAPI.getMovies();
-    this.setState({ movies: moviesArray });
-    this.findMovie();
-  }
-
-  findMovie() {
-    const { movies, queryString } = this.state;
-    const filter = movies.find((movie) => movie.id === parseInt(queryString, 10));
-    this.setState({
-      movieFound: filter,
-    });
+  async requestMovie() {
+    const { queryString } = this.state;
+    const movie = await movieAPI.getMovie(queryString);
+    this.setState({ movie });
   }
 
   render() {
     // if (true) return <Loading />;
-    const { movies, movieFound } = this.state;
+    const { movie, queryString } = this.state;
 
-    const { title, storyline, imagePath, genre, rating, subtitle } = movieFound;
+    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
     return (
       <div data-testid="movie-details">
         {
-          movies.length === 0
+          Object.keys(movie).length === 0
             ? <Loading />
             : (
               <>
@@ -57,6 +48,8 @@ class MovieDetails extends Component {
                 <p>{ `Storyline: ${storyline}` }</p>
                 <p>{ `Genre: ${genre}` }</p>
                 <p>{ `Rating: ${rating}` }</p>
+                <Link to="/">VOLTAR</Link>
+                <Link to={ `/movies/${queryString}/edit` }>EDITAR</Link>
               </>
             )
         }
