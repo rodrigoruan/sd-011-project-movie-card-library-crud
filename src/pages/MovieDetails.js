@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
+import { Link } from 'react-router-dom'
 
 class MovieDetails extends Component {
   constructor() {
@@ -22,22 +23,35 @@ class MovieDetails extends Component {
     const movie = await movieAPI.getMovie(id);
 
     this.setState({
+      id,
       movie,
       isLoading: false,
     });
   }
 
   movieDetails() {
-    const { movie } = this.state;
-    const { storyline, imagePath, genre, rating, subtitle } = movie;
+    const { movie, id } = this.state;
+    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
 
     return (
       <div data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
+        <p>{`title: ${title}`}</p>
         <p>{`Subtitle: ${subtitle}`}</p>
         <p>{`Storyline: ${storyline}`}</p>
         <p>{`Genre: ${genre}`}</p>
         <p>{`Rating: ${rating}`}</p>
+
+        <div>
+          <span>
+            <Link to={ `/movies/${id}/edit` }> EDITAR</Link>
+          </span>
+
+          <span>
+            <Link to="/"> VOLTAR</Link>
+          </span>
+        </div>
+
       </div>
     );
   }
