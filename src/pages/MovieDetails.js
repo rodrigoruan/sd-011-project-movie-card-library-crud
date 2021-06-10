@@ -30,8 +30,6 @@ class MovieDetails extends Component {
     });
   }
 
-  
-
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
@@ -57,23 +55,25 @@ class MovieDetails extends Component {
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
 
-        <Link to={ `/movies/${id}/edit` }>EDITAR</Link><br />
-        <Link to="/">VOLTAR</Link><br />
-        <Link to="/movies/new">DELETAR</Link>
+        <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+        <br />
+        <Link to="/">VOLTAR</Link>
+        <br />
+        <Link to="/" onClick={ () => movieAPI.deleteMovie(id) }>DELETAR</Link>
       </div>
     );
   }
 }
 
 MovieDetails.propTypes = {
-  match: PropTypes.objectOf,
-  params: PropTypes.objectOf,
-  id: PropTypes.string,
-};
-MovieDetails.defaultProps = {
-  match: {},
-  params: {},
-  id: '',
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    }),
+  }).isRequired,
 };
 
 export default MovieDetails;
