@@ -179,7 +179,7 @@ MovieForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-MovieForm.defaultProps = {
+MovieForm.defaultProps = { // foi preciso criar o default para corrigir o undefined de required
   movie: {
     id: '',
     title: '',

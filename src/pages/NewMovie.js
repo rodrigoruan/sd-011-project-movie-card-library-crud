@@ -12,12 +12,7 @@ class NewMovie extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  /*   componentWillUnmount() {
-    this.handleSubmit();
-    // o DidMount não roda, willMount dá unsafe, WillUnmount tb não roda
-  } */
-
-  async handleSubmit(newMovie) {
+  async handleSubmit(newMovie) { // Passo 7 - busca uma requisição para criar um novo filme, adicionei o Link na página inicial
     await movieAPI.createMovie(newMovie);
     this.setState({
       shouldRedirect: true,

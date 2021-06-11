@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router'; // importa o Redirect para permitir o redirecionamento
 import PropTypes from 'prop-types';
 import { MovieForm, Loading } from '../components';
 import * as movieAPI from '../services/movieAPI';
@@ -16,21 +16,28 @@ class EditMovie extends Component {
   }
 
   componentDidMount() {
+    this.brocolli = true; // inclui na montagem - sucesso com os alimentos (pode ser qualquer nome - isMounted)
     this.fetchAPI();
   }
 
-  handleSubmit(updatedMovie) {
+  componentWillUnmount() { // inclui o mount (brocolli) na desmontagem
+    this.brocolli = false;
+  }
+
+  handleSubmit(updatedMovie) { // Passo 6 - essa requisição permite que o filme selecionado seja atualizado
     movieAPI.updateMovie(updatedMovie);
-    this.setState({
+    if (!this.brocolli) return; //  escape condition or early return
+    this.setState({ // atualiza o estado
       shouldRedirect: true,
     });
   }
 
-  async fetchAPI() {
+  async fetchAPI() { // faz essa requisição para buscar o filme a ser renderizado
     const { match } = this.props;
     const { id } = match.params;
     const requestMovies = await movieAPI.getMovie(id);
-    this.setState({
+    if (!this.brocolli) return; //  escape condition or early return
+    this.setState({ // atualiza o estado
       status: 'loaded',
       movie: requestMovies,
     });
@@ -38,7 +45,7 @@ class EditMovie extends Component {
 
   render() {
     const { status, shouldRedirect, movie } = this.state;
-    if (shouldRedirect) {
+    if (shouldRedirect) { // se o estado shouldRedirect é verdadeiro, redireciona para a Home. Isto é, após editar um card, seremos redirecionados ao início.
       return <Redirect to="/" />;
     }
 

@@ -16,31 +16,33 @@ class MovieDetails extends Component {
   }
 
   componentDidMount() {
-    this.abobora = true;
+    this.abobora = true; // Inclui esse this para corrigir memory leak - contei com a super ajuda do Inácio
     this.fetchAPI();
   }
 
-  componentWillUnmount() {
+  componentWillUnmount() { // preciso incluir na desmontagem para de fato corrigir o leak
     this.abobora = false;
   }
 
-  fetchAPI() {
-    const { match } = this.props;
-    const { id } = match.params;
-    movieAPI.getMovie(id).then((movie) => {
-      if (this.abobora) {
+  async fetchAPI() { // Passo 5 - faz uma requisição para buscar o filme que deverá ser renderizado (getMovie)
+    const { match } = this.props; // prop match disponibilizada pelo componente Route, possui 4 propriedades: isExact (bool), params, path e url.
+    const { id } = match.params; // atribuo o id ao params.
+    movieAPI.getMovie(id).then((movie) => { // assim como o movieList aguarda a requisição (promise - agora com then)
+      if (this.abobora) { // incluir essa condição para corrigir o memory leak
         this.setState({
           movie,
           loading: false,
         });
-      } // NOT scape condition or early return
-    });
+      }
+    })
+      .catch((err) => console.error(err));
   }
 
-  async deleteMovie() {
+  async deleteMovie() { // Passo 8 - faz nova requisição para deletar o filme
     const { match } = this.props;
     const { id } = match.params;
     const deleteMovies = await movieAPI.deleteMovie(id);
+    if (!this.abobora) return; //  escape condition or early return - importante incluir essa condição aqui, caso contrário não corrige o leak
     this.setState({
       movie: deleteMovies,
       loading: false,
@@ -73,7 +75,8 @@ class MovieDetails extends Component {
           <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
         </button>
       </div>
-    );
+    );// é importante colocar o path do link em templates para trazer dinamismo a página e conseguir modificar exatamente o id clicado. O path do Voltar retoran à home.
+    // É preciso o onClick no delete, pois a função será executada ao clicarmos no botão. Apenas no didMount até roda, mas gera outros erros (requisito 5).
   }
 }
 

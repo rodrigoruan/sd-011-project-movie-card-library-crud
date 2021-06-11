@@ -7,6 +7,7 @@ import MovieDetails from './pages/MovieDetails';
 import EditMovie from './pages/EditMovie';
 import NotFound from './pages/NotFound';
 
+// Passo 1 - O BrowserRouter foi utilizado como Router, esse componente encapsula a aplicação e permite a utilização de rotas (path/ component).
 function App() {
   return (
     <Router>
@@ -20,7 +21,7 @@ function App() {
         <Route path="*" component={ NotFound } />
       </Switch>
     </Router>
-  );
+  ); // O Switch encapsula (estrutura e organiza) um conjunto de rotas. O exact passa o caminho EXATO.
 }
 
 export default App;
