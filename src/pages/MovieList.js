@@ -11,16 +11,16 @@ class MovieList extends Component {
     };
   }
 
-  componentDidMount() {
-    this.handleRequest();
-  }
+  // componentDidMount() {
+  //   this.handleRequest();
+  // }
 
-  handleRequest() {
-    const request = movieAPI.getMovies();
-    this.setState({
-      movies: request,
-    });
-  }
+  // handleRequest() {
+  //   const request = movieAPI.getMovies();
+  //   this.setState({
+  //     movies: request,
+  //   });
+  // }
 
   render() {
     const { movies } = this.state;
