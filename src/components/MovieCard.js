@@ -5,13 +5,11 @@ import PropTypes from 'prop-types';
 class MovieCard extends React.Component {
   render() {
     const { movie } = this.props;
-    const path = `movies/${movie.id}`;
     return (
       <div data-testid="movie-card">
-        <p>{movie.title}</p>
+        <h3>{movie.title}</h3>
         <p>{movie.storyline}</p>
-
-        <Link to={ path }> VER DETALHES </Link>
+        <Link to={ `movies/${movie.id}` }> VER DETALHES </Link>
       </div>
     );
   }
