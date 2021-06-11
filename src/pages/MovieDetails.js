@@ -40,30 +40,19 @@ class MovieDetails extends Component {
         <p>{ `Storyline: ${storyline}` }</p>
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
-        <Link to={ `/movies/${id}/edit` }>
-          <button type="button">EDITAR</button>
-        </Link>
+        <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
         <br />
-        <Link to="/">
-          <button type="button">VOLTAR</button>
-        </Link>
+        <Link to="/">VOLTAR</Link>
       </div>
     );
   }
 }
 
 MovieDetails.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    storyline: PropTypes.string,
-    imagePath: PropTypes.string,
-    rating: PropTypes.number,
-  }).isRequired,
   match: PropTypes.shape({
-    params: PropTypes.objectOf(PropTypes.number),
-    id: PropTypes.number,
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
   }).isRequired,
 };
 
