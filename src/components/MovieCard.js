@@ -10,8 +10,8 @@ class MovieCard extends React.Component {
     return (
       <div data-testid="movie-card">
         <h5>{ title }</h5>
-        <p>{ subtitle }</p>
-        <textarea defaultValue={ storyline } />
+        <h6>{ subtitle }</h6>
+        <p>{ storyline }</p>
         <Link to={ `movies/${id}` }>VER DETALHES</Link>
       </div>
     );
