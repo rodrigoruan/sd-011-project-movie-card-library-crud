@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
 import * as movieAPI from '../services/movieAPI';
 import SearchBar from '../components/SearchBar';
+import Loading from '../components/Loading';
 
 class MovieList extends Component {
   constructor() {
@@ -75,7 +76,7 @@ class MovieList extends Component {
     const { isLoading, searchText, bookmarkedOnly, selectedGenre } = this.state;
 
     if (isLoading) {
-      return <p>Carregando...</p>;
+      return <Loading />;
     }
 
     return (
