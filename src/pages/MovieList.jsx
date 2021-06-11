@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
 import Loading from '../components/Loading';
-// import * as movieAPI from '../services/movieAPI';
+
 import { getMovies } from '../services/movieAPI';
 
 class MovieList extends Component {
@@ -12,19 +12,17 @@ class MovieList extends Component {
       movies: [],
       verified: false,
     };
-
-    this.fetchMovies = this.fetchMovies.bind(this);
   }
 
   componentDidMount() {
-    this.fetchMovies();
+    this.fetchGetMovies();
   }
 
-  fetchMovies() {
+  fetchGetMovies() {
     getMovies()
-      .then((recevedContent) => {
+      .then((movieList) => {
         this.setState({
-          movies: [...recevedContent],
+          movies: movieList,
           verified: true,
         });
       });
@@ -35,7 +33,7 @@ class MovieList extends Component {
     const { movies, verified } = this.state;
     return (
       <div>
-        { verified ? this.fetchMovies() : <Loading /> }
+        { verified ? this.fetchGetMovies() : <Loading /> }
         <div data-testid="movie-list">
           { movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />) }
         </div>
