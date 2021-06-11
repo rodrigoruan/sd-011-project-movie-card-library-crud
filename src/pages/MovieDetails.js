@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 import MovieCover from './MovieCover';
 
 class MovieDetails extends Component {
-  constructor() {
-    super();
+  constructor({ match }) {
+    super({ match });
 
     this.state = {
       movie: [],
+      id: match.params,
       isLoad: false,
     };
   }
@@ -18,7 +20,8 @@ class MovieDetails extends Component {
   }
 
   async isreturn() {
-    const getMovie = await movieAPI.getMovie();
+    const { id } = this.state;
+    const getMovie = await movieAPI.getMovie(id);
     this.setState({
       movie: getMovie,
       isLoad: true,
@@ -26,22 +29,28 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { movie, isLoad } = this.state;
-    const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
-
-    if (isLoad) return <Loading />;
+    const { id, isLoad, movie } = this.state;
+    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
+    console.log('AQUI >>', movie);
+    if (!isLoad) return <Loading />;
     return (
-      <MovieCover
-        title={ title }
-        storyline={ storyline }
-        imagePath={ imagePath }
-        genre={ genre }
-        rating={ rating }
-        subtitle={ subtitle }
-        id={ id }
-      />
+      <div data-testid="movie-details">
+        <MovieCover
+          title={ title }
+          storyline={ storyline }
+          imagePath={ imagePath }
+          genre={ genre }
+          rating={ rating }
+          subtitle={ subtitle }
+          id={ id }
+        />
+      </div>
     );
   }
 }
+
+MovieDetails.propTypes = {
+  id: PropTypes.number,
+}.isRequired;
 
 export default MovieDetails;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { MovieForm } from '../components';
 import * as movieAPI from '../services/movieAPI';
 
@@ -26,7 +25,7 @@ class EditMovie extends Component {
     }
 
     if (status === 'loading') {
-      // render Loading
+      console.log('Eu');
     }
 
     return (
