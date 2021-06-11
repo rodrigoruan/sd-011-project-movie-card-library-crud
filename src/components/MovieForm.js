@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Loading from './Loading';
 
 class MovieForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ...props.movie };
+    this.state = { ...props.movie, loading: false };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -148,20 +149,42 @@ class MovieForm extends React.Component {
   }
 
   render() {
+    const { loading } = this.state;
     return (
       <div>
-        <form>
-          {this.renderTitleInput()}
-          {this.renderSubtitleInput()}
-          {this.renderImagePathInput()}
-          {this.renderStorylineInput()}
-          {this.renderGenreSelection()}
-          {this.renderRatingInput()}
-          {this.renderSubmitButton()}
-        </form>
+        { loading ? (
+          <Loading />
+        ) : (
+          <form>
+            {this.renderTitleInput()}
+            {this.renderSubtitleInput()}
+            {this.renderImagePathInput()}
+            {this.renderStorylineInput()}
+            {this.renderGenreSelection()}
+            {this.renderRatingInput()}
+            {this.renderSubmitButton()}
+          </form>
+        )}
       </div>
     );
   }
 }
+
+// MovieForm.propTypes = {
+//   onSubmit: PropTypes.func.isRequired,
+//   movie: PropTypes.objectOf({}).isRequired,
+// };
+
+MovieForm.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    imagePath: PropTypes.string,
+    storyline: PropTypes.string,
+    genre: PropTypes.string,
+    rating: PropTypes.number,
+  }).isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default MovieForm;

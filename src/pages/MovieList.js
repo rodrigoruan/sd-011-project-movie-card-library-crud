@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
 import * as movieAPI from '../services/movieAPI';
 import Loading from '../components/Loading';
@@ -35,6 +36,8 @@ class MovieList extends Component {
         {movies // Se movies for verdadeiro imprima o map, senao imprima o "Carregando..."
           ? movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)
           : <Loading />}
+        <Link to="/movies/new">ADICIONAR CARTÃO</Link>
+        ;
       </div>
     );
   }
