@@ -13,8 +13,6 @@ class MovieDetails extends Component {
     };
 
     this.setMovie = this.setMovie.bind(this);
-    // this.deleteMovie = this.deleteMovie.bind(this);
-
   }
 
   componentDidMount() {
@@ -40,7 +38,7 @@ class MovieDetails extends Component {
     }
 
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
-    const { match : { params: id } } = this.props;
+    const { match: { params: id } } = this.props;
 
     return (
       <div data-testid="movie-details">
