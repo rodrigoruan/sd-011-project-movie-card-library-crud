@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
-
 import * as movieAPI from '../services/movieAPI';
 
 class MovieList extends Component {
@@ -12,9 +11,20 @@ class MovieList extends Component {
     };
   }
 
+  componentDidMount() {
+    this.handleRequest();
+  }
+
+  handleRequest() {
+    const request = movieAPI.getMovies();
+    this.setState({
+      movies: request,
+    });
+  }
+
   render() {
     const { movies } = this.state;
-
+    // const loadingElement = <span>Loading...</span>;
     // Render Loading here if the request is still happening
 
     return (
