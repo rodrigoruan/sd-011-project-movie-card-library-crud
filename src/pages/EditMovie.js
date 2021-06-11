@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Redirect } from 'react-router';
 import Loading from '../components/Loading';
 import { MovieForm } from '../components';
