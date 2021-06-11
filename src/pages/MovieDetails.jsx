@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class MovieDetails extends Component {
   render() {
@@ -16,6 +17,8 @@ class MovieDetails extends Component {
         <p>{ `Storyline: ${storyline}` }</p>
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
+        <Link to="/movie/:id/edit">EDITAR</Link>
+        <Link to="/">VOLTAR</Link>
       </div>
     );
   }
