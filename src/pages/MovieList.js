@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Loading } from '../components';
 // import PropTypes from 'prop-types';
 import MovieCard from '../components/MovieCard';
 import '../App.css';
-import { Link } from 'react-router-dom';
 
 import * as movieAPI from '../services/movieAPI';
 

@@ -22,7 +22,9 @@ class MovieDetails extends Component {
   }
 
   async gettingASingleMovie() {
-    const { id } = this.props.match.params;
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
     const response = await movieAPI.getMovie(id);
 
     this.setState({
@@ -32,14 +34,17 @@ class MovieDetails extends Component {
   }
 
   deleteMovie() {
-    const { id } = this.props.match.params;
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
     movieAPI.deleteMovie(id);
   }
 
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
-    const { movie: { title, storyline, imagePath, genre, rating, subtitle, id } } = this.state;
+    const { movie: { title, storyline, imagePath,
+      genre, rating, subtitle, id } } = this.state;
     const { isLoading } = this.state;
 
     return isLoading ? <Loading /> : (
@@ -57,5 +62,13 @@ class MovieDetails extends Component {
     );
   }
 }
+
+MovieDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number,
+    }),
+  }).isRequired,
+};
 
 export default MovieDetails;
