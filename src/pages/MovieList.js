@@ -34,7 +34,7 @@ export default class MovieList extends Component {
 
   render() {
     const { movies, loading } = this.state;
-    const loadingElement = <p>Carregando...</p>
+    const loadingElement = <p>Carregando...</p>;
 
     if (loading) return loadingElement;
 

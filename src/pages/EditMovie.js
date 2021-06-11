@@ -60,7 +60,7 @@ export default class EditMovie extends Component {
     }
 
     if (status) {
-      return <Loading />
+      return <Loading />;
     }
 
     return (
@@ -77,4 +77,4 @@ EditMovie.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
-}
+};
