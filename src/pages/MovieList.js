@@ -20,7 +20,7 @@ class MovieList extends Component {
 
   async fetchMovies() {
     const moviesList = await movieAPI.getMovies();
-    this.setState(() => ({ movies: moviesList, loading: false }));
+    this.setState({ movies: moviesList, loading: false });
   }
 
   render() {
