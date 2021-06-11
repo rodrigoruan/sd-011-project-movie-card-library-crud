@@ -22,7 +22,7 @@ class MovieCard extends React.Component {
         genre={ genre }
         className="movie"
       >
-        <img src={ imagePath } alt={ `Imagem do filme ${title}` } />
+        <img src={ imagePath } alt={ `Imagem do filme ${title}` } className="imagem" />
         <h3>{ title }</h3>
         <h4>{ subtitle }</h4>
         <p>{ storyline }</p>

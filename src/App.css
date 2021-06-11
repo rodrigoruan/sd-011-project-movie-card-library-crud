@@ -17,3 +17,8 @@ body {
   padding: 5px;
   width: 500px;
 }
+
+.imagem {
+  height: 200px;
+  width: 100%;
+}
