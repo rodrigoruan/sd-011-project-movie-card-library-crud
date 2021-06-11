@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import EditMovie from './EditMovie';
 
 export default class MovieCover extends Component {
   render() {
-    const { title, storyline, imagePath, genre, rating, subtitle } = this.props;
+    const { title, storyline, imagePath, genre, rating, subtitle, id } = this.props;
     return (
       <>
         <img alt="Movie Cover" src={ `../${imagePath}` } />
@@ -15,13 +14,14 @@ export default class MovieCover extends Component {
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/">VOLTAR</Link>
-        <Link to="Editar" component={ EditMovie }>EDITAR</Link>
+        <Link to={ `/movies/:${id}/edit` }>EDITAR</Link>
       </>
 
     );
   }
 }
 MovieCover.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   storyline: PropTypes.string.isRequired,
