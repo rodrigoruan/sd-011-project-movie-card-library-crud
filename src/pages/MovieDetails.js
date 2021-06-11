@@ -62,15 +62,15 @@ class MovieDetails extends Component {
           <p>{ `Genre: ${genre}` }</p>
           <p>{ `Rating: ${rating}` }</p>
           <div className="movie-details-navegation">
-            <Link className="home-btn" to="/">VOLTAR</Link>
+            <Link className="home-btn card-link" to="/">VOLTAR</Link>
             <Link
-              className="edit-movie-btn"
+              className="edit-movie-btn card-link"
               to={ `/movies/${id}/edit` }
             >
               EDITAR
             </Link>
             <Link
-              className="remove-movie-btn"
+              className="remove-movie-btn card-link"
               to="/"
               onClick={ () => this.removeMovie(id) }
             >

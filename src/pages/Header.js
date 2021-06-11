@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
   render() {
     return (
       <header className="movie-card-header">
-        <h1 className="page-title">Movie Cards Library</h1>
+        <Link className="page-title" to="/">Movie Cards Library</Link>
       </header>
     );
   }

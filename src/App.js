@@ -13,9 +13,6 @@ function App() {
     <BrowserRouter>
       <Header />
       <main>
-        <div className="add-new-card">
-          <Link className="add-new-card-link" to="/movies/new">ADICIONAR CARTÃO</Link>
-        </div>
         <Switch>
           <Route
             path="/movies/:id/edit"
@@ -26,6 +23,9 @@ function App() {
           <Route exact path="/" render={ () => <MovieList /> } />
           <Route path="*" render={ () => <NotFound /> } />
         </Switch>
+        <div className="add-new-card">
+          <Link className="card-link" to="/movies/new">ADICIONAR CARTÃO</Link>
+        </div>
       </main>
     </BrowserRouter>
   );

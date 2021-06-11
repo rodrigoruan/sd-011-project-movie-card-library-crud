@@ -17,9 +17,10 @@ body {
   font-size: 28px;
   font-weight: 500;
   text-align: center;
+  text-decoration: none;
 }
 
-a {
+.card-link {
   background-color: #007bff;
   border-radius: 20px;
   color: white;
@@ -28,7 +29,8 @@ a {
 }
 
 .search-bar-title {
-  padding: 0 30px;
+  margin: 0;
+  padding: 48px 30px 10px;
 }
 
 .search-bar-form {
@@ -66,7 +68,7 @@ a {
   display: flex;
   height: max-content;
   justify-content: center;
-  padding-top: 48px;
+  padding-bottom: 48px;
 }
 
 .movie-list {
