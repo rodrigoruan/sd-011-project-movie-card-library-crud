@@ -4,31 +4,29 @@ body {
 }
 
 .movie-card-image {
-  max-width: 100%;
   border-top-left-radius: 5%;
   border-top-right-radius: 5%;
+  max-width: 100%;
 }
 
 .movie-card {
+  align-items: center;
+  border-radius: 5%;
+  border-style: solid;
   display: flex;
   flex-direction: column;
+  margin: 15px;
   width: 400px;
-  align-items: center;
-  margin: 15px 15px;
-  /* padding: 5px 5px; */
-  border-style: solid;
-  border-radius: 5%;
 }
 
 .movie-list {
- display: flex;
- flex-direction: row; 
- flex-wrap: wrap;
- justify-content: start
+  display: flex;
+  flex-flow: row;
+  justify-content: start;
 }
 
-.movie-card-storyline{
+.movie-card-storyline {
+  height: 5em;
   margin-top: -5px;
   padding: 0 10px;
-  height: 5em;
 }
