@@ -18,10 +18,16 @@ class MovieDetails extends Component {
       queryString: id,
     };
     this.requestMovie = this.requestMovie.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
     this.requestMovie();
+  }
+
+  handleDelete() {
+    const { queryString } = this.state;
+    movieAPI.deleteMovie(queryString);
   }
 
   async requestMovie() {
@@ -31,7 +37,6 @@ class MovieDetails extends Component {
   }
 
   render() {
-    // if (true) return <Loading />;
     const { movie, queryString } = this.state;
 
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
@@ -50,6 +55,7 @@ class MovieDetails extends Component {
                 <p>{ `Rating: ${rating}` }</p>
                 <Link to="/">VOLTAR</Link>
                 <Link to={ `/movies/${queryString}/edit` }>EDITAR</Link>
+                <Link to="/" onClick={ this.handleDelete }>DELETAR</Link>
               </>
             )
         }
