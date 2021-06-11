@@ -10,9 +10,10 @@ class MovieDetails extends Component {
 
     this.state = {
       movie: [],
-      id: match.params,
+      id: match.params.id,
       isLoad: false,
     };
+    console.log(match.params.id);
   }
 
   componentDidMount() {
