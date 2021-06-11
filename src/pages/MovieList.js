@@ -19,6 +19,7 @@ class MovieList extends Component {
 
     return (
       <div data-testid="movie-list">
+        <p>Oi sou o movieList</p>
         {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
       </div>
     );
