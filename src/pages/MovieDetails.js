@@ -13,6 +13,7 @@ class MovieDetails extends Component {
     });
 
     this.movieDetails = this.movieDetails.bind(this);
+    this.hadleDelete = this.hadleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,11 @@ class MovieDetails extends Component {
     });
   }
 
+  async hadleDelete() {
+    const { match: { params: { id } } } = this.props;
+    movieAPI.deleteMovie(id);
+  }
+
   movieDetails() {
     const { movie, id } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
@@ -44,13 +50,9 @@ class MovieDetails extends Component {
         <p>{`Rating: ${rating}`}</p>
 
         <div>
-          <span>
-            <Link to={ `/movies/${id}/edit` }> EDITAR</Link>
-          </span>
-
-          <span>
-            <Link to="/"> VOLTAR</Link>
-          </span>
+          <Link to={ `/movies/${id}/edit` }> EDITAR</Link>
+          <Link to="/"> VOLTAR</Link>
+          <Link to="/" onClick={ this.hadleDelete }> DELETAR</Link>
         </div>
 
       </div>
