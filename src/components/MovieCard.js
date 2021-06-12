@@ -15,7 +15,7 @@ class MovieCard extends Component {
           <p>{storyline}</p>
         </div>
         <div>
-          <Link to={ `/movies/${id}` }>VER</Link>
+          <Link to={ `/movies/${id}` }>VER DETALHES</Link>
         </div>
       </div>
     );
