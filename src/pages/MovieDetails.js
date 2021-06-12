@@ -27,11 +27,19 @@ class MovieDetails extends Component {
     });
   }
 
-  renderCard() {
-    const { movie } = this.state;
+  async handleDelete() {
+    const { match } = this.props;
+    await movieAPI.deleteMovie(match.params.id);
+  }
+
+  render() {
+    const { loading, movie } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
+    if (loading) {
+      return <Loading />;
+    }
     return (
-      <div>
+      <div data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
         <h3>{ `Title: ${title}` }</h3>
         <p>{ `Subtitle: ${subtitle}` }</p>
@@ -42,15 +50,9 @@ class MovieDetails extends Component {
         <br />
         <br />
         <Link to="/"> VOLTAR </Link>
-      </div>
-    );
-  }
-
-  render() {
-    const { loading } = this.state;
-    return (
-      <div data-testid="movie-details">
-        { loading ? <Loading /> : this.renderCard()}
+        <br />
+        <br />
+        <Link to="/" onClick={ () => this.handleDelete() }> DELETAR </Link>
       </div>
     );
   }
