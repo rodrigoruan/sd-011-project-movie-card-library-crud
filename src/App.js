@@ -12,21 +12,23 @@ function App() {
   return (
     <Router>
       <div>Movie Card Library CRUD</div>
-      <Route path="/movies/new">
-        <NewMovie />
-      </Route>
-      <Route path="/movies/:id">
-        <MovieDetails />
-      </Route>
-      <Route path="/movies/:id/edit">
-        <EditMovie />
-      </Route>
-      <Route path="*">
-        <NotFound />
-      </Route>
-      <Route path="/">
-        <MovieList />
-      </Route>
+      <Switch>
+        <Route path="/movies/new">
+          <NewMovie />
+        </Route>
+        <Route exact path="/movies/:id">
+          <MovieDetails />
+        </Route>
+        <Route exact path="/movies/:id/edit">
+          <EditMovie />
+        </Route>
+        <Route path="/">
+          <MovieList />
+        </Route>
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
     </Router>
   );
 }
