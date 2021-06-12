@@ -10,7 +10,7 @@ class EditMovie extends Component {
 
     this.state = { status: true, shouldRedirect: false, movie: '' };
 
-    this.editThisMovie = this.editThisMovie.bind(this);
+    this.editMovieAux = this.editMovieAux.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -18,7 +18,7 @@ class EditMovie extends Component {
     const movie = this.props;
     const { id } = movie.match.params;
 
-    this.editThisMovie(id);
+    this.editMovieAux(id);
   }
 
   handleSubmit(movie) {
@@ -27,7 +27,7 @@ class EditMovie extends Component {
     this.setState({ shouldRedirect: true });
   }
 
-  async editThisMovie(currentID) {
+  async editMovieAux(currentID) {
     const { getMovie } = movieAPI;
     const movieToEdit = await getMovie(currentID);
 
