@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { MovieList, MovieDetails, EditMovie, NewMovie, NotFound } from './pages/index';
+import { MovieList, MovieDetails, NewMovie, NotFound } from './pages/index';
+import EditMovie from './pages/EditMovie';
 
 function App() {
   return (
