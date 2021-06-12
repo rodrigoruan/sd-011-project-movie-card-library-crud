@@ -139,7 +139,7 @@ class MovieForm extends React.Component {
       <div>
         <button
           type="button"
-          onClick={ this.handleSubmit }
+          onClick={ () => this.handleSubmit(this.state) }
         >
           Submit
         </button>
