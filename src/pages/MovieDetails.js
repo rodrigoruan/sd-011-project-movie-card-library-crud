@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
 import { Link } from 'react-router-dom';
-import { Loading } from '../components';
-
+import PropTypes from 'prop-types';
 import * as movieAPI from '../services/movieAPI';
+import { Loading } from '../components';
 
 class MovieDetails extends Component {
   constructor() {
@@ -22,17 +20,17 @@ class MovieDetails extends Component {
     this.showMovie(id);
   }
 
+  async showMovie(movieID) {
+    const awaitMovie = await movieAPI.getMovie(movieID);
+
+    this.setState({ movie: awaitMovie });
+  }
+
   deleteMovie() {
     const { movie } = this.state;
     const { id } = movie;
 
     movieAPI.deleteMovie(id);
-  }
-
-  async showMovie(movieID) {
-    const awaitMovie = await movieAPI.getMovie(movieID);
-
-    this.setState({ movie: awaitMovie });
   }
 
   renderAux() {
@@ -61,15 +59,13 @@ class MovieDetails extends Component {
     // if (true) return <Loading />;
     const { movie } = this.state;
 
-    return (movie ? this.renderAux() : <Loading />);
+    return movie ? this.renderAux() : <Loading />;
   }
 }
 
 MovieDetails.propTypes = {
   match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-    }),
+    params: PropTypes.shape({ id: PropTypes.string }),
   }).isRequired,
 };
 
