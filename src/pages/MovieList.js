@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
 import * as movieAPI from '../services/movieAPI';
 import Loading from '../components/Loading';
@@ -11,18 +12,17 @@ class MovieList extends Component {
       loading: true,
       movies: [],
     };
-    this.findMovies = this.findMovies.bind(this);
+    this.request = this.request.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.request();
+  }
+
+  async request() {
     const response = await movieAPI.getMovies();
-    console.log(response);
-    this.findMovies(response);
-  }
-
-  findMovies(param) {
     this.setState({
-      movies: param,
+      movies: response,
       loading: false,
     });
   }
@@ -32,10 +32,13 @@ class MovieList extends Component {
     // Render Loading here if the request is still happening
 
     return (
-      <div data-testid="movie-list">
-        {loading
-          ? <Loading />
-          : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
+      <div>
+        <div data-testid="movie-list">
+          {loading
+            ? <Loading />
+            : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
+        </div>
+        <Link to="/movies/new">ADICIONAR CARTÃO</Link>
       </div>
     );
   }
