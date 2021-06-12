@@ -24,7 +24,7 @@ class EditMovie extends Component {
   }
 
   async setMovie() {
-    const { match : { params: id } } = this.props;
+    const { match: { params: id } } = this.props;
     const oneMovie = await movieAPI.getMovie(id.id);
     this.setState({
       movie: oneMovie,
@@ -51,5 +51,12 @@ class EditMovie extends Component {
     );
   }
 }
+
+EditMovie.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }) }).isRequired,
+};
 
 export default EditMovie;
