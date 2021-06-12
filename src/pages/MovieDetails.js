@@ -10,10 +10,7 @@ class MovieDetails extends Component {
   constructor() {
     super();
 
-    this.state = {
-      movie: '',
-    };
-
+    this.state = { movie: '' };
     this.setState = this.setState.bind(this);
     this.deleteMovie = this.deleteMovie.bind(this);
   }
@@ -21,20 +18,21 @@ class MovieDetails extends Component {
   componentDidMount() {
     const movie = this.props;
     const { id } = movie.match.params;
+
     this.showMovie(id);
   }
 
   deleteMovie() {
     const { movie } = this.state;
     const { id } = movie;
+
     movieAPI.deleteMovie(id);
   }
 
   async showMovie(movieID) {
     const awaitMovie = await movieAPI.getMovie(movieID);
-    this.setState({
-      movie: awaitMovie,
-    });
+
+    this.setState({ movie: awaitMovie });
   }
 
   renderAux() {
@@ -63,9 +61,7 @@ class MovieDetails extends Component {
     // if (true) return <Loading />;
     const { movie } = this.state;
 
-    return (
-      movie ? this.renderAux() : <Loading />
-    );
+    return (movie ? this.renderAux() : <Loading />);
   }
 }
 
