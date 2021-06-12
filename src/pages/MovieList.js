@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+
 import { Link } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
 import Loading from '../components/Loading';
+
 import * as movieAPI from '../services/movieAPI';
 
 class MovieList extends Component {
@@ -24,6 +26,7 @@ class MovieList extends Component {
   async listMovies() {
     const { getMovies } = movieAPI;
     const list = await getMovies();
+
     this.setState({
       movies: list,
       status: false,
@@ -48,7 +51,7 @@ class MovieList extends Component {
   render() {
     const { status } = this.state;
 
-    // Render Loading here if the request is still happening
+    // Render Loading here if the request is still happeningw
     return (
       status ? <Loading /> : this.renderAux()
     );
