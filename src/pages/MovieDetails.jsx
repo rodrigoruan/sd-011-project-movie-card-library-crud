@@ -8,10 +8,9 @@ class MovieDetails extends Component {
     // if (true) return <Loading />;
 
     const { MovieInfos } = this.props;
-    const { title, storyline, imagePath, genre, rating, subtitle } = MovieInfos;
+    const { storyline, imagePath, genre, rating, subtitle } = MovieInfos;
     return (
       <div data-testid="movie-details">
-        {/* {console.log(title)} */}
         <img alt="Movie Cover" src={ `../${imagePath}` } />
         <p>{ `Subtitle: ${subtitle}` }</p>
         <p>{ `Storyline: ${storyline}` }</p>
