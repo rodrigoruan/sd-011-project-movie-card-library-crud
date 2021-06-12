@@ -7,11 +7,14 @@ class MovieCard extends React.Component {
     const { id, title, storyline } = movie;
 
     return (
-      <div data-testid="movie-card" style={{marginBottom: 20 + 'px', width: 250 + 'px'}}>
-        <section style={{fontWeight: 700}}>{ title }</section>
+      <div
+        data-testid="movie-card"
+        style={ { marginBottom: '20px', width: '250px' } }
+      >
+        <section style={ { fontWeight: '700' } }>{ title }</section>
         <section>{ storyline }</section>
         <section>
-          <Link to={`/movies/${id}`}>
+          <Link to={ `/movies/${id}` }>
             VER DETALHES
           </Link>
         </section>
