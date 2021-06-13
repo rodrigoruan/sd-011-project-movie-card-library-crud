@@ -12,7 +12,7 @@ class MovieList extends Component {
       load: true,
     };
   }
-  
+
   componentDidMount() {
     this.API();
   }
@@ -29,10 +29,10 @@ class MovieList extends Component {
       },
     );
   }
-  render() {
 
+  render() {
     const { movies, load } = this.state;
-    // Render Loading here if the request is still happening
+ 
     if (load) return <p>Carregando...</p>;
 
     return (
