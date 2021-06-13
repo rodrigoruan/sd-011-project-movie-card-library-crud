@@ -29,7 +29,7 @@ class App extends Component {
           <Route
             exact
             path="/movies/:id/edit"
-            render={ () => <EditMovie /> }
+            render={ (props) => <EditMovie { ...props } /> }
           />
           <Route
             exact
