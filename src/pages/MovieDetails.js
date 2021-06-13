@@ -4,14 +4,23 @@ import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
 class MovieDetails extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoading: true,
+
+    };
+  }
+
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
-
+    const { isLoading } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle } = {};
 
     return (
       <div data-testid="movie-details">
+        <Loading isLoading={ isLoading } />
         <img alt="Movie Cover" src={ `../${imagePath}` } />
         <p>{ `Subtitle: ${subtitle}` }</p>
         <p>{ `Storyline: ${storyline}` }</p>

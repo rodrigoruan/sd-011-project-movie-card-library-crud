@@ -12,6 +12,7 @@
   box-shadow: 2px 2px 3px 2px rgb(109, 108, 108);
   border-radius: 3px;
   background-color: white;
+  justify-content: space-between;
 }
 
 .image {
@@ -19,7 +20,7 @@
   margin-bottom: 20px;
 }
 
-.title{
+.title {
   margin-bottom: 10px;
   padding-left: 8px;
 }
@@ -33,9 +34,19 @@
   padding: 8px;
 }
 
-.details {
-
+.read-more {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
+
+.link-to {
+  text-decoration: none;
+  list-style-type: none;
+}
+
 
 @media screen and ( max-width : 500px ) {
 
