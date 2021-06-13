@@ -20,7 +20,6 @@ class MovieList extends Component {
     this.setState({
       movies: moviesList,
     });
-    console.log(getMovies());
   }
 
   render() {
