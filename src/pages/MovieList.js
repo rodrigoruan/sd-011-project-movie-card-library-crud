@@ -4,7 +4,7 @@ import MovieCard from '../components/MovieCard';
 import Loading from '../components/Loading';
 import * as movieAPI from '../services/movieAPI';
 
-class MovieList extends Component {
+export default class MovieList extends Component {
   constructor() {
     super();
 
@@ -46,5 +46,3 @@ class MovieList extends Component {
     return status ? <Loading /> : this.renderAux();
   }
 }
-
-export default MovieList;

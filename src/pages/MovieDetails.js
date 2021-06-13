@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
-class MovieDetails extends Component {
+export default class MovieDetails extends Component {
   constructor() {
     super();
 
@@ -68,5 +68,3 @@ MovieDetails.propTypes = {
     params: PropTypes.shape({ id: PropTypes.string }),
   }).isRequired,
 };
-
-export default MovieDetails;

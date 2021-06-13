@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class MovieForm extends Component {
+export default class MovieForm extends Component {
   constructor(props) {
     super(props);
     this.state = { ...props.movie };
@@ -173,5 +173,3 @@ MovieForm.defaultProps = {
   movie: [],
   onSubmit: () => {},
 };
-
-export default MovieForm;
