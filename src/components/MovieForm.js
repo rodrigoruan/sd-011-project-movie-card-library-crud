@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 class MovieForm extends React.Component {
   constructor(props) {
     super(props);
+    // criação do estado usando um spread operator com os todos elementos de movie
     this.state = { ...props.movie };
+    // bind da função handleSubmit
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  // função que desconstroi os elementos de onSubmit chamando a função on submit e passando por parametro os elemento que estao no estado
 
   handleSubmit() {
     const { onSubmit } = this.props;
@@ -19,6 +22,7 @@ class MovieForm extends React.Component {
 
   renderTitleInput() {
     const { title } = this.state;
+    // em cada elemento é feito uma descontrução e a renderização com esse dado
 
     return (
       <div>
