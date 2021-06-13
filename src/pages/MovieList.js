@@ -13,7 +13,6 @@ class MovieList extends Component {
       movies: [],
       isLoading: true,
     };
-
   }
 
   async componentDidMount() {
@@ -32,9 +31,11 @@ class MovieList extends Component {
   render() {
     const { movies, isLoading } = this.state;
 
+    if (isLoading) {
+      return <Loading isLoading={ isLoading } />;
+    }
     return (
       <div className="MovieList" data-testid="movie-list">
-        <Loading isLoading={ isLoading } />
         {movies.map((movie) => <MovieCard key={ movie.id } movie={ movie } />)}
       </div>
     );

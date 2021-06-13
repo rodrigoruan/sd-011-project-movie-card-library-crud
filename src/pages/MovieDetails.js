@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
@@ -20,7 +20,6 @@ class MovieDetails extends Component {
     };
 
     this.fetchMovie = this.fetchMovie.bind(this);
-    this.pageConstructor = this.pageConstructor.bind(this);
   }
 
   async componentDidMount() {
@@ -37,9 +36,9 @@ class MovieDetails extends Component {
     });
   }
 
-  pageConstructor() {
+  render() {
     const { params: { id } } = this.props.match;
-
+    const { isLoading } = this.state;
     const { movie: {
       title,
       storyline,
@@ -49,34 +48,21 @@ class MovieDetails extends Component {
       subtitle,
     } } = this.state;
 
-    const { isLoading } = this.state;
-
-    if (!isLoading) {
-      return (
-        <div data-testid="movie-details">
-          <img alt="Movie Cover" src={ `../${imagePath}` } />
-          <p>{ `Title: ${title}` }</p>
-          <p>{ `Subtitle: ${subtitle}` }</p>
-          <p>{ `Storyline: ${storyline}` }</p>
-          <p>{ `Genre: ${genre}` }</p>
-          <p>{ `Rating: ${rating}` }</p>
-          <button type="button">
-            <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-          </button>
-          <button type="button">
-            <Link to="/">VOLTAR</Link>
-          </button>
-        </div>
-      );
+    if (isLoading) {
+      return <Loading />;
     }
-    return <Loading isLoading={ isLoading } />;
-  }
 
-  render() {
     return (
-
-      this.pageConstructor()
-
+      <div data-testid="movie-details">
+        <img alt="Movie Cover" src={ `../${imagePath}` } />
+        <p>{ `Title: ${title}` }</p>
+        <p>{ `Subtitle: ${subtitle}` }</p>
+        <p>{ `Storyline: ${storyline}` }</p>
+        <p>{ `Genre: ${genre}` }</p>
+        <p>{ `Rating: ${rating}` }</p>
+        <Button path={ `/movies/${id}/edit` } text="EDITAR" />
+        <Button path="/" text="VOLTAR" />
+      </div>
     );
   }
 }
