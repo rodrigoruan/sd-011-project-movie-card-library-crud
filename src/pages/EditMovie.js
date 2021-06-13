@@ -7,37 +7,51 @@ import * as movieAPI from '../services/movieAPI';
 class EditMovie extends Component {
   constructor(props) {
     super(props);
-    const { match } = this.props;
     this.state = {
-      movieId: match.params.id,
-      status: 'loading',
-      shouldRedirect: false,
+      loading: true,
       movie: {},
+      shouldRedirect: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-}
 
   componentDidMount() {
-    const { movieId } = this.state;
-      movieAPI.getMovie(movieId).then((movie) => this.setState({status:'ok', movie}));
+    this.returnMovie();
   }
-  
-  handleSubmit(updatedMovie) {
-    movieAPI.updateMovie(updatedMovie);
+
+  async handleSubmit(updatedMovie) {
+    await movieAPI.updateMovie(updatedMovie);
     this.setState({
       shouldRedirect: true,
     });
   }
 
-  render() {
-    const { status, shouldRedirect, movie } = this.state;
-    
-    if (shouldRedirect) 
-      return <Redirect to="/" />;
+  async returnMovie() {
+    const { match: { params: { id } } } = this.props;
+    this.setState(
+      { loading: true },
+      async () => {
+        await movieAPI.getMovie(id)
+          .then((responseMovie) => {
+            this.setState({
+              movie: responseMovie,
+              loading: false,
+            });
+          });
+      },
+    );
+  }
 
-    if(status === 'loading')
+  render() {
+    const { loading, shouldRedirect, movie } = this.state;
+
+    if (shouldRedirect) {
+      return <Redirect to="/" />;
+    }
+
+    if (loading) {
       return <Loading />;
+    }
 
     return (
       <div data-testid="edit-movie">
@@ -45,6 +59,7 @@ class EditMovie extends Component {
       </div>
     );
   }
+}
 
 EditMovie.prototypes = {
   match: PropTypes.shape({
