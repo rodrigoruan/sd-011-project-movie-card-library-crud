@@ -9,7 +9,7 @@ class MovieDetails extends Component {
     super();
 
     this.state = {
-      loader: false,
+      loader: false, // Talvez devia começar com TRUE, mas como é por ID em props.params aí não sei.
       movie: {},
     };
   }
@@ -18,7 +18,7 @@ class MovieDetails extends Component {
     this.fetchMovie();
   }
 
-  async fetchMovie() {
+  async fetchMovie() { // Busca o filme pelo ID passado por props
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
@@ -27,7 +27,7 @@ class MovieDetails extends Component {
       async () => {
         const requestReturn = await movieAPI.getMovie(id);
         this.setState({
-          loader: false,
+          loader: false, 
           movie: requestReturn,
         });
       });

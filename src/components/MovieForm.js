@@ -4,16 +4,16 @@ import React from 'react';
 class MovieForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ...props.movie };
+    this.state = { ...props.movie }; // Recebe o filme que estar no state do PAI.
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
-    const { onSubmit } = this.props;
-    onSubmit(this.state);
+  handleSubmit() { // callback de onClick() de um <buttom />
+    const { onSubmit } = this.props; // Pega callback do PAI
+    onSubmit(this.state); // passa como parametro o estado atual para callback que veio do PAI
   }
 
-  updateMovie(field, newValue) {
+  updateMovie(field, newValue) { // callback de uma onChange() em um elemento
     this.setState({ [field]: newValue });
   }
 
