@@ -5,6 +5,9 @@ import { Loading } from '../components';
 
 class MovieDetails extends Component {
   render() {
+    if (movieAPI === true) {
+      return <Loading />;
+    }
     // Change the condition to check the state
     // if (true) return <Loading />;
 

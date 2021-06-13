@@ -25,6 +25,7 @@ export const getMovies = () => (
   new Promise((resolve) => {
     const movies = readMovies();
     simulateRequest(movies)(resolve);
+    console.log('movies');
   })
 );
 
