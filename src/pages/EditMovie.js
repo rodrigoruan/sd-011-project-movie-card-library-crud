@@ -7,12 +7,16 @@ import * as movieAPI from '../services/movieAPI';
 class EditMovie extends Component {
   constructor(props) {
     super(props);
+    // const { match } = this.props;
+    const { id } = match.params;
     this.state = {
       loading: true,
       movie: {},
       shouldRedirect: false,
+      id,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.returnMovie = this.returnMovie.bind(this);
   }
 
   componentDidMount() {
@@ -27,19 +31,12 @@ class EditMovie extends Component {
   }
 
   async returnMovie() {
-    const { match: { params: { id } } } = this.props;
-    this.setState(
-      { loading: true },
-      async () => {
-        await movieAPI.getMovie(id)
-          .then((responseMovie) => {
-            this.setState({
-              movie: responseMovie,
-              loading: false,
-            });
-          });
-      },
-    );
+    const { id } = this.state;
+    const selectedMovie = await movieAPI.getMovie(id);
+    this.setState({
+      movie: selectedMovie,
+      loading: false,
+    });
   }
 
   render() {
@@ -62,10 +59,9 @@ class EditMovie extends Component {
 }
 
 EditMovie.prototypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-    }),
+  match: PropTypes.object,
+  params: PropTypes.shape({
+    id: PropTypes.number,
   }).isRequired,
 };
 
