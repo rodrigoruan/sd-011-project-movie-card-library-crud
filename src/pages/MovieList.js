@@ -14,13 +14,13 @@ class MovieList extends Component {
   }
 
   async componentDidMount() {
-    const movies = await movieAPI.getMovies();
+    const movies = await movieAPI.getMovies(); // recebe array de filmes
     this.setApiOnState(movies);
   }
 
-  setApiOnState(arrayMovies) {
+  setApiOnState(arrMovies) {
     this.setState({
-      movies: arrayMovies,
+      movies: arrMovies,
       request: false,
     });
   }

@@ -17,7 +17,7 @@ function App() {
           <Route path="/movies/new" component={ NewMovie } />
           <Route
             exact
-            path="/movies:id"
+            path="/movies/:id"
             render={ (props) => <MovieDetails { ...props } /> }
           />
           <Route
