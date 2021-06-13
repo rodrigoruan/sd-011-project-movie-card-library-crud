@@ -106,7 +106,3 @@ body {
 button {
   width: fit-content;
 }
-
-.movie-card:hover {
-  padding: 0.5%;
-}
