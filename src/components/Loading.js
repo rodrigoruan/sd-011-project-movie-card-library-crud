@@ -5,4 +5,3 @@ export default class Loading extends Component {
     return (<div>Carregando...</div>);
   }
 }
-
