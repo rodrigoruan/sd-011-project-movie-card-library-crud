@@ -12,7 +12,7 @@ class App extends Component {
       <div>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/movies/new">New Movie</Link>
+          <Link to="/movies/new">ADICIONAR CARTÃO</Link>
         </nav>
 
         <Switch>
