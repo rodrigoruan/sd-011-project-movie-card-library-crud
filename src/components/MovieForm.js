@@ -8,7 +8,7 @@ class MovieForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() { // callback de onClick() de um <buttom />
+  handleSubmit() { // callback usada em onClick() do <buttom />
     const { onSubmit } = this.props; // Pega callback do PAI
     onSubmit(this.state); // passa como parametro o estado atual para callback que veio do PAI
   }

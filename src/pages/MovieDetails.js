@@ -27,7 +27,7 @@ class MovieDetails extends Component {
       async () => {
         const requestReturn = await movieAPI.getMovie(id);
         this.setState({
-          loader: false, 
+          loader: false,
           movie: requestReturn,
         });
       });

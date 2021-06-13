@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 import { MovieForm, Loading } from '../components';
 import * as movieAPI from '../services/movieAPI';
 
 class EditMovie extends Component {
   constructor(props) {
     super(props);
-    const { id } = this.props.match.params;
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
     this.state = {
-      status: 'loading', // Acho que poderia começas com outro valor, pra poder usar pela URL.
+      status: 'loading', // Acho que poderia começar com outro valor, pra poder usar pela URL.
       shouldRedirect: false,
-      id: id, // Recebeu de this.props.match.params
+      id, // Recebeu de this.props.match.params
       movie: {}, // Recebe de componentDidMount pra passar para <MovieForm />
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    // Fazer requisição baseado no ID do STATE.
+    // Setar o "movie" do STATE com o retorno de filme relacionado a esse ID
+    // Após retorno da API, seta a entrada "status" em STATE para algo diferente de 'loading'
+    this.fetchMovie();
   }
 
   handleSubmit(updatedMovie) { // Executa após o retorno do componente <MovieForm />
@@ -22,13 +31,6 @@ class EditMovie extends Component {
     this.setState({
       shouldRedirect: true,
     });
-  }
-
-  componentDidMount() {
-    // Fazer requisição baseado no ID do STATE.
-    // Setar o "movie" do STATE com o retorno de filme relacionado a esse ID
-    // Após retorno da API, seta a entrada "status" em STATE para algo diferente de 'loading' 
-    this.fetchMovie();
   }
 
   async fetchMovie() { // Busca o filme pelo ID passado por props
@@ -47,18 +49,16 @@ class EditMovie extends Component {
       });
   }
 
-
   render() {
     const { status, shouldRedirect, movie } = this.state;
     if (shouldRedirect) {
       // Redirect
-      return <Redirect to="/" /> // Redireciona para "/" quando o estado de "shouldredirect" é igual a TRUE
+      return <Redirect to="/" />; // Redireciona para "/" quando o estado de "shouldredirect" é igual a TRUE
     }
 
     if (status === 'loading') {
       // render Loading
-      return <Loading /> // Carrega esse componente enquanto o estado de status for 'loading'
-
+      return <Loading />; // Carrega esse componente enquanto o estado de status for 'loading'
     }
 
     return (
