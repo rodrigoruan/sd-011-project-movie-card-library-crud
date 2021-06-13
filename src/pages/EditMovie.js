@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { MovieForm } from '../components';
 import * as movieAPI from '../services/movieAPI';
 import Loading from '../components/Loading';
-import movies from '../services/movieData';
 
 class EditMovie extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class EditMovie extends Component {
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
+    const { match: { params: { id } } } = this.props;
     this.fecthMovie(id);
   }
 
@@ -54,5 +54,12 @@ class EditMovie extends Component {
     );
   }
 }
+
+EditMovie.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.objectOf({}),
+    id: PropTypes.number,
+  }).isRequired,
+};
 
 export default EditMovie;
