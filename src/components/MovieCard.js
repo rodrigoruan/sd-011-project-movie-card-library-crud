@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles/MovieCard.css';
 import { Link } from 'react-router-dom';
+import './styles/MovieCard.css';
 
 class MovieCard extends React.Component {
   render() {
