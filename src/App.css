@@ -1,5 +1,53 @@
 body {
   background-color: whitesmoke;
   box-sizing: border-box;
+  text-align: center;
+  /* background-image: url("https://spuckpop.com/wp-content/uploads/2021/03/Pandemia-nas-telonas.png"); */
 }
 
+.title {
+  text-align: center;
+  padding: 30px;
+}
+
+.movie-list {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 10px;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  background-color:lavender;
+  padding: 15px;
+  border-style: groove;
+  border-radius: 10px;
+  width: 400px;
+}
+
+img {
+  border-radius: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+	border: none;
+	padding: 10px;
+	outline: none;
+	font-size: 18px;
+  text-align: center;
+	margin-top: 20px;
+	margin-left: 10px;
+	background: #b46d02;
+	border-radius: 12px;
+}
+
+.link:hover {
+  background: #b46d027e;
+}
+
+.loading {
+  text-align: center;
+}
