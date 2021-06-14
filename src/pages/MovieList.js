@@ -20,6 +20,10 @@ class MovieList extends Component {
       }));
   }
 
+  componentWillUnmount() {
+    this.setState = () => {};
+  }
+
   render() {
     const { movies, loading } = this.state;
     if (loading) return <Loading />;

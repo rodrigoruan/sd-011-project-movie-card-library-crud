@@ -8,16 +8,10 @@ class EditMovie extends Component {
   constructor(props) {
     super(props);
     const { match } = this.props;
-    const { id } = match.params;
     this.state = {
-      id,
+      movieId: match.params.id,
       loading: true,
-      movie: {
-        title: [],
-        subtitle: [],
-        storyline: [],
-        rating: '0',
-      },
+      movie: {},
       shouldRedirect: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,24 +19,25 @@ class EditMovie extends Component {
   }
 
   componentDidMount() {
-    this.returnMovie();
+    const { movieId } = this.state;
+    movieAPI.getmovie(movieId)
+      .then((movie) => this.setState({
+        movie,
+        loading: false,
+      }));
   }
 
-  async handleSubmit(updatedMovie) {
-    await movieAPI.updateMovie(updatedMovie);
-    this.setState({
-      movie: updatedMovie,
-      shouldRedirect: true,
-    });
+  componentWillUnmount() {
+    this.setState = () => {};
   }
 
-  async returnMovie() {
-    const { id } = this.state;
-    const selectedMovie = await movieAPI.getMovie(id);
-    this.setState({
-      movie: selectedMovie,
-      loading: false,
-    });
+  handleSubmit(updatedMovie) {
+    movieAPI.updateMovie(updatedMovie).then(
+      this.setState({
+        movie: updatedMovie,
+        shouldRedirect: true,
+      }),
+    );
   }
 
   render() {
