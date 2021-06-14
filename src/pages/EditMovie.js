@@ -7,9 +7,11 @@ import * as movieAPI from '../services/movieAPI';
 class EditMovie extends Component {
   constructor(props) {
     super(props);
+    const { match } = this.props;
+    const { id } = match.params;
     this.state = {
-      movieId: match.params.id,
-      status: 'loading',
+      id,
+      loading: true,
       movie: {
         title: [],
         subtitle: [],
@@ -23,8 +25,7 @@ class EditMovie extends Component {
   }
 
   componentDidMount() {
-    const { movieId } = this.state;
-    this.returnMovie(movieId);
+    this.returnMovie();
   }
 
   async handleSubmit(updatedMovie) {
@@ -35,22 +36,23 @@ class EditMovie extends Component {
     });
   }
 
-  async returnMovie(movieId) {
-    const selectedMovie = await movieAPI.getMovie(movieId);
+  async returnMovie() {
+    const { id } = this.state;
+    const selectedMovie = await movieAPI.getMovie(id);
     this.setState({
       movie: selectedMovie,
-      status: 'success',
+      loading: false,
     });
   }
 
   render() {
-    const { status, shouldRedirect, movie } = this.state;
+    const { loading, shouldRedirect, movie } = this.state;
 
     if (shouldRedirect) {
       return <Redirect to="/" />;
     }
 
-    if (status === 'loading') {
+    if (loading) {
       return <Loading />;
     }
 
@@ -62,10 +64,12 @@ class EditMovie extends Component {
   }
 }
 
-EditMovie.prototypes = {
-  match: PropTypes.object.isRequired,
-  params: PropTypes.object.isRequired,
-  id: PropTypes.number.isRequired,
+EditMovie.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 export default EditMovie;
