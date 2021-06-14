@@ -10,6 +10,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
+        <div>Movie Card Library CRUD</div>
         <Switch>
           <Route exact path="/" render={ (props) => <MovieList { ...props } /> } />
           <Route path="/movies/new" component={ NewMovie } />
