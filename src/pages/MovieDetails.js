@@ -33,14 +33,11 @@ class MovieDetails extends Component {
     );
   }
 
-  async removeFilm(movieId) {
-    await movieAPI.deleteMovie(movieId);
+  async removeMovie(idMovie) {
+    await movieAPI.deleteMovie(idMovie);
   }
 
   render() {
-    // Change the condition to check the state
-    // if (true) return <Loading />;
-
     const {
       movie: { id, title, storyline, imagePath, genre, rating, subtitle },
     } = this.state;
@@ -59,7 +56,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to="/"> VOLTAR </Link>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-        <Link to="/" onClick="{ () => this.removeFilm(movieId) }"> DELETAR </Link>
+        <Link to="/" onClick={ () => this.removeMovie(id) }> DELETAR </Link>
       </div>
     );
   }
