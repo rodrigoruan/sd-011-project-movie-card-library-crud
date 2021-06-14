@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={ (props) => <MovieList { ...props } /> } />
-          <Route path="/movies/new" render={ (props) => <NewMovie { ...props } /> } />
+          <Route path="/movies/new" component={ NewMovie } />
           <Route
             exact
             path="/movies/:id"
