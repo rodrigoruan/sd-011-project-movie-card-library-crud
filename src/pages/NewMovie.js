@@ -10,7 +10,7 @@ class NewMovie extends Component {
 
     this.state = {
       shouldRedirect: false,
-    }
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
