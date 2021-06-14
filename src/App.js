@@ -7,8 +7,8 @@ function App() {
     <Router>
       <Link to="/movies/new">ADICIONAR CARTÃO</Link>
       <Switch>
-        <Route exact path="/" component={ () => <MovieList /> } />
-        <Route exact path="/movies/new" component={ () => <NewMovie /> } />
+        <Route exact path="/" render={ () => <MovieList /> } />
+        <Route path="/movies/new" render={ () => <NewMovie /> } />
         <Route
           exact
           path="/movies/:id"
@@ -19,7 +19,7 @@ function App() {
           path="/movies/:id/edit"
           render={ (props) => <EditMovie { ...props } /> }
         />
-        <Route path="*" component={ () => <NotFound /> } />
+        <Route path="*" render={ () => <NotFound /> } />
       </Switch>
     </Router>
   );
