@@ -1,14 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { MovieList, NewMovie, MovieDetails, EditMovie, NotFound } from './pages';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Link to="/movies/new">ADICIONAR CARTÃO</Link>
       <Switch>
-        <Route path="/" exact component={ () => <MovieList /> } />
-        <Route path="/movies/new" exact component={ () => <NewMovie /> } />
+        <Route exact path="/" component={ () => <MovieList /> } />
+        <Route exact path="/movies/new" component={ () => <NewMovie /> } />
         <Route
           exact
           path="/movies/:id"
@@ -21,7 +21,7 @@ function App() {
         />
         <Route path="*" component={ () => <NotFound /> } />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 }
 
