@@ -27,9 +27,9 @@ class MovieDetails extends Component {
       { loading: true },
       async () => {
         await movieAPI.getMovie(id)
-          .then((responseMovie) => {
+          .then((response) => {
             this.setState({
-              movie: responseMovie,
+              movie: response,
               loading: false,
             });
           });

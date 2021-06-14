@@ -7,37 +7,42 @@ import * as movieAPI from '../services/movieAPI';
 class EditMovie extends Component {
   constructor(props) {
     super(props);
-    const { match } = this.props;
     this.state = {
-      movieId: match.params.id,
       loading: true,
       movie: {},
       shouldRedirect: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.returnMovie = this.returnMovie.bind(this);
   }
 
   componentDidMount() {
-    const { movieId } = this.state;
-    movieAPI.getmovie(movieId)
-      .then((movie) => this.setState({
-        movie,
-        loading: false,
-      }));
+    this.requisiteMovie();
   }
 
   componentWillUnmount() {
     this.setState = () => {};
   }
 
-  handleSubmit(updatedMovie) {
-    movieAPI.updateMovie(updatedMovie).then(
-      this.setState({
-        movie: updatedMovie,
-        shouldRedirect: true,
-      }),
-    );
+  async handleSubmit(updatedMovie) {
+    await movieAPI.updateMovie(updatedMovie);
+    this.setState({
+      shouldRedirect: true,
+    });
+  }
+
+  async requisiteMovie() {
+    const { match: { params: { id } } } = this.props;
+
+    this.setState({ loading: true },
+      async () => {
+        await movieAPI.getMovie(id)
+          .then((response) => {
+            this.setState({
+              movie: response,
+              loading: false,
+            });
+          });
+      });
   }
 
   render() {
