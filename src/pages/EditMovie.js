@@ -9,16 +9,31 @@ class EditMovie extends Component {
     super(props);
     this.state = {
       status: 'loading',
-      movie: props,
+      movie: {},
       shouldRedirect: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(updatedMovie) {
+  async handleSubmit(updatedMovie) {
+    await movieAPI.updateMovie(updatedMovie);
     this.setState({
       shouldRedirect: true,
     });
+  }
+
+  async alterarState() {
+    const { match } = this.props;
+    const { id } = match.params;
+    const filme = await movieAPI.getMovie(id);
+    this.setState({
+      status: '',
+      movie: filme,
+    })
+  }
+
+  componentDidMount() {
+    this.alterarState()
   }
 
   render() {
