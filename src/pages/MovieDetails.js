@@ -29,14 +29,14 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { movie, loading } = this.state;
-    if (loading === true) {
-      return <Loading />;
-    }
     // Change the condition to check the state
     // if (true) return <Loading />;
 
+    const { movie, loading } = this.state;
     const { id, title, storyline, imagePath, genre, rating, subtitle } = movie;
+    if (loading === true) {
+      return <Loading />;
+    }
 
     return (
       <div data-testid="movie-details">
