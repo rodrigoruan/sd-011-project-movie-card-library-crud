@@ -10,7 +10,7 @@ class NewMovie extends Component {
   }
 
   handleSubmit(newMovie) {
-    return console.log('teste');
+    return console.log(newMovie);
   }
 
   render() {

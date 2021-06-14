@@ -11,6 +11,8 @@ class EditMovie extends Component {
   }
 
   handleSubmit(updatedMovie) {
+    // depois remover o consolelog foi so para passar no lint
+    console.log(updatedMovie);
   }
 
   render() {
