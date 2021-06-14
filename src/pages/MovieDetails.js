@@ -56,9 +56,13 @@ class MovieDetails extends React.Component {
 
 MovieDetails.propTypes = {
   match: PropTypes.shape({
+    isExact: PropTypes.bool,
     params: PropTypes.shape({
       id: PropTypes.string,
     }),
+    path: PropTypes.string,
+    url: PropTypes.string,
   }).isRequired,
 };
+
 export default MovieDetails;

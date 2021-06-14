@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Link data-testid="new-movie" to="/movies/new">ADICIONAR CARTÃO</Link>
+          <Link to="/movies/new">ADICIONAR CARTÃO</Link>
           <Switch>
             <Route exact path="/" render={ () => <MovieList /> } />
             <Route exact path="/movies/new" render={ () => <NewMovie /> } />
