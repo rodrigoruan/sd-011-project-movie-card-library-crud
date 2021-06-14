@@ -13,6 +13,7 @@ class MovieDetails extends Component {
       loading: true,
       shouldRedirect: false,
     };
+    this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +27,11 @@ class MovieDetails extends Component {
       movie: request,
       loading: false,
     });
+  }
+
+  deleteMovie() { // req. 7, função criada para deletar o cartão
+    const { movie: { id } } = this.state;
+    movieAPI.deleteMovie(id).then(() => this.setState({ shouldRedirect: true }));
   }
 
   render() {
@@ -46,6 +52,7 @@ class MovieDetails extends Component {
         <p>{`Rating: ${rating}`}</p>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
         <Link to="/">VOLTAR</Link>
+        <Link onClick={ this.deleteMovie } to="/">DELETAR</Link>
       </div>
     );
   }
