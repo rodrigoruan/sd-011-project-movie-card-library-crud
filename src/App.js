@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { MovieList, NewMovie, MovieDetails, EditMovie, NotFound } from './pages';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Link to="/movies/new">ADICIONAR CARTÃO</Link>
       <Switch>
         <Route exact path="/" render={ () => <MovieList /> } />
@@ -21,7 +21,7 @@ function App() {
         />
         <Route path="*" render={ () => <NotFound /> } />
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
 
