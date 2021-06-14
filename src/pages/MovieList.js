@@ -10,20 +10,24 @@ class MovieList extends Component {
     this.state = {
       movies: [],
     };
+
+    this.callState = this.callState.bind(this);
   }
 
-  async componentDidMount() {
-    this.onMount(() => {
-      this.setState(
-        { loading: true },
-        async () => {
-          this.setState({
-            movies: await getMovies(),
-            loading: false,
-          });
-        },
-      );
-    });
+  componentDidMount() {
+    this.callState();
+  }
+
+  callState() {
+    this.setState(
+      { loading: true },
+      async () => {
+        this.setState({
+          movies: await getMovies(),
+          loading: false,
+        });
+      },
+    );
   }
 
   render() {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { getMovie, deleteMovie } from '../services/movieAPI';
 import { Loading } from '../components';
@@ -11,35 +12,36 @@ class MovieDetails extends Component {
       movie: {},
     };
     this.deleteMovie = this.deleteMovie.bind(this);
+    this.callState = this.callState.bind(this);
   }
 
   componentDidMount() {
     const { match } = this.props;
-    const { id } = match.param;
-    this.onMount(() => {
-      this.setState(
-        { loading: true },
-        async () => {
-          this.setState({
-            movie: await getMovie(id),
-            loading: false,
-          });
-        },
-      );
-    });
+    this.callState(match);
+  }
+
+  callState(match) {
+    this.setState(
+      { loading: true },
+      async () => {
+        this.setState({
+          movie: await getMovie(match.params.id),
+          loading: false,
+        });
+      },
+    );
   }
 
   deleteMovie() {
     const { match } = this.props;
-    const { id } = match.param;
-    deleteMovie(id);
+    deleteMovie(match.params.id);
     return <Redirect to="/" />;
   }
 
   render() {
     const { movie, loading } = this.state;
     const { match } = this.props;
-    const { id } = match.param;
+    const { id } = match.params;
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
 
     if (loading === true) return <Loading />;
@@ -58,5 +60,13 @@ class MovieDetails extends Component {
     );
   }
 }
+
+MovieDetails.propTypes = {
+  match: PropTypes.objectOf(),
+};
+
+MovieDetails.defaultProps = {
+  match: '',
+};
 
 export default MovieDetails;
