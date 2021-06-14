@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { MovieList, NewMovie, MovieDetails, EditMovie, NotFound } from './pages';
 
 function App() {
   return (
     <BrowserRouter>
       Movie Card Library CRUD
+      <Link data-testid="new-movie" to="/movies/new">ADICIONAR CARTÃO</Link>
       <Switch>
         <Route exact path="/" component={ MovieList } />
         <Route path="/movies/new" exact component={ NewMovie } />
