@@ -7,46 +7,50 @@ import * as movieAPI from '../services/movieAPI';
 class EditMovie extends Component {
   constructor(props) {
     super(props);
-    const { match } = this.props;
-    const { id } = match.params;
     this.state = {
-      loading: true,
-      movie: {},
+      movieId: match.params.id,
+      status: 'loading',
+      movie: {
+        title: [],
+        subtitle: [],
+        storyline: [],
+        rating: '0',
+      },
       shouldRedirect: false,
-      id,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.returnMovie = this.returnMovie.bind(this);
   }
 
   componentDidMount() {
-    this.returnMovie();
+    const { movieId } = this.state;
+    this.returnMovie(movieId);
   }
 
   async handleSubmit(updatedMovie) {
     await movieAPI.updateMovie(updatedMovie);
     this.setState({
+      movie: updatedMovie,
       shouldRedirect: true,
     });
   }
 
-  async returnMovie() {
-    const { id } = this.state;
-    const selectedMovie = await movieAPI.getMovie(id);
+  async returnMovie(movieId) {
+    const selectedMovie = await movieAPI.getMovie(movieId);
     this.setState({
       movie: selectedMovie,
-      loading: false,
+      status: 'success',
     });
   }
 
   render() {
-    const { loading, shouldRedirect, movie } = this.state;
+    const { status, shouldRedirect, movie } = this.state;
 
     if (shouldRedirect) {
       return <Redirect to="/" />;
     }
 
-    if (loading) {
+    if (status === 'loading') {
       return <Loading />;
     }
 
@@ -59,10 +63,9 @@ class EditMovie extends Component {
 }
 
 EditMovie.prototypes = {
-  match: PropTypes.object,
-  params: PropTypes.shape({
-    id: PropTypes.number,
-  }).isRequired,
+  match: PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default EditMovie;
