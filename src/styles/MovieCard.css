@@ -5,19 +5,19 @@
 }
 
 .card {
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px 2px rgb(109, 108, 108);
   display: flex;
   flex-flow: column nowrap;
-  max-width: 25vw;
-  margin: 20px 12vw;
-  box-shadow: 2px 2px 3px 2px rgb(109, 108, 108);
-  border-radius: 3px;
-  background-color: white;
   justify-content: space-between;
+  margin: 20px 12vw;
+  max-width: 25vw;
 }
 
 .image {
-  width: 100%;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .title {
@@ -35,29 +35,29 @@
 }
 
 .read-more {
-  margin-top: 10px;
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
+  margin-top: 10px;
   text-decoration: none;
 }
 
 .link-to {
-  text-decoration: none;
   list-style-type: none;
+  text-decoration: none;
 }
 
 
 @media screen and ( max-width : 500px ) {
 
   .card {
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 2px 2px 3px 2px rgb(109, 108, 108);
     display: flex;
     flex-flow: column nowrap;
-    max-width: 80vw;
     margin: 20px auto;
-    box-shadow: 2px 2px 3px 2px rgb(109, 108, 108);
-    border-radius: 3px;
-    background-color: white;
+    max-width: 80vw;
   }
 
 }
