@@ -11,6 +11,7 @@ class MovieDetails extends Component {
       movie: [],
       loading: true,
     };
+    this.theMovie = this.theMovie.bind(this);
   }
 
   componentDidMount() {
@@ -34,7 +35,7 @@ class MovieDetails extends Component {
 
     const { movie, loading } = this.state;
     const { id, title, storyline, imagePath, genre, rating, subtitle } = movie;
-    if (loading === true) {
+    if (loading) {
       return <Loading />;
     }
 
