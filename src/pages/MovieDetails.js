@@ -29,11 +29,12 @@ class MovieDetails extends Component {
     });
   };
 
-  deleteMovie(){
+  deleteMovie() {
     const { match } = this.props;
     const { id } = match.params;
-    movieAPI.deleteMovie(id)
+    movieAPI.deleteMovie(id);
   }
+
   render() {
     const { movie, loading } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;

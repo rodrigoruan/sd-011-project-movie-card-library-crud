@@ -16,14 +16,17 @@ class NewMovie extends Component {
     await movieAPI.createMovie(newMovie);
     this.setState({
       redirect: true,
-    })
+    });
   }
 
   render() {
     const { redirect } = this.state;
     return (
       <div data-testid="new-movie">
-        { redirect && <Redirect to="/" /> /* ajuda tales coelho, rodolfo rezende, tulio sploradori */}
+        { redirect
+        && <Redirect
+          to="/"
+        /> /* ajuda tales coelho, rodolfo rezende, tulio sploradori */}
         <MovieForm onSubmit={ this.handleSubmit } />
       </div>
     );
