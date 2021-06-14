@@ -22,10 +22,10 @@ class MovieDetails extends Component {
 
   async handleDelete() {
     const { movie: { id } } = this.state;
-    await movieAPI.deleteMovie(id);
+    const requestDelete = await movieAPI.deleteMovie(id);
     this.setState({
       shouldRedirect: true,
-
+      movie: requestDelete,
     });
   }
 
