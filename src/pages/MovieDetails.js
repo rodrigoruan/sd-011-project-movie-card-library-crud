@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 class MovieDetails extends Component {
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
 
-    const { MovieInfos } = this.props;
-    const { storyline, imagePath, genre, rating, subtitle } = MovieInfos;
+    const { storyline, imagePath, genre, rating, subtitle } = {};
+
     return (
       <div data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
@@ -16,21 +14,9 @@ class MovieDetails extends Component {
         <p>{ `Storyline: ${storyline}` }</p>
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
-        <Link to="/movie/:id/edit">EDITAR</Link>
-        <Link to="/">VOLTAR</Link>
       </div>
     );
   }
 }
 
 export default MovieDetails;
-
-MovieDetails.propTypes = {
-  MovieInfos: PropTypes.array,
-  title: PropTypes.string,
-  storyline: PropTypes.string,
-  imagePath: PropTypes.string,
-  genre: PropTypes.string,
-  rating: PropTypes.string,
-  subtitle: PropTypes.string,
-}.isRequired;
