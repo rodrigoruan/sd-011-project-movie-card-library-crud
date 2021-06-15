@@ -26,6 +26,11 @@ class MovieDetails extends Component {
     });
   }
 
+  deleteMovie = () => {
+    const { match: { params: { id } } } = this.props;
+    movieAPI.deleteMovie(id);
+  }
+
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
@@ -39,13 +44,14 @@ class MovieDetails extends Component {
     return (
       <div data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
-        <p>{ `Tile: ${title}` }</p>
+        <p>{ `Title: ${title}` }</p>
         <p>{ `Subtitle: ${subtitle}` }</p>
         <p>{ `Storyline: ${storyline}` }</p>
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
         <Link className="link" to={ `/movies/${id}/edit` }>EDITAR</Link>
         <Link className="link" to="/">VOLTAR</Link>
+        <Link className="link" to="/" onClick={ this.deleteMovie }>DELETAR</Link>
       </div>
     );
   }

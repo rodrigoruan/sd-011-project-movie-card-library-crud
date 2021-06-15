@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <h1 className="title">Movie Card Library CRUD</h1>
-      <Link to="/movies/new">ADICIONAR CARTÃO</Link>
+      <Link className="link" to="/movies/new">ADICIONAR CARTÃO</Link>
       <Switch>
         <Route exact path="/" component={ MovieList } />
         <Route exact path="/movies/new" component={ NewMovie } />

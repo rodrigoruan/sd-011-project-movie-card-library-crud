@@ -4,7 +4,7 @@ body {
   text-align: center;
 }
 
-/* .title {
+.title {
   padding: 30px;
   text-align: center;
 }
@@ -12,15 +12,17 @@ body {
 .movie-list {
   display: flex;
   flex-flow: row wrap;
+  margin: 30px;
   padding: 10px;
 }
 
 .movie-card {
-  background-color:lavender;
-  border-style: groove;
+  background-color: lavender;
   border-radius: 10px;
+  border-style: groove;
   display: flex;
   flex-direction: column;
+  margin: 30px;
   padding: 15px;
   width: 400px;
 }
@@ -30,23 +32,18 @@ img {
 }
 
 .link {
-  text-decoration: none;
-  color: #fff;
-	border: none;
-	padding: 10px;
-	outline: none;
-	font-size: 18px;
+  background: #b46d02;
+  border-radius: 12px;
+  color: white;
+  font-size: 18px;
+  margin-left: 10px;
+  margin-top: 20px;
+  outline: none;
+  padding: 10px;
   text-align: center;
-	margin-top: 20px;
-	margin-left: 10px;
-	background: #b46d02;
-	border-radius: 12px;
+  text-decoration: none;
 }
 
 .link:hover {
   background: #b46d027e;
 }
-
-.loading {
-  text-align: center;
-} */
