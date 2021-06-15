@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
+import Loading from '../components/Loading';
 
-import * as movieAPI from '../services/movieAPI';
+import { getMovies } from '../services/movieAPI';
 
 class MovieList extends Component {
   constructor() {
@@ -9,17 +10,33 @@ class MovieList extends Component {
 
     this.state = {
       movies: [],
+      verified: false,
     };
   }
 
+  componentDidMount() {
+    this.fetchGetMovies();
+  }
+
+  fetchGetMovies() {
+    getMovies()
+      .then((movieList) => {
+        this.setState({
+          movies: movieList,
+          verified: true,
+        });
+      });
+  }
+
   render() {
-    const { movies } = this.state;
-
     // Render Loading here if the request is still happening
-
+    const { movies, verified } = this.state;
     return (
-      <div data-testid="movie-list">
-        {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
+      <div>
+        { verified ? this.fetchGetMovies() : <Loading /> }
+        <div data-testid="movie-list">
+          { movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />) }
+        </div>
       </div>
     );
   }
