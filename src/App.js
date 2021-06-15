@@ -8,11 +8,11 @@ function App() {
     <Router>
       <div>Movie Card Library CRUD</div>
       <Switch>
-        <Route exact path='/' render={ () => <MovieList/> } />
-        <Route exact path='/movies/new' render={ () => <NewMovie /> } />
-        <Route exact path='/movies/:id' render={ () => <MovieDetails /> } />
-        <Route exact path='/movies/:id/edit' render={ () => <EditMovie/> } />
-        <Route NoMatch render={ () => <NotFound/> }/>
+        <Route exact path="/" render={ () => <MovieList /> } />
+        <Route exact path="/movies/new" render={ () => <NewMovie /> } />
+        <Route exact path="/movies/:id" render={ () => <MovieDetails /> } />
+        <Route exact path="/movies/:id/edit" render={ () => <EditMovie /> } />
+        <Route NoMatch render={ () => <NotFound /> } />
       </Switch>
     </Router>
   );
