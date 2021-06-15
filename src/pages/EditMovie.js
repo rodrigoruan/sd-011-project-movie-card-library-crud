@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 
-import { MovieForm } from '../components';
-import * as movieAPI from '../services/movieAPI';
+import { MovieForm, Loading } from '../components';
 
-import Loading from '../components/Loading';
+import * as movieAPI from '../services/movieAPI';
 
 class EditMovie extends Component {
   constructor(props) {
@@ -15,21 +14,21 @@ class EditMovie extends Component {
       shouldRedirect: false,
     };
     this.getMovieFromId = this.getMovieFromId.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRedirect = this.handleRedirect.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     this.getMovieFromId();
   }
 
+  async handleRedirect() {
+    this.setState({ shouldRedirect: true });
+  }
+
   async handleSubmit(updatedMovie) {
     await movieAPI.updateMovie(updatedMovie);
     this.handleRedirect();
-  }
-
-  async handleRedirect() {
-    this.setState({ shouldRedirect: true });
   }
 
   async getMovieFromId() {

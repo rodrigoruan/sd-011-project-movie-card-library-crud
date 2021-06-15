@@ -13,7 +13,7 @@ function App() {
     <Router>
       <div>Movie Card Library CRUD</div>
       <Switch>
-        <Route path="/movies/new">
+        <Route exact path="/movies/new">
           <NewMovie />
         </Route>
         <Route exact path="/movies/:id">
@@ -22,10 +22,10 @@ function App() {
         <Route exact path="/movies/:id/edit">
           <EditMovie />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <MovieList />
         </Route>
-        <Route path="*">
+        <Route>
           <NotFound />
         </Route>
       </Switch>
