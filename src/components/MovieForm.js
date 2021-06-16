@@ -165,7 +165,3 @@ class MovieForm extends React.Component {
 }
 
 export default MovieForm;
-
-MovieForm.propTypes = ({
-  movie: PropTypes.string,
-}).isRequired;
