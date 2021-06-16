@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import MovieForm from '../components/MovieForm';
-import { createMovie } from '../services/movieAPI';
+import * as movieAPI from '../services/movieAPI';
 
-class NewMovie extends Component {
+export default class NewMovie extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      willRedirect: false,
+      shouldRedirect: false,
     };
   }
 
@@ -21,15 +21,17 @@ class NewMovie extends Component {
   }
 
   handleSubmit(newMovie) {
-    createMovie(newMovie)
-      .then(() => this.setState({ willRedirect: true }))
-      .catch((error) => console.error(error));
+    movieAPI.createMovie(newMovie)
+      .then(() => this.setState({ shouldRedirect: true }))
+      .catch((err) => console.error(err));
   }
 
   render() {
-    const { willRedirect } = this.state;
+    const { shouldRedirect } = this.state;
 
-    if (willRedirect) return <Redirect to="/" />;
+    if (shouldRedirect) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <div data-testid="new-movie">
@@ -38,4 +40,3 @@ class NewMovie extends Component {
     );
   }
 }
-export default NewMovie;

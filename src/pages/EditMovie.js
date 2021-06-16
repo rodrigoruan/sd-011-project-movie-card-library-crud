@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { MovieForm, Loading } from '../components';
 import * as movieAPI from '../services/movieAPI';
 
-class EditMovie extends Component {
+export default class EditMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,8 +61,6 @@ class EditMovie extends Component {
     );
   }
 }
-
-export default EditMovie;
 
 EditMovie.propTypes = {
   match: PropTypes.shape({

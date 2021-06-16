@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
-class MovieDetails extends Component {
+export default class MovieDetails extends Component {
   constructor() {
     super();
     this.state = {
@@ -76,8 +76,6 @@ class MovieDetails extends Component {
     );
   }
 }
-
-export default MovieDetails;
 
 MovieDetails.propTypes = {
   match: PropTypes.shape({
