@@ -6,6 +6,7 @@ import * as movieAPI from '../services/movieAPI';
 class MovieList extends Component {
   constructor() {
     super();
+
     this.state = {
       movies: [],
       loading: true,
@@ -22,15 +23,16 @@ class MovieList extends Component {
 
   render() {
     const { movies, loading } = this.state;
-    const { title } = movies;
+
     return (
       <main>
         <button type="button">
           <Link to="/movies/new">ADICIONAR CARTÃO</Link>
         </button>
+
         <ul data-testid="movie-list">
           {loading ? <Loading />
-            : movies.map((movie) => <MovieCard key={ title } movie={ movie } />)}
+            : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
         </ul>
       </main>
     );
