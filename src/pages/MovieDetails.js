@@ -33,6 +33,7 @@ class MovieDetails extends Component {
     if (loading) return <Loading />;
 
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
+    console.log(id);
 
     return (
       <div data-testid="movie-details">

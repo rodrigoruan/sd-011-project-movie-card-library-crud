@@ -10,7 +10,6 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <div>Movie Card Library CRUD</div>
         <Switch>
           <Route exact path="/" render={ (props) => <MovieList { ...props } /> } />
           <Route exact path="/movies/new" component={ NewMovie } />
@@ -21,8 +20,8 @@ function App() {
           />
           <Route
             exact
-            path="/movies/:id/edit"
-            render={ (props) => <EditMovie { ...props } /> }
+            path="movies/:id/edit"
+            component={ EditMovie }
           />
           <Route component={ NotFound } />
         </Switch>
