@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+import * as movieAPI from '../services/movieAPI';
+
 import MovieCard from '../components/MovieCard';
 import Loading from '../components/Loading';
-import * as movieAPI from '../services/movieAPI';
 
 class MovieList extends Component {
   constructor() {
     super();
 
     this.state = {
-      // a props loading espera a resposta da API enquanto carrega
       loading: true,
       movies: [],
     };
+    this.getMovies = this.getMovies.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.getMovies();
+  }
+
+  async getMovies() {
     const response = await movieAPI.getMovies();
-    this.findMovies(response);
-  }
-
-  //Recomendado fazer funções fora do ciclo de vida
-  findMovies(arrayFromAPI) {
     this.setState({
-      movies: arrayFromAPI,
+      movies: response,
       loading: false,
     });
   }
@@ -31,10 +33,10 @@ class MovieList extends Component {
     const { movies, loading } = this.state;
     return (
       <div data-testid="movie-list">
-        { loading
+        {loading
           ? <Loading />
-          : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)
-        }
+          : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
+        <Link to="/movies/new">ADICIONAR CARTÃO</Link>
       </div>
     );
   }
