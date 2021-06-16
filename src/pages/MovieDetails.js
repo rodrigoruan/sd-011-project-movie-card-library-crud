@@ -25,15 +25,15 @@ class MovieDetails extends Component {
   async getMovie() {
     const { match: { params: { id } } } = this.props;
     const { getMovie } = movieAPI;
-    const response = await getMovie(id);
-    this.setState({ movie: response, loadingSecond: false });
+    const request = await getMovie(id);
+    this.setState({ movie: request, loadingSecond: false });
   }
 
   async dltMovie() {
     const { match: { params: { id } } } = this.props;
     const { deleteMovie } = movieAPI;
-    const response = await deleteMovie(id);
-    this.setState({ movie: response, loadingSecond: true });
+    const request = await deleteMovie(id);
+    this.setState({ movie: request, loadingSecond: true });
   }
 
   render() {
