@@ -8,7 +8,7 @@ class MovieCard extends React.Component {
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
 
     return (
-      <div data-testid="movie-card">
+      <li data-testid="movie-card">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
         <p>{ title }</p>
         <p>{ subtitle }</p>
@@ -16,7 +16,7 @@ class MovieCard extends React.Component {
         <p>{ genre }</p>
         <p>{ rating }</p>
         <Link to="/movies/:id">VER DETALHES</Link>
-      </div>
+      </li>
     );
   }
 }
@@ -24,5 +24,20 @@ class MovieCard extends React.Component {
 export default MovieCard;
 
 MovieCard.propTypes = {
-  movie: PropTypes.array,
-}.isRequired;
+  movie: PropTypes.shape({
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    storyline: PropTypes.string,
+    rating: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    imagePath: PropTypes.string,
+    bookmarked: PropTypes.bool,
+    genre: PropTypes.string,
+  }).isRequired,
+};
