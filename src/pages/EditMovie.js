@@ -33,7 +33,13 @@ class EditMovie extends Component {
   }
 
   handleSubmit(updatedMovie) {
-    console.log(updatedMovie);
+    movieAPI.updateMovie(updatedMovie)
+    .then(() => {
+      if (this.mounted) {
+        this.setState({ shouldRedirect: true });
+      }
+    })
+    .catch((err) => console.error(err));
   }
 
   render() {
