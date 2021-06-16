@@ -1,48 +1,47 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
-import { Link } from 'react-router-dom';
-
+// import { Link } from 'react-router-dom';
 
 class MovieDetails extends Component {
   constructor(props) {
-    super(props)
-    console.log(props);
+    super(props);
     this.renderMovieDetails = this.renderMovieDetails.bind(this);
 
     this.state = {
-      id: props.match.params.id,
+      id: props.match.params,
       movie: [],
       loading: true,
-    }
+    };
+  }
+
+  componentDidMount() {
+    this.renderMovieDetails();
   }
 
   async renderMovieDetails() {
-    const getId = this.state.id.split(':');
-    const id = getId[1];    
-    const movieDetailAPI = await movieAPI.getMovie(id);
-    
+    const { id } = this.state;
+    const idMovie = id.id;
+    const movieDetailAPI = await movieAPI.getMovie(idMovie);
+
     this.setState({
       loading: false,
       movie: movieDetailAPI,
     });
-  }
-  componentDidMount() {
-    this.renderMovieDetails();
   }
 
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
     const { movie } = this.state;
-    const loadingMovieDetail = <span><Loading/></span>
-    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
-    
-    if (this.state.loading) {
-      return loadingMovieDetail;
-    } else {
+    const { loading } = this.state;
+    const loadingMovieDetail = <span><Loading /></span>;
+    const { storyline, imagePath, genre, rating, subtitle } = movie;
 
+    if (loading) {
+      return loadingMovieDetail;
+    }
     return (
       <div data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
@@ -55,6 +54,9 @@ class MovieDetails extends Component {
     );
   }
 }
-}
 
+MovieDetails.propTypes = {
+  match: PropTypes.string.isRequired,
+  params: PropTypes.string.isRequired,
+};
 export default MovieDetails;

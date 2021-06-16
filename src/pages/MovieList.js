@@ -16,35 +16,31 @@ class MovieList extends Component {
     };
   }
 
+  componentDidMount() {
+    this.renderAllMovies();
+  }
+
   async renderAllMovies() {
     const apiMovies = await movieAPI.getMovies();
 
     this.setState({
       movies: apiMovies,
       loading: false,
-    })
-
+    });
   }
-
-  componentDidMount() {
-    
-    this.renderAllMovies();
-  }
-
 
   render() {
     const { movies } = this.state;
-    const loadingMovie = <span><Loading /></span>
+    const { loading } = this.state;
+    const loadingMovie = <span><Loading /></span>;
 
-     
     return (
       <div data-testid="movie-list">
-        
-        {this.state.loading ? loadingMovie : movies.map((movie) =>  <MovieCard key={ movie.title } movie={ movie } />)}
+        {loading ? loadingMovie : movies.map((movie) => (
+          <MovieCard key={ movie.title } movie={ movie } />))}
       </div>
     );
   }
 }
-
 
 export default MovieList;
