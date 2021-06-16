@@ -13,7 +13,6 @@ class MovieDetails extends Component {
       id: match.params.id,
       isLoad: false,
     };
-    console.log(match.params.id);
   }
 
   componentDidMount() {
@@ -32,7 +31,6 @@ class MovieDetails extends Component {
   render() {
     const { id, isLoad, movie } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
-    console.log('AQUI >>', movie);
     if (!isLoad) return <Loading />;
     return (
       <div data-testid="movie-details">

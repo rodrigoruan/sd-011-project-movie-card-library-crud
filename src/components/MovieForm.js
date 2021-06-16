@@ -19,7 +19,6 @@ class MovieForm extends React.Component {
 
   renderTitleInput() {
     const { title } = this.state;
-
     return (
       <div>
         <label htmlFor="movie_title">
@@ -148,6 +147,7 @@ class MovieForm extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <form>

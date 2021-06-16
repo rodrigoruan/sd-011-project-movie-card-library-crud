@@ -19,7 +19,6 @@ class MovieList extends Component {
 
   async isreturn() {
     const getMovies = await movieAPI.getMovies();
-    console.log(getMovies);
     this.setState({
       movies: getMovies,
       isLoad: true,
