@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
@@ -33,7 +34,7 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { movie: { title, storyline, imagePath, genre, rating, subtitle } } = this.state;
+    const { movie: { title, storyline, imagePath, genre, rating, subtitle, id } } = this.state;
     const { loading } = this.state;
 
     return loading ? <Loading /> : (
@@ -44,6 +45,8 @@ class MovieDetails extends Component {
         <p>{ `Storyline: ${storyline}` }</p>
         <p>{ `Genre: ${genre}` }</p>
         <p>{ `Rating: ${rating}` }</p>
+        <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+        <Link to="/">VOLTAR</Link>
       </div>
     );
   }
