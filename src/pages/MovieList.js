@@ -31,10 +31,10 @@ class MovieList extends Component {
     // Render Loading here if the request is still happening
     const { movies, verified } = this.state;
     return (
-      <div data-testid="movie-list">
+      <ul data-testid="movie-list">
         { verified ? this.fetchGetMovies() : <Loading /> }
         { movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />) }
-      </div>
+      </ul>
     );
   }
 }
