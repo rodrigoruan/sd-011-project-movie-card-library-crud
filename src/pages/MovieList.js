@@ -17,6 +17,10 @@ class MovieList extends Component {
   componentDidMount() {
     this.fetchMovies();
   }
+  /**
+   * Consultei o repositório do Renato Bispo para conferir qual function era para ser chamada no ComponentDidMount
+  * Link: https://github.com/trybersd-011-project-movie-card-library-crud/pull/138/commits/ec4479384371d625109d121be37b00e1d0948ea8
+   * */
 
   async fetchMovies() {
     const movies = await movieAPI.getMovies();
