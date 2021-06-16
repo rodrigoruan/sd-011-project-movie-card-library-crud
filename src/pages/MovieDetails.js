@@ -33,4 +33,4 @@ MovieDetails.propTypes = {
   genre: PropTypes.string,
   rating: PropTypes.string,
   subtitle: PropTypes.string,
-}.isRequired
+}.isRequired;
