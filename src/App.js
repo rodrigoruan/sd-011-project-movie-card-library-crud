@@ -13,7 +13,7 @@ function App() {
         <div>Movie Card Library CRUD</div>
         <Switch>
           <Route exact path="/" render={ (props) => <MovieList { ...props } /> } />
-          <Route path="/movies/new" component={ NewMovie } />
+          <Route exact path="/movies/new" component={ NewMovie } />
           <Route
             exact
             path="/movies/:id"
