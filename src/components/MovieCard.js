@@ -13,7 +13,7 @@ class MovieCard extends React.Component {
           <h4 className="movie-card-title" data-testid="movie-card-title">{ title }</h4>
           <p className="movie-card-storyline">{ storyline }</p>
         </div>
-        <Link to={ `/movies/${id}` }>
+        <Link to={ `/movies/${id}` } params={ id }>
           VER DETALHES
         </Link>
       </div>
@@ -26,7 +26,7 @@ MovieCard.propTypes = {
     title: PropTypes.string,
     imagePath: PropTypes.string,
     storyline: PropTypes.string,
-    id: PropTypes.number,
+    id: PropTypes.string,
   }).isRequired,
 };
 

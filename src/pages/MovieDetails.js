@@ -8,7 +8,7 @@ class MovieDetails extends Component {
   constructor() {
     super();
     this.state = {
-      movie: [],
+      movie: '',
       loading: true,
     };
     this.fetchAPI = this.fetchAPI.bind(this);
@@ -18,8 +18,10 @@ class MovieDetails extends Component {
     this.fetchAPI();
   }
 
-  handleDeleteLink(movieId) {
-    movieId.deleteMovie(MovieId);
+  deleteItem = async () => {
+    const { match } = this.props;
+    const { id } = match.params;
+    await movieAPI.deleteMovie(id);
   }
 
   fetchAPI() {
@@ -36,27 +38,32 @@ class MovieDetails extends Component {
   render() {
     const { movie, loading } = this.state;
     const { imagePath, title, subtitle, storyline, genre, rating, id } = movie;
-    if (loading) {
-      return <Loading />;
-    }
 
     return (
-      <div data-testid="movie-details">
-        <img alt="Movie Cover" src={ `../${imagePath}` } />
-        <p>{ `Title: ${title}` }</p>
-        <p>{ `Subtitle: ${subtitle}` }</p>
-        <p>{ `Storyline: ${storyline}` }</p>
-        <p>{ `Genre: ${genre}` }</p>
-        <p>{ `Rating: ${rating}` }</p>
-        <button type="button">
-          <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-        </button>
-        <button type="button">
-          <Link to="/">VOLTAR</Link>
-        </button>
-        <button type="button">
-          <Link to="/" oncllick={ () => this.handleDeleteLink(id) }>DELETAR</Link>
-        </button>
+      <div>
+        {
+          loading ? (
+            <Loading />
+          ) : (
+            <div data-testid="movie-details">
+              <img alt="Movie Cover" src={ `../${imagePath}` } />
+              <p>{`Title: ${title}`}</p>
+              <p>{`Subtitle: ${subtitle}`}</p>
+              <p>{`Storyline: ${storyline}`}</p>
+              <p>{`Genre: ${genre}`}</p>
+              <p>{`Rating: ${rating}`}</p>
+              <Link
+                to={ {
+                  pathname: `/movies/${id}/edit`,
+                  state: { params: { id } },
+                } }
+              >
+                EDITAR
+              </Link>
+              <Link to="/" onClick={ this.deleteItem }>DELETAR</Link>
+              <Link to="/">VOLTAR</Link>
+            </div>)
+        }
       </div>
     );
   }
