@@ -29,7 +29,7 @@ class MovieCard extends React.Component {
           <p className="movie-card-storyline">{storyline}</p>
         </div>
         <p>{rating}</p>
-        <Link to={ `movie/${id}` }>VER DETALHES</Link>
+        <Link to={ `movies/${id}` }>VER DETALHES</Link>
       </div>
     );
   }
