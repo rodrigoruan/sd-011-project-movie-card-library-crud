@@ -28,7 +28,7 @@ class MovieForm extends React.Component {
             id="movie_title"
             type="text"
             className="validate"
-            value={ title || ''}
+            value={ title || '' }
             onChange={ (event) => this.updateMovie('title', event.target.value) }
           />
           Título
