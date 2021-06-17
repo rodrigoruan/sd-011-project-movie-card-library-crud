@@ -13,10 +13,16 @@ class MovieDetails extends Component {
       id: undefined,
     };
     this.fetchDetails = this.fetchDetails.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
     this.fetchDetails();
+  }
+
+  handleDelete() {
+    const { id } = this.state;
+    movieAPI.deleteMovie(id);
   }
 
   async fetchDetails() {
@@ -55,6 +61,13 @@ class MovieDetails extends Component {
                 <div className="movie-card-footer">
                   <Link to="/" className={ footerClas }>VOLTAR</Link>
                   <Link to={ `/movies/${id}/edit` } className={ footerClas }>EDITAR</Link>
+                  <Link
+                    to="/"
+                    className={ footerClas }
+                    onClick={ this.handleDelete }
+                  >
+                    DELETAR
+                  </Link>
                 </div>
               </div>
             )
