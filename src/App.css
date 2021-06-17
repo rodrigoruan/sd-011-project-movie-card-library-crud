@@ -37,6 +37,17 @@ body {
   width: 300px;
 }
 
+.movie-card-details {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  height: 540px;
+  margin: 5px;
+  overflow: hidden;
+  width: 300px;
+}
 
 .movie-card-image {
   width: 100%;
@@ -82,6 +93,7 @@ body {
   padding: 12px 20px;
 }
 
-.movie-card-footer-text {
-  color: rgb(255,184,69);
+.movie-card-foo-text {
+  color: rgb(255, 184, 69);
+  margin-right: 20px;
 }

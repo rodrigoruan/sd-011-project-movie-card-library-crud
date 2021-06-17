@@ -6,12 +6,14 @@ import './App.css';
 function App() {
   return (
     <BrowserRouter>
-    <div>Movie Card Library CRUD</div>
+      <header className="movie-card-header">
+        <h1 className="page-title">Movie Card Library CRUD</h1>
+      </header>
       <Switch>
-        <Route exact path='/' component={ MovieList } />
-        <Route path='/movies/new' component={ NewMovie } />
-        <Route path='/movies/:id' component={ MovieDetails } />
-        <Route path='/movies/:id/edit' component={ EditMovie } />
+        <Route exact path="/" component={ MovieList } />
+        <Route path="/movies/new" component={ NewMovie } />
+        <Route path="/movies/:id/edit" render={ (props) => <EditMovie { ...props } /> } />
+        <Route path="/movies/:id" render={ (props) => <MovieDetails { ...props } /> } />
         <Route component={ NotFound } />
       </Switch>
     </BrowserRouter>
