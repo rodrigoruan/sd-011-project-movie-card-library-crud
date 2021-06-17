@@ -24,6 +24,7 @@ function App() {
           <Route
             path="/movies/:id/edit"
             render={ (props) => <EditMovie { ...props } /> }
+            // Samuel Melo me ajudou aqui
           />
           <Route NoMatch component={ NotFound } />
         </Switch>
