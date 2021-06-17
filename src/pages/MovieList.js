@@ -33,7 +33,6 @@ class MovieList extends Component {
       <div data-testid="movie-list">
         {loading ? <Loading />
           : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
-
       </div>
     );
   }
