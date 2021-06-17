@@ -30,6 +30,12 @@ export default class MovieDetails extends Component {
     });
   }
 
+  deleteItem = async () => {
+    const { match } = this.props;
+    const { id } = match.params;
+    await movieAPI.deleteMovie(id);
+  }
+
   render() {
     const { movie, loading } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
@@ -55,6 +61,7 @@ export default class MovieDetails extends Component {
               >
                 EDITAR
               </Link>
+              <Link to="/" onClick={ this.deleteItem }>DELETAR</Link>
               <Link to="/">VOLTAR</Link>
             </div>)
         }
