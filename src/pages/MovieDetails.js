@@ -24,7 +24,6 @@ export default class MovieDetails extends Component {
     const { id } = match.params;
 
     const catchId = await movieAPI.getMovie(id);
-    console.log(catchId);
     this.setState({
       movie: catchId,
       loading: false,
@@ -43,12 +42,19 @@ export default class MovieDetails extends Component {
           ) : (
             <div data-testid="movie-details">
               <img alt="Movie Cover" src={ `../${imagePath}` } />
-              <p>{ `Title: ${title}` }</p>
-              <p>{ `Subtitle: ${subtitle}` }</p>
-              <p>{ `Storyline: ${storyline}` }</p>
-              <p>{ `Genre: ${genre}` }</p>
-              <p>{ `Rating: ${rating}` }</p>
-              <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+              <p>{`Title: ${title}`}</p>
+              <p>{`Subtitle: ${subtitle}`}</p>
+              <p>{`Storyline: ${storyline}`}</p>
+              <p>{`Genre: ${genre}`}</p>
+              <p>{`Rating: ${rating}`}</p>
+              <Link
+                to={ {
+                  pathname: `/movies/${id}/edit`,
+                  state: { params: { id } },
+                } }
+              >
+                EDITAR
+              </Link>
               <Link to="/">VOLTAR</Link>
             </div>)
         }
