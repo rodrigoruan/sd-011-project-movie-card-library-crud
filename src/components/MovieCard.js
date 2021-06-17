@@ -10,7 +10,7 @@ class MovieCard extends React.Component {
       <div data-testid="movie-card" className="movie-card movie-card-body">
         <h3 className="movie-card-title">{ title }</h3>
         <p className="movie-card-storyline">{ storyline }</p>
-        <Link to={ `/movies/${id}`}>VER DETALHES</Link>
+        <Link to={ `/movies/${id}` }>VER DETALHES</Link>
       </div>
     );
   }
@@ -18,6 +18,7 @@ class MovieCard extends React.Component {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
+    id: PropTypes.number,
     title: PropTypes.string,
     storyline: PropTypes.string,
     imagePath: PropTypes.string,

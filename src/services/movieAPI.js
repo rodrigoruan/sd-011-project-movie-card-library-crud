@@ -63,7 +63,7 @@ export const deleteMovie = (movieId) => {
   let movies = readMovies();
   movies = movies.filter((movie) => movie.id !== parseInt(movieId, 10));
   saveMovies(movies);
-
+  console.log(movieId);
   return new Promise((resolve) => {
     simulateRequest({ status: SUCCESS_STATUS })(resolve);
   });
