@@ -12,6 +12,7 @@ class MovieDetails extends Component {
     this.state = {
       isLoading: true,
     };
+    this.deleteMovie = this.deleteMovie.bind(this);
     this.fetchedMovie = this.fetchedMovie.bind(this);
     this.fetchIsDone = this.fetchIsDone.bind(this);
   }
@@ -34,6 +35,11 @@ class MovieDetails extends Component {
     this.setState({ isLoading: false });
   }
 
+  async deleteMovie() {
+    const id = parseInt(window.location.pathname.split('/')[2], 10);
+    await movieAPI.deleteMovie(id);
+  }
+
   render() {
     const { id, isLoading } = this.state;
     if (isLoading) {
@@ -52,6 +58,9 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to={ `/movies/${id}/edit` }>
           EDITAR
+        </Link>
+        <Link to="/" onClick={ this.deleteMovie }>
+          DELETAR
         </Link>
         <Link to="/">
           VOLTAR
