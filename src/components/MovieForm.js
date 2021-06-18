@@ -6,6 +6,7 @@ class MovieForm extends React.Component {
     super(props);
     this.state = { ...props.movie };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateMovie = this.updateMovie.bind(this);
   }
 
   handleSubmit() {
@@ -61,8 +62,8 @@ class MovieForm extends React.Component {
 
     return (
       <div className="row">
-        Imagem
         <label htmlFor="movie_image">
+          Imagem
           <input
             placeholder="Insira o caminho da imagem"
             id="movie_image"

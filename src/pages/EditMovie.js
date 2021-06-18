@@ -13,11 +13,11 @@ class EditMovie extends Component {
       movie: {},
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.getMovies = this.getMovies.bind(this);
+    this.fetchAPI = this.fetchAPI.bind(this);
   }
 
   componentDidMount() {
-    this.getMovies();
+    this.fetchAPI();
   }
 
   async handleSubmit(updatedMovie) {
@@ -27,13 +27,12 @@ class EditMovie extends Component {
     });
   }
 
-  async getMovies() {
+  async fetchAPI() {
     const { match: { params: { id } } } = this.props;
-
-    const getMoviesPerId = await movieAPI.getMovie(id);
+    const movie = await movieAPI.getMovie(id);
     this.setState({
-      status: true,
-      movie: getMoviesPerId,
+      status: 'loaded',
+      movie,
     });
   }
 
@@ -43,7 +42,7 @@ class EditMovie extends Component {
       return <Redirect to="/" />;
     }
 
-    if (status === false) {
+    if (status === 'loading') {
       return <Loading />;
     }
 

@@ -52,16 +52,26 @@ class MovieDetails extends Component {
               <p>{`Storyline: ${storyline}`}</p>
               <p>{`Genre: ${genre}`}</p>
               <p>{`Rating: ${rating}`}</p>
-              <Link
-                to={ {
-                  pathname: `/movies/${id}/edit`,
-                  state: { params: { id } },
-                } }
-              >
-                EDITAR
-              </Link>
-              <Link to="/" onClick={ this.deleteItem }>DELETAR</Link>
-              <Link to="/">VOLTAR</Link>
+              <button type="button">
+                <Link
+                  to={ {
+                    pathname: `/movies/${id}/edit`,
+                    state: { params: { id } },
+                  } }
+                >
+                  EDITAR
+                </Link>
+              </button>
+              <button type="button">
+                <Link to="/" onClick={ this.deleteItem }>
+                  DELETAR
+                </Link>
+              </button>
+              <button type="button">
+                <Link to="/">
+                  VOLTAR
+                </Link>
+              </button>
             </div>)
         }
       </div>
