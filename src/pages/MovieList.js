@@ -8,17 +8,20 @@ class MovieList extends Component {
     super();
     this.state = {
       movies: [],
+      status: 'loading',
     };
   }
 
   componentDidMount() {
-    movieAPI.getMovies().then((movies) => this.setState(() => ({ movies })));
+    movieAPI.getMovies().then((movies) => this.setState(() => (
+      { movies, status: 'ready' }
+    )));
   }
 
   render() {
-    const { movies } = this.state;
+    const { movies, status } = this.state;
     return (
-      movies.length === 0 ? <Loading />
+      status === 'loading' ? <Loading />
         : (
           <div data-testid="movie-list">
             {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}

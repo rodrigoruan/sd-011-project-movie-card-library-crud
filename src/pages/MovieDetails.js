@@ -9,21 +9,25 @@ class MovieDetails extends Component {
     super();
     this.state = {
       movie: {},
+      status: 'loading',
     };
   }
 
   componentDidMount() {
     const { match: { params: { id } } } = this.props;
-    movieAPI.getMovie(id).then((movie) => this.setState(() => ({ movie })));
+    movieAPI.getMovie(id).then((movie) => this.setState(() => (
+      { movie, status: 'ready' }
+    )));
   }
 
   render() {
     const { match: { params: { id } } } = this.props;
     const {
       movie: { title, storyline, imagePath, genre, rating, subtitle },
+      status,
     } = this.state;
     return (
-      title === undefined ? <Loading />
+      status === 'loading' ? <Loading />
         : (
           <div data-testid="movie-details">
             <img alt="Movie Cover" src={ `../${imagePath}` } />
