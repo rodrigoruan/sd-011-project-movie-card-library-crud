@@ -27,7 +27,7 @@ class MovieDetails extends Component {
   fetchAPI() {
     const { match } = this.props;
     const { id } = match.params;
-    movieAPI.getMovies(id).then((filterByMovie) => {
+    movieAPI.getMovie(id).then((filterByMovie) => {
       this.setState({
         movie: filterByMovie,
         loading: false,

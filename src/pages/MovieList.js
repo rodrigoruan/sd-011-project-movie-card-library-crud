@@ -12,6 +12,8 @@ class MovieList extends Component {
       movies: [],
       loading: true,
     };
+
+    this.fetchAPI = this.fetchAPI.bind(this);
   }
 
   componentDidMount() {
