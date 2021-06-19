@@ -57,7 +57,7 @@ class MovieForm extends React.Component {
     );
   }
 
-  renderImagePathInput() {
+  renderImagePathInput() { // para insrir uma imagem o caminho é: images/nome da imagem (funcionando")
     const { imagePath } = this.state;
 
     return (
