@@ -10,7 +10,7 @@ class MovieDetails extends Component {
     this.state = {
       loading: true,
       movie: [],
-      prop: props,
+      propId: props,
     };
 
     this.fetchMovie = this.fetchMovie.bind(this);
@@ -21,7 +21,7 @@ class MovieDetails extends Component {
   }
 
   async fetchMovie() {
-    const { prop: { match: { params: { id } } } } = this.state;
+    const { propId: { match: { params: { id } } } } = this.state;
 
     this.setState(
       { loading: true },
