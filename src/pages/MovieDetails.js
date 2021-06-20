@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
@@ -10,7 +11,6 @@ class MovieDetails extends Component {
     this.state = {
       loading: true,
       movie: [],
-      propId: props,
     };
 
     this.fetchMovie = this.fetchMovie.bind(this);
@@ -21,7 +21,7 @@ class MovieDetails extends Component {
   }
 
   async fetchMovie() {
-    const { propId: { match: { params: { id } } } } = this.state;
+    const { match: { params: { id } } } = this.props;
 
     this.setState(
       { loading: true },
@@ -55,11 +55,20 @@ class MovieDetails extends Component {
           <div>
             <Link to="/">VOLTAR</Link>
             <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+            <Link to="/" onClick={ () => movieAPI.deleteMovie(id) }>DELETAR</Link>
           </div>
         </div>
       );
     }
   }
 }
+
+MovieDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default MovieDetails;
