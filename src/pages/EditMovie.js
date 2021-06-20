@@ -20,6 +20,10 @@ class EditMovie extends Component {
     this.fetchAPI();
   }
 
+  componentWillUnmount() {
+    this.fetchAPI();
+  }
+
   async handleSubmit(updatedMovie) {
     await movieAPI.updateMovie(updatedMovie);
     this.setState({
