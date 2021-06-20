@@ -134,5 +134,12 @@ body {
 .new-movie {
   display: flex;
   justify-content: center;
-  margin-top: 30%;
+  margin-top: 15%;
+}
+
+.error {
+  color: gold;
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
 }

@@ -12,13 +12,14 @@ class MovieDetails extends Component {
       loading: true,
     };
     this.fetchAPI = this.fetchAPI.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
   componentDidMount() {
     this.fetchAPI();
   }
 
-  deleteItem = async () => {
+  deleteCard = async () => {
     const { match } = this.props;
     const { id } = match.params;
     await movieAPI.deleteMovie(id);
@@ -63,7 +64,7 @@ class MovieDetails extends Component {
                 </Link>
               </button>
               <button type="button">
-                <Link to="/" onClick={ this.deleteItem }>
+                <Link to="/" onClick={ this.deleteCard }>
                   DELETAR
                 </Link>
               </button>
