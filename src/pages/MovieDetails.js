@@ -8,11 +8,12 @@ import { Loading } from '../components';
 class MovieDetails extends Component {
   constructor(props) {
     super(props);
+
+    // this.deleteMovieFromList = this.deleteMovieFromList(this);
     this.renderMovieDetails = this.renderMovieDetails.bind(this);
 
     this.state = {
-      id: props.match.params,
-      movie: [],
+      movie: {},
       loading: true,
     };
   }
@@ -21,12 +22,17 @@ class MovieDetails extends Component {
     this.renderMovieDetails();
   }
 
+  // async deleteMovieFromList() {
+  //   const { match: { params: { id } } } = this.props;
+  //   movieAPI.deleteMovie(id);
+  // }
+
   async renderMovieDetails() {
-    const { id } = this.state;
-    const idMovie = id.id;
-    const movieDetailAPI = await movieAPI.getMovie(idMovie);
+    const { match: { params: { id } } } = this.props;
+    const movieDetailAPI = await movieAPI.getMovie(id);
 
     this.setState({
+      id,
       loading: false,
       movie: movieDetailAPI,
     });
@@ -35,11 +41,9 @@ class MovieDetails extends Component {
   render() {
     // Change the condition to check the state
     // if (true) return <Loading />;
-    const { movie } = this.state;
-    const { loading } = this.state;
+    const { movie, loading, id } = this.state;
     const loadingMovieDetail = <span><Loading /></span>;
-    const { id, title, storyline, imagePath, genre, rating, subtitle } = movie;
-
+    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
     if (loading) {
       return loadingMovieDetail;
     }
@@ -57,6 +61,9 @@ class MovieDetails extends Component {
         <Link to="/">
           VOLTAR
         </Link>
+        {/* <Link to="/" onClick={ this.deleteMovieFromList }>
+          DELETAR
+        </Link> */}
       </div>
     );
   }
@@ -66,4 +73,5 @@ MovieDetails.propTypes = {
   match: PropTypes.string.isRequired,
   params: PropTypes.string.isRequired,
 };
+
 export default MovieDetails;
