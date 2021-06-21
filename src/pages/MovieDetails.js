@@ -9,7 +9,6 @@ class MovieDetails extends Component {
   constructor(props) {
     super(props);
 
-    // this.deleteMovieFromList = this.deleteMovieFromList(this);
     this.renderMovieDetails = this.renderMovieDetails.bind(this);
 
     this.state = {
@@ -22,10 +21,10 @@ class MovieDetails extends Component {
     this.renderMovieDetails();
   }
 
-  // async deleteMovieFromList() {
-  //   const { match: { params: { id } } } = this.props;
-  //   movieAPI.deleteMovie(id);
-  // }
+  deleteMovieFromList = async () => {
+    const { match: { params: { id } } } = this.props;
+    await movieAPI.deleteMovie(id);
+  }
 
   async renderMovieDetails() {
     const { match: { params: { id } } } = this.props;
@@ -61,9 +60,9 @@ class MovieDetails extends Component {
         <Link to="/">
           VOLTAR
         </Link>
-        {/* <Link to="/" onClick={ this.deleteMovieFromList }>
+        <Link to="/" onClick={ this.deleteMovieFromList }>
           DELETAR
-        </Link> */}
+        </Link>
       </div>
     );
   }
