@@ -5,14 +5,16 @@ import { Link } from 'react-router-dom';
 class MovieCard extends React.Component {
   render() {
     const { movie } = this.props;
-    const { title, subtitle, storyline, imagePath, id } = movie;
+    const { title, subtitle, storyline, imagePath, id, genre } = movie;
     return (
       <div data-testid="movie-card">
         <img alt="Movie Cover" src={ imagePath } />
         <div>
-          <h3>{title}</h3>
-          <h4>{subtitle}</h4>
-          <p>{storyline}</p>
+          <h3>{ title }</h3>
+          <h4>{ subtitle }</h4>
+          <h4>{ storyline }</h4>
+          <h4>{ genre }</h4>
+          <h5>{ rating }</h5>
           <Link to={ `/movies/${id}` }>VER DETALHES</Link>
         </div>
       </div>
