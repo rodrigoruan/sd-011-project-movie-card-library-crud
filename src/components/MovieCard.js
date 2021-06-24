@@ -1,13 +1,13 @@
-// import React from 'react';
+import React from 'react';
 
-// class MovieCard extends React.Component {
-//   render() {
-//     return (
-//       <div data-testid="movie-card">
-//         Movie Card
-//       </div>
-//     );
-//   }
-// }
+class MovieCard extends React.Component {
+  render() {
+    return (
+      <div data-testid="movie-card">
+        Movie Card
+      </div>
+    );
+  }
+}
 
-// export default MovieCard;
+export default MovieCard;
