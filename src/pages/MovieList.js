@@ -7,6 +7,8 @@ class MovieList extends React.Component {
   constructor() {
     super();
 
+    this.getMoviesData = this.getMoviesData.bind(this);
+
     this.state = {
       movies: [],
     };
