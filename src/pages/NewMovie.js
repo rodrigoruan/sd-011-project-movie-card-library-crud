@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import MovieForm from '../components/MovieForm';
+import * as movieAPI from '../services/movieAPI';
 
 class NewMovie extends Component {
   constructor(props) {

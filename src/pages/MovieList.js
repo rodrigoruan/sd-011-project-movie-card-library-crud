@@ -14,13 +14,12 @@ class MovieList extends Component {
     };
   }
 
-  // momento em que o `MovieList` é montado?
   componentDidMount() {
     this.fetchMovies();
   }
 
   async fetchMovies() {
-    const movies = await movieAPI.getMovies(); // buscar a lista com a função getMovies importada de movieAPI
+    const movies = await movieAPI.getMovies();
 
     this.setState({
       movies,
@@ -32,8 +31,7 @@ class MovieList extends Component {
     const { movies, loading } = this.state;
 
     if (loading === true) return <Loading />;
-    // exibe um `MovieCard` para cada filme retornado pela API
-    // O link deve conter o texto "ADICIONAR CARTÃO" e apontar para a rota `/movies/new`
+
     return (
       <div data-testid="movie-list" className="movie-list">
         {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
