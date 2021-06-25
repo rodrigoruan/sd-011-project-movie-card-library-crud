@@ -33,10 +33,11 @@ class MovieList extends Component {
 
     if (loading === true) return <Loading />;
     // exibe um `MovieCard` para cada filme retornado pela API
+    // O link deve conter o texto "ADICIONAR CARTÃO" e apontar para a rota `/movies/new`
     return (
       <div data-testid="movie-list" className="movie-list">
         {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
-        <Link to="/movies/new">ADICIONe CARTÃO</Link>
+        <Link to="/movies/new">ADICIONE CARTÃO</Link>
       </div>
     );
   }
