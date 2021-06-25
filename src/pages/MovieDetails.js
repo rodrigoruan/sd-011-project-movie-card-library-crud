@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
@@ -11,6 +11,7 @@ class MovieDetails extends Component {
     this.state = {
       movie: [],
       loading: true,
+      shouldRedirect: false,
     };
     this.getMovie = this.getMovie.bind(this);
     this.removeMovie = this.removeMovie.bind(this);
@@ -39,13 +40,17 @@ class MovieDetails extends Component {
     const { params } = match;
     const { id } = params;
     movieAPI.deleteMovie(id);
+    this.setState({
+      shouldRedirect: true,
+    });
   }
 
   render() {
     const { movie:
       { title, storyline, imagePath, genre, rating, subtitle, id },
     } = this.state;
-    const { loading } = this.state;
+    const { loading, shouldRedirect } = this.state;
+    if (shouldRedirect) return <Redirect to="/" />;
 
     return loading ? <Loading /> : (
       <div data-testid="movie-details">
@@ -66,7 +71,7 @@ class MovieDetails extends Component {
 MovieDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
     }),
   }).isRequired,
 };
