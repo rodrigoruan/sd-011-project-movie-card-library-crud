@@ -1,34 +1,64 @@
-// import React, { Component } from 'react';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { MovieForm } from '../components';
+import * as movieAPI from '../services/movieAPI';
+import Loading from '../components/Loading';
 
-// import { MovieForm } from '../components';
-// import * as movieAPI from '../services/movieAPI';
+class EditMovie extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movie: '',
+      status: 'loading',
+      shouldRedirect: false,
+    };
 
-// class EditMovie extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {};
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//   }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-//   handleSubmit(updatedMovie) {
-//   }
+  componentDidMount() {
+    const { match: { params: { id } } } = this.props;
+    movieAPI.getMovie(id)
+      .then((response) => {
+        this.setState({
+          status: 'continue',
+          movie: response,
+        });
+      });
+  }
 
-//   render() {
-//     const { status, shouldRedirect, movie } = this.state;
-//     if (shouldRedirect) {
-//       // Redirect
-//     }
+  handleSubmit(updatedMovie) {
+    movieAPI.updateMovie(updatedMovie)
+      .then(() => {
+        this.setState({ shouldRedirect: true });
+      });
+  }
 
-//     if (status === 'loading') {
-//       // render Loading
-//     }
+  render() {
+    const { status, shouldRedirect, movie } = this.state;
+    if (shouldRedirect) {
+      return <Redirect to="/" />;
+    }
 
-//     return (
-//       <div data-testid="edit-movie">
-//         <MovieForm movie={ movie } onSubmit={ this.handleSubmit } />
-//       </div>
-//     );
-//   }
-// }
+    if (status === 'loading') {
+      return <Loading />;
+    }
 
-// export default EditMovie;
+    return (
+      <div data-testid="edit-movie">
+        <MovieForm movie={ movie } onSubmit={ this.handleSubmit } />
+      </div>
+    );
+  }
+}
+
+EditMovie.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
+export default EditMovie;
