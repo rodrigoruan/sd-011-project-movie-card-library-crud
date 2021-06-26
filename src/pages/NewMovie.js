@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
+import { Redirect, Link } from 'react-router-dom';
 
 import MovieForm from '../components/MovieForm';
-// import * as movieAPI from '../services/movieAPI';
+import * as movieAPI from '../services/movieAPI';
 
 class NewMovie extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      shouldRedirect: false,
+    };
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
+  handleSubmit(newMovie) {
+    movieAPI.createMovie(newMovie);
+    this.setState({
+      shouldRedirect: true,
+    });
   }
 
-  // formulário para criar novos cartões, faz uma requisição para API para criar um novo filme
   render() {
+    const { shouldRedirect } = this.state;
+    if (shouldRedirect) return <Redirect to="/" />;
     return (
       <div data-testid="new-movie">
         <MovieForm onSubmit={ this.handleSubmit } />
+        <Link to="/">VOLTAR</Link>
       </div>
     );
   }
