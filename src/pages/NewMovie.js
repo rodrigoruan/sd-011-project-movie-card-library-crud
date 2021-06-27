@@ -12,7 +12,9 @@ class NewMovie extends Component {
 
   async handleSubmit( newMovie ) {
     const novoCadastroMovie = await movieAPI.createMovie(newMovie);
-    return <Redirect to ="/" />;
+    if(novoCadastroMovie === "ok") {
+      return <Redirect to ="/" />;
+    }
   }
 
   render() {
