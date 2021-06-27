@@ -18,12 +18,10 @@ class EditMovie extends Component {
     this.API = this.API.bind(this);
   }
 
-
   componentDidMount() {
     this.API();
   }
 
-  
   handleSubmit(movieUp) {
     // não sabia como fazer, tive que ver em codigos no github.
     this.setState(
@@ -40,14 +38,14 @@ class EditMovie extends Component {
       );
     }
     
-    async API() {
-      const { match: { params: { id } } } = this.props;
-      const movieApi = await movieAPI.getMovie(id);
-      this.setState({
-        status: false,
-        movie: movieApi,
-      });
-    }
+  async API() {
+    const { match: { params: { id } } } = this.props;
+    const movieApi = await movieAPI.getMovie(id);
+    this.setState({
+      status: false,
+      movie: movieApi,
+    });
+  }
 
   render() {
     const { status, shouldRedirect, movie } = this.state;
