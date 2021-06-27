@@ -1,4 +1,4 @@
-//Requisitos resolvidos em sala de estudos no dia 27/06/2021 
+// Requisitos resolvidos em sala de estudos no dia 27/06/2021
 // com os colegas Nykolas Silva e José Henrique Margraf Melo
 
 import React, { Component } from 'react';
