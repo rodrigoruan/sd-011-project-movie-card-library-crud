@@ -1,4 +1,4 @@
-// Requisito resolvido com consultas ao sites baixo
+// Requisito resolvido com consultas ao sites abaixo
 // e aos projetos Movie Card Library e Stateful:
 // https://app.betrybe.com/course/live-lectures/sd-cohort-8#aula-132-react-router
 // https://www.youtube.com/watch?v=6ZVUCiriOZ4

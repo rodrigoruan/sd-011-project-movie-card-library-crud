@@ -11,7 +11,7 @@ import EditMovie from './pages/EditMovie';
 import MovieDetails from './pages/MovieDetails';
 import NotFound from './pages/NotFound';
 
-export default function App() {
+function App() {
   return (
     <BrowserRouter>
       <h1>Movie Card Library CRUD</h1>
@@ -26,4 +26,4 @@ export default function App() {
   );
 }
 
-// export default App;
+export default App;

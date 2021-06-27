@@ -1,3 +1,8 @@
+// Requisito resolvido com consultas ao sites abaixo
+// e aos projetos Movie Card Library e Stateful:
+// https://www.youtube.com/watch?v=6ZVUCiriOZ4
+// https://www.youtube.com/watch?v=Vu_bTKMSpbA
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
