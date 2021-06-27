@@ -1,26 +1,66 @@
 import React, { Component } from 'react';
-
+import { Redirect } from 'react-router';
 import { MovieForm } from '../components';
-// import * as movieAPI from '../services/movieAPI';
+import { Loading } from '../components';
+import * as movieAPI from '../services/movieAPI';
+import PropTypes from 'prop-types';
+
 
 class EditMovie extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+
+    this.state = { 
+      status: true, 
+      shouldRedirect: false, 
+      movie: {},
+    };
+
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.API = this.API.bind(this);
   }
 
-  handleSubmit(/* updatedMovie */) {
+
+  componentDidMount() {
+    this.API();
+  }
+
+  async API() {
+    const { match: { params: { id } } } = this.props;
+    const movieApi = await movieAPI.getMovie(id);
+    this.setState({
+      status: false,
+      movie: movieApi,
+    });    
+  }
+  
+  handleSubmit(movieUp) {
+    // não sabia como fazer, tive que ver em codigos no github.
+    this.setState(
+      { status: true },
+      async () => {
+        const upMovie = await movieAPI.updateMovie(movieUp);
+        if (upMovie === 'OK') {
+          this.setState({
+            status: false,
+            shouldRedirect: true,
+          });
+        }
+      },
+    );
   }
 
   render() {
     const { status, shouldRedirect, movie } = this.state;
     if (shouldRedirect) {
       // Redirect
+      return <Redirect to="/" />
     }
 
-    if (status === 'loading') {
+    if (status) {
       // render Loading
+      return <Loading />
+
     }
 
     return (
@@ -30,5 +70,13 @@ class EditMovie extends Component {
     );
   }
 }
+
+EditMovie.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 export default EditMovie;
