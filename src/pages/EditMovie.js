@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import { MovieForm } from '../components';
-import { Loading } from '../components';
-import * as movieAPI from '../services/movieAPI';
 import PropTypes from 'prop-types';
-
+import { Loading, MovieForm } from '../components';
+import * as movieAPI from '../services/movieAPI';
 
 class EditMovie extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
-      status: true, 
-      shouldRedirect: false, 
+    this.state = {
+      status: true,
+      shouldRedirect: false,
       movie: {},
     };
 
@@ -25,14 +23,6 @@ class EditMovie extends Component {
     this.API();
   }
 
-  async API() {
-    const { match: { params: { id } } } = this.props;
-    const movieApi = await movieAPI.getMovie(id);
-    this.setState({
-      status: false,
-      movie: movieApi,
-    });    
-  }
   
   handleSubmit(movieUp) {
     // não sabia como fazer, tive que ver em codigos no github.
@@ -47,19 +37,28 @@ class EditMovie extends Component {
           });
         }
       },
-    );
-  }
+      );
+    }
+    
+    async API() {
+      const { match: { params: { id } } } = this.props;
+      const movieApi = await movieAPI.getMovie(id);
+      this.setState({
+        status: false,
+        movie: movieApi,
+      });
+    }
 
   render() {
     const { status, shouldRedirect, movie } = this.state;
     if (shouldRedirect) {
       // Redirect
-      return <Redirect to="/" />
+      return <Redirect to="/" />;
     }
 
     if (status) {
       // render Loading
-      return <Loading />
+      return <Loading />;
 
     }
 
