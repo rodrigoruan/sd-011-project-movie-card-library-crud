@@ -35,9 +35,9 @@ class EditMovie extends Component {
           });
         }
       },
-      );
-    }
-    
+    );
+  }
+
   async API() {
     const { match: { params: { id } } } = this.props;
     const movieApi = await movieAPI.getMovie(id);
@@ -57,7 +57,6 @@ class EditMovie extends Component {
     if (status) {
       // render Loading
       return <Loading />;
-
     }
 
     return (
