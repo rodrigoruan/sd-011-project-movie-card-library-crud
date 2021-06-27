@@ -24,7 +24,7 @@ class MovieForm extends React.Component {
     return (
       <div>
         <label htmlFor="movie_title">
-          <input return <Redirect to ="/" />;
+          <input
             placeholder="Insira o título"
             id="movie_title"
             type="text"
