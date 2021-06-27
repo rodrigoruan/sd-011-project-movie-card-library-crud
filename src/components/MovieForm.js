@@ -5,7 +5,7 @@ class MovieForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { ...props.movie };
-    
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -24,7 +24,7 @@ class MovieForm extends React.Component {
     return (
       <div>
         <label htmlFor="movie_title">
-          <input
+          <input return <Redirect to ="/" />;
             placeholder="Insira o título"
             id="movie_title"
             type="text"
