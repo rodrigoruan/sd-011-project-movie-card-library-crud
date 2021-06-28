@@ -18,7 +18,7 @@ class MovieList extends Component {
     this.requireMovieList();
   }
 
-  // Para buscar a lista, você deve utilizar a função getMovies importada do módulo movieAPI em MovieList. Essa função retorna uma promise. A requisição deve ser feita no momento em que o MovieList for montado no DOM.
+  // REQ.02 Para buscar a lista, você deve utilizar a função getMovies importada do módulo movieAPI em MovieList. Essa função retorna uma promise. A requisição deve ser feita no momento em que o MovieList for montado no DOM.
   async requireMovieList() {
     const returnedMovies = await movieAPI.getMovies();
     this.setState({ movies: returnedMovies, loading: false });

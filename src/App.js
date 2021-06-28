@@ -7,6 +7,7 @@ import MovieDetails from './pages/MovieDetails';
 import EditMovie from './pages/EditMovie';
 import NotFound from './pages/NotFound';
 
+// REQ.01 Renderize BrowserRouter no componente App usando rotas.
 function App() {
   return (
     <BrowserRouter>
