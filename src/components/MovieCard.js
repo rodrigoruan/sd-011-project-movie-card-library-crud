@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-class MovieCard extends React.Component {
+export default class MovieCard extends Component {
   render() {
+    const { movies } = this.props;
     return (
       <div data-testid="movie-card">
         Movie Card
       </div>
+
     );
   }
 }
-
-export default MovieCard;
+MovieCard.propTypes = {
+  movies: PropTypes.shape(PropTypes.object).isRequired,
+};
