@@ -1,53 +1,64 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
-import { Loading, MovieForm } from '../components';
+import { Redirect } from 'react-router';
+import { MovieForm } from '../components';
 import * as movieAPI from '../services/movieAPI';
+import Loading from '../components/Loading';
 
 export default class EditMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: {},
       status: 'loading',
       shouldRedirect: false,
+      movie: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    const { match: { params: { id } } } = this.props;
-    this.getMovieData(id);
-  }
-
   handleSubmit(updatedMovie) {
-    movieAPI.updateMovie(updatedMovie);
     this.setState({
       shouldRedirect: true,
+    }, () => {
+      movieAPI.updateMovie(updatedMovie);
     });
   }
 
-  getMovieData = async (id) => {
-    const returnApi = await movieAPI.getMovie(id);
+  getMovie = async () => {
+    const { match: { params: { id } } } = this.props;
+    const movieList = await movieAPI.getMovie(id);
     this.setState({
-      movie: returnApi,
-      status: null,
+      movie: movieList,
+      status: '',
     });
+  }
+
+  componentDidMount = () => {
+    this.getMovie();
   }
 
   render() {
     const { status, shouldRedirect, movie } = this.state;
-
-    if (status === 'loading') return <Loading />;
-
-    if (shouldRedirect) return <Redirect to="/" />;
-    return (
-      <div data-testid="edit-movie" />
-    );
+    if (shouldRedirect === true) {
+      return <Redirect />;
+    }
+    if (status === 'loading') {
+      return (
+        <div data-testid="edit-movie">
+          <Loading />
+        </div>
+      );
+    }
   }
 }
 
-EditMovie.propTypes = {
-  match: PropTypes.shape(PropTypes.object).isRequired,
+MovieDetails.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    storyline: PropTypes.string,
+    rating: PropTypes.number,
+    imagePath: PropTypes.string,
+  }).isRequired,
+  match: PropTypes.shape().isRequired,
 };

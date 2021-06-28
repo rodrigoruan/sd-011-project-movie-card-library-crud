@@ -12,12 +12,20 @@ export default class MovieCard extends Component {
         <h3>{ subtitle }</h3>
         <p>{ storyline }</p>
         <img src={ imagePath } alt="Movie Banner" />
-        <Link to={ `movies/${id}` }>VER DETALHES</Link>
+        <Link to={ `/movies/${id}` }>VER DETALHES</Link>
       </div>
 
     );
   }
 }
+
 MovieCard.propTypes = {
-  movie: PropTypes.shape(PropTypes.object).isRequired,
+  movie: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    storyline: PropTypes.string,
+    rating: PropTypes.number,
+    imagePath: PropTypes.string,
+  }).isRequired,
 };
