@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 
 import MovieForm from '../components/MovieForm';
-import { movieAPI } from '../tests/helpers';
-// import * as movieAPI from '../services/movieAPI';
+import * as movieAPI from '../services/movieAPI';
 
 class NewMovie extends Component {
   constructor(props) {
