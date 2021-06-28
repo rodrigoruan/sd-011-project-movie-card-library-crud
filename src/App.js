@@ -12,8 +12,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={ MovieList } />
         <Route path="/movies/new" component={ NewMovie } />
-        <Route path="/movies/:id" component={ MovieDetails } />
         <Route exact path="/movies/:id/edit" component={ EditMovie } />
+        <Route path="/movies/:id" component={ MovieDetails } />
         <Route path="*" component={ NotFound } />
       </Switch>
     </BrowserRouter>
@@ -23,3 +23,4 @@ function App() {
 export default App;
 
 // Source: consulta ao repositório https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/165/
+// Source: https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/161/

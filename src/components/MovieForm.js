@@ -165,3 +165,28 @@ class MovieForm extends React.Component {
 }
 
 export default MovieForm;
+
+MovieForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    storyline: PropTypes.string,
+    rating: PropTypes.number,
+    imagePath: PropTypes.string,
+    genre: PropTypes.string,
+  }),
+};
+
+MovieForm.defaultProps = {
+  movie: {
+    title: '',
+    subtitle: '',
+    storyline: '',
+    rating: 0,
+    imagePath: '',
+    genre: '',
+  },
+};
+
+// Source: consulta ao repositório https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/161/
