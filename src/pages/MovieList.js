@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MovieCard from '../components/MovieCard';
 import Loading from '../components/Loading';
 import * as movieAPI from '../services/movieAPI';
@@ -37,3 +38,9 @@ class MovieList extends Component {
 }
 
 export default MovieList;
+
+MovieList.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
+};
