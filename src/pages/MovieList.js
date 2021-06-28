@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
-
-// import * as movieAPI from '../services/movieAPI';
+import * as movieAPI from '../services/movieAPI';
+import Loading from '../components/Loading';
 
 class MovieList extends Component {
   constructor() {
@@ -9,20 +9,30 @@ class MovieList extends Component {
 
     this.state = {
       movies: [],
+      loading: true,
     };
+    this.requireMovieList = this.requireMovieList.bind(this);
+  }
+
+  componentDidMount() {
+    this.requireMovieList();
+  }
+
+  async requireMovieList() {
+    const returnedMovies = await movieAPI.getMovies();
+    this.setState({ movies: returnedMovies, loading:false });
   }
 
   render() {
-    const { movies } = this.state;
-
-    // Render Loading here if the request is still happening
-
+    const { movies, loading } = this.state;
     return (
       <div data-testid="movie-list">
-        {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
-      </div>
-    );
+        {loading ? <Loading />
+          : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
+      </div>);
   }
 }
 
 export default MovieList;
+
+// Source: consulta ao repositório https://github.com/tryber/sd-011-project-movie-card-library-crud/pull/161/
