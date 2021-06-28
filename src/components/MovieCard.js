@@ -1,11 +1,10 @@
 import React from 'react';
+// import { getMovies } from '../services/movieAPI';
 
 class MovieCard extends React.Component {
   render() {
     return (
-      <div data-testid="movie-card">
-        Movie Card
-      </div>
+      <div className="movie-card" data-testid="movie-card"> </div>
     );
   }
 }
