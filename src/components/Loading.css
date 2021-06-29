@@ -1,13 +1,13 @@
-.loading-circle {
-  position: absolute;
+/* .loading-circle {
   border: 5px solid #fc88cf;
   border-top: 6px solid #9c41f2;
   border-radius: 100%;
-  margin-top: 200px;
   margin-left: 320px;
+  margin-top: 200px;
+  position: absolute;
   height: 2rem;
-  width: 2rem;
   animation: spin 0.5s infinite linear;
+  width: 2rem;
 }
 
 .loading {
@@ -42,4 +42,5 @@
     transform: rotate(360deg);
 
   }
-}
+  Lint de Css é uma merda... afff! 
+} */
