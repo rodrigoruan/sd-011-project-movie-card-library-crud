@@ -9,7 +9,7 @@ class MovieDetails extends Component {
     super();
 
     this.state = {
-      movieDetails: [],
+      movie: [],
       loading: true,
     };
     this.delMovie = this.delMovie.bind(this);
@@ -23,19 +23,19 @@ class MovieDetails extends Component {
     const { match: { params: { id } } } = this.props;
     const { getMovie } = movieAPI;
     const response = await getMovie(id);
-    this.setState({ movieDetails: response, loading: false });
+    this.setState({ movie: response, loading: false });
   }
 
   async delMovie() {
     const { match: { params: { id } } } = this.props;
     const { deleteMovie } = movieAPI;
     const response = await deleteMovie(id);
-    this.setState({ movieDetails: response, loading: true });
+    this.setState({ movie: response, loading: true });
   }
 
   render() {
-    const { movieDetails, loading } = this.state;
-    const { title, storyline, imagePath, genre, rating, subtitle } = movieDetails;
+    const { movie, loading } = this.state;
+    const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
 
     if (loading) {
       return <Loading />;
