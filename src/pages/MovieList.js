@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieCard from '../components/MovieCard';
+import { Loading, MovieCard } from '../components';
 
 import * as movieAPI from '../services/movieAPI';
 
@@ -8,14 +8,27 @@ class MovieList extends Component {
     super();
 
     this.state = {
+      loading: true,
       movies: [],
     };
   }
 
-  render() {
-    const { movies } = this.state;
+  componentDidMount() {
+    movieAPI.getMovies().then((movies) => {
+      this.setState({ movies, loading: false });
+    });
+  }
 
-    // Render Loading here if the request is still happening
+  render() {
+    const { movies, loading } = this.state;
+
+    if (loading) {
+      return (
+        <div data-testid="movie-list">
+          <Loading />
+        </div>
+      );
+    }
 
     return (
       <div data-testid="movie-list">
