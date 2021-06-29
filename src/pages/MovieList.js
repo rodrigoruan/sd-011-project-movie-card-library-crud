@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
 import Loading from '../components/Loading';
 
-// import * as movieAPI from '../services/movieAPI';
+import * as movieAPI from '../services/movieAPI';
 
 class MovieList extends Component {
   constructor() {
@@ -10,21 +10,19 @@ class MovieList extends Component {
 
     this.state = {
       movies: [],
-      charged: false,
+      charged: true,
     };
-    this.fetchGetMovies = this.fetchGetMovies.bind(this);
+    this.fetchMovies = this.fetchMovies.bind(this);
   }
 
   componentDidMount() {
-    this.fetchGetMovie();
+    this.fetchMovie();
   }
 
-  async fetchGetMovie() {
-    this.setState({ charged: true },
-      async () => {
-        const movieListApi = await movieAPI.getMovies();
-        this.setState({ movies: movieListApi, charged: false });
-      });
+  async fetchGetMovies() {
+    const { getMovies } = movieAPI;
+    const search = await getMovies();
+    this.setState({ movies: search, charged: false });
   }
 
   render() {
