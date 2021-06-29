@@ -8,8 +8,8 @@ class MovieDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: {},
       loading: true,
+      movie: {},
     };
   }
 
@@ -27,7 +27,7 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { movie, loading, id } = this.state;
+    const { movie, loading } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle } = movie;
     if (loading) return <Loading />;
     return (
