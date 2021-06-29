@@ -10,7 +10,7 @@ class EditMovie extends Component {
     this.state = {
       movie: {},
       status: 'loading',
-      shouldRedirect: true,
+      shouldRedirect: false,
 
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,7 +32,7 @@ class EditMovie extends Component {
     const movies = await movieAPI.getMovie(id);
     this.setState({
       movie: movies,
-      status: 'false',
+      status: false,
     });
   }
 
@@ -43,17 +43,17 @@ class EditMovie extends Component {
       return <Redirect to="/" />;
     }
 
-    // if (status === 'loading') {
-    //   // render Loading
-    //   return <Loading />;
-    // }
+    if (status === 'loading') {
+      // render Loading
+      return <Loading />;
+    }
 
     return (
       <div data-testid="edit-movie">
-        {status === 'loading' ? <Loading /> : <MovieForm
+        <MovieForm
           movie={ movie }
           onSubmit={ this.handleSubmit }
-        />}
+        />
       </div>
     );
   }
@@ -64,7 +64,7 @@ export default EditMovie;
 EditMovie.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
     }),
   }).isRequired,
 };

@@ -65,7 +65,7 @@ export default MovieDetails;
 MovieDetails.propTypes = {
   match: PropTypes.objectOf({
     params: PropTypes.objectOf({
-      id: PropTypes.number,
+      id: PropTypes.string,
     }),
   }).isRequired,
 };
