@@ -26,7 +26,7 @@ class EditMovie extends Component {
     this.setState({ shouldRedirect: true });
   }
 
-  async updatedMovie() {
+  async SearchMovie() {
     const { match: { params: { id } } } = this.props;
     const { getMovie } = movieAPI;
     const movie = await getMovie(id);
