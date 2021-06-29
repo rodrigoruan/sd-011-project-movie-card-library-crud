@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
 class MovieDetails extends Component {
   constructor(props) {
     super(props);
+    this.deleteMovie = this.deleteMovie.bind(this);
     this.state = {
       loading: true,
       movie: {},
+      shouldRedirect: false,
     };
   }
 
@@ -26,10 +28,20 @@ class MovieDetails extends Component {
     });
   }
 
+  deleteMovie(e) {
+    e.preventDefault();
+    const { movie: { id } } = this.state;
+    movieAPI.deleteMovie(id);
+    this.setState({
+      shouldRedirect: true,
+    });
+  }
+
   render() {
-    const { movie, loading } = this.state;
-    const { title, storyline, imagePath, genre, rating, subtitle } = movie;
+    const { movie, loading, shouldRedirect } = this.state;
+    const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
     if (loading) return <Loading />;
+    if (shouldRedirect) return <Redirect to="/" />;
     return (
       <div data-testid="movie-details">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
@@ -40,6 +52,7 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
         <Link to="/">VOLTAR</Link>
+        <Link to="/" onClick={ () => movieAPI.deleteMovie(id) }>DELETAR</Link>
       </div>
     );
   }
