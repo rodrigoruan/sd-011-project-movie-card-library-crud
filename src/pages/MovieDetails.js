@@ -16,6 +16,7 @@ class MovieDetails extends Component {
   componentDidMount() {
     const { match: { params: { id } } } = this.props;
     this.fetchMovie(id);
+    this.remove(id);
   }
 
   async fetchMovie(id) {
@@ -26,9 +27,11 @@ class MovieDetails extends Component {
     });
   }
 
+  remove(id) {
+    movieAPI.deleteMovie(id);
+  }
+
   render() {
-    // Change the condition to check the state
-    // if (true) return <Loading />;
     const { movie, loading } = this.state;
     const { title, storyline, imagePath, genre, rating, subtitle, id } = movie;
     if (loading === true) {
@@ -49,6 +52,9 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <Link to={ `/movies/${id}/edit` }>
           EDITAR
+        </Link>
+        <Link to="/" onClick={ this.remove }>
+          DELETAR
         </Link>
       </div>
     );

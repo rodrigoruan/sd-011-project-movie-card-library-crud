@@ -1,4 +1,3 @@
-import { thistle } from 'color-name';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import MovieForm from '../components/MovieForm';
