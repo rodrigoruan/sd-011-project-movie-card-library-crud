@@ -1,5 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import MovieList from './pages/MovieList';
+import NewMovie from './pages/NewMovie';
+import MovieDetails from './pages/MovieDetails';
+import EditMovie from './pages/EditMovie';
+import NotFound from './pages/NotFound';
 import './App.css';
 
 // ajuda do italo de matos turma 10-b
