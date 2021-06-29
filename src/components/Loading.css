@@ -11,8 +11,8 @@
 }
 
 .loading {
-  position: absolute;
   border-radius: 100%;
+  position: absolute;  
   margin-top: 130px;
   margin-left: 220px;
   text-decoration: solid;
@@ -21,7 +21,7 @@
   font-weight: 900;
   height: 2rem;
   width: 2rem;
-  }
+}
 
 .loading.display {
   visibility: visible;
@@ -33,9 +33,13 @@
 
 @keyframes spin {
   from {
-      transform: rotate(0deg);
+
+    transform: rotate(0deg);
+
   }
   to {
-      transform: rotate(360deg);
+
+    transform: rotate(360deg);
+
   }
 }

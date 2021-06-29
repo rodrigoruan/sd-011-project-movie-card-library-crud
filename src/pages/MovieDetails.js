@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 
@@ -10,8 +10,10 @@ class MovieDetails extends Component {
     this.state = {
       loading: true,
       movie: {},
+      shouldRedirect: false,
     };
     this.fetchMovie = this.fetchMovie.bind(this);
+    this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   componentDidMount() {
@@ -27,9 +29,19 @@ class MovieDetails extends Component {
     });
   }
 
+  deleteMovie(event) {
+    event.preventDefault();
+    const { match: { params: { id } } } = this.props;
+    movieAPI.deleteMovie(id);
+    this.setState({
+      shouldRedirect: true,
+    });
+  }
+
   render() {
-    const { movie, loading } = this.state;
+    const { movie, loading, shouldRedirect } = this.state;
     if (loading) return <Loading />;
+    if (shouldRedirect) return <Redirect to="/" />;
     // Change the condition to check the state
     // if (true) return <Loading />;
 
@@ -45,14 +57,16 @@ class MovieDetails extends Component {
         <p>{ `Rating: ${rating}` }</p>
         <div className="btn-cont">
           <Link to={ `/movies/${id}/edit` }>
-            <button type="button" className="button-details">
-              EDITAR
-            </button>
+            EDITAR
           </Link>
           <Link to="/">
-            <button type="button" className="button-details">
-              VOLTAR
-            </button>
+            VOLTAR
+          </Link>
+          <Link
+            to="/"
+            onClick={ this.deleteMovie }
+          >
+            DELETAR
           </Link>
         </div>
       </div>
