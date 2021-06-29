@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MovieCard from '../components/MovieCard';
 import Loading from '../components/Loading';
+import MovieCard from '../components/MovieCard';
 
 import * as movieAPI from '../services/movieAPI';
 
@@ -10,7 +10,7 @@ class MovieList extends Component {
 
     this.state = {
       movies: [],
-      charged: true,
+      charged: false,
     };
     this.fetchMovies = this.fetchMovies.bind(this);
   }
@@ -20,9 +20,11 @@ class MovieList extends Component {
   }
 
   async fetchGetMovies() {
-    const { getMovies } = movieAPI;
-    const search = await getMovies();
-    this.setState({ movies: search, charged: false });
+    this.setState({ charged: true },
+      async () => {
+        const movieList = await movieAPI.getMovies();
+        this.setState({ movies: movieList, charged: false });
+      });
   }
 
   render() {
