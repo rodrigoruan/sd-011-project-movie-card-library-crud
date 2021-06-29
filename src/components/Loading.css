@@ -1,27 +1,27 @@
 .loading-circle {
   position: absolute;
-  width: 2rem;
-  height: 2rem;
   border: 5px solid #fc88cf;
   border-top: 6px solid #9c41f2;
   border-radius: 100%;
   margin-top: 200px;
   margin-left: 320px;
+  height: 2rem;
+  width: 2rem;
   animation: spin 0.5s infinite linear;
 }
 
-.loading {  
+.loading {
   position: absolute;
-  width: 2rem;
-  height: 2rem;  
   border-radius: 100%;
   margin-top: 130px;
   margin-left: 220px;
   text-decoration: solid;
   color: #fc88cf;
   font-size: 50px;
-  font-weight: 900;  
-}
+  font-weight: 900;
+  height: 2rem;
+  width: 2rem;
+  }
 
 .loading.display {
   visibility: visible;
