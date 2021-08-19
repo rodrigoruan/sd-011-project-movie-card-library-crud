@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
+import '../css/Crud.css';
 
 class MovieDetails extends Component {
   constructor(props) {
@@ -48,19 +49,21 @@ class MovieDetails extends Component {
     const { params } = match;
     const { id } = params;
     return (
-      <div data-testid="movie-details">
+      <div data-testid="movie-details" className="movie-details-container">
         <img alt="Movie Cover" src={ `../${imagePath}` } />
-        <h4>{ `Title: ${title}` }</h4>
-        <p>{ `Subtitle: ${subtitle}` }</p>
-        <p>{ `Storyline: ${storyline}` }</p>
-        <p>{ `Genre: ${genre}` }</p>
-        <p>{ `Rating: ${rating}` }</p>
-        <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
-        <br />
-        <Link to="/">VOLTAR</Link>
-        <br />
-        <Link to="/" onClick={ () => this.deleteMovie(id) }>DELETAR</Link>
-        <br />
+        <div className="movie-details-text">
+          <h4>{ `Title: ${title}` }</h4>
+          <p>{ `Subtitle: ${subtitle}` }</p>
+          <p className="movie-details-storyline">{ `Storyline: ${storyline}` }</p>
+          <p>{ `Genre: ${genre}` }</p>
+          <p>{ `Rating: ${rating}` }</p>
+          <Link to={ `/movies/${id}/edit` }>EDITAR</Link>
+
+          <Link to="/">VOLTAR</Link>
+
+          <Link to="/" onClick={ () => this.deleteMovie(id) }>DELETAR</Link>
+
+        </div>
       </div>
     );
   }
